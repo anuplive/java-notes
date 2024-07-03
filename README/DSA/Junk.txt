@@ -1,0 +1,591 @@
+
+
+Dynamic Programming :
+
+House Robber
+
+public static int robHouse(int[] homes){
+
+    int[] memo = new int [homes.length -1];
+
+    return robHelper(homes, homes.length -1, memo)
+}
+
+ int robHelper(int [] homes, int currentHouse, int[] memo){
+
+    if (currentHouse == 0)
+        return homes[0];
+
+    if (currentHouse == 1)
+        return Integer.max(homes[0], homes[1]);
+
+    memo[currentHome] =  Integer.max(homes[currentHouse] + robHelper(homes, currentHouse - 2),
+                       robHelper(homes, currentHouse - 1));
+
+    return  memo[currentHome];
+
+    }
+
+
+##########
+Climbing Stairs with memoization :
+
+public static int countWays(int steps, int[] memo){
+
+    if (steps == 1 )
+        return 1;
+    if (steps == 2)
+        return 2;
+
+    if (memo[steps] != -1)
+        return memo[steps];
+
+    else memo[steps] = countWays(steps - 1) + step(steps - 2);
+     return memo[steps];
+}
+
+
+// countWays(5, Arrays.fill(new int[n +1]{}, -1));
+
+
+##########
+Climbing Stairs : No memoization
+
+public static int countWays(int steps){
+    if (steps == 1 )
+        return 1;
+    if (steps == 2)
+        return 2;
+     return countWays(steps - 1) + step(steps - 2);
+
+}
+
+
+##########
+
+Recurssion course:
+ATM Analogy :
+int whatNumberAmI ( Person p){
+
+    if (p.ahead == null)
+        return 1 ;
+
+    return 1 + whatNumberAmI( p.ahead);
+}
+
+##########
+Essay Evaluation
+
+boolean evaluateEssay( Document essay){
+    if (essay == complete )
+        return true;
+   return evaluateEssay(nextRevision(essay));
+}
+##########
+Reverse a String
+
+String reverseString(String input){
+    if (input.length() == 0)
+        return  "";
+    }
+
+    return reverseString(input.substring(1))  + input.charAt(0);
+}
+##########
+Palindorme: kayak
+
+boolean isPalindrome(String s ){
+    if (s == null || s.length() < 2 )
+        return true;
+
+    if (s.charAt(0) == s.charAt(s.length()-1))
+        return (s.substring(1,s.length()-1));
+    return false;
+    }
+}
+##########
+Decimal to Binary
+
+String decimalToBinary(int num){
+    if (num == 0 || num == 1 )
+        return String.parseInt(num);
+
+    return   decimalToBinary((num/2)) + String.parseInt(num % 2);
+
+}
+
+##########
+Decimal to Binary (Tail Recursion)
+
+String decimalToBinary(int num, String result){
+    if (num == 0 || num == 1 )
+        return String.valueOf(num) + result;
+
+    result = String.valueOf(num %2 ) + result;
+    return   decimalToBinary((num/2), result) ;
+
+}
+##########
+Sum of Natural Numbers :
+
+int sumAllNaturalNumbers(int range){
+    if (range  == 0 )
+        return 0;
+
+    return range + sumAllNaturalNumbers(range - 1 );
+}
+
+####
+// Tail Recursive version:
+
+public static void int sumAllNautralNumbers(int range, int sum){
+    if (range == 0){
+        return sum;
+        }
+    sum = range + sum;
+
+    return sumAllNautralNumbers( range - 1 , sum);
+}
+##########
+Binary Search :
+boolean binarySearch( int target, int[] arr,  int start, int end){
+    if (start > end)
+        return -1;
+
+    int mid = start + (end - start)/ 2 ;
+
+    if ( target == arr[mid]){
+        return mid;
+      }
+
+    if (target > arr[mid])
+        return binarySearch(target, arr, mid + 1 , end);
+    else
+        return binarySearch(target, arr, start, mid -1);
+}
+##########
+
+Fibonacci Series
+
+int fib(int target){
+    if (target == 0 || target == 1 )
+        return target;
+
+    return fib(target - 1 ) + fib(target - 2);
+    }
+
+##########
+// Merge Sort
+public class MergeSort
+{
+
+public static void main(String[] args){
+
+    System.out.println(mergeSort(new int[]{7,2,4,1,8,9,0}, 0, 6));
+    }
+}
+
+public static void mergeSort(int[] arr, int start, int end){
+    int mid = start + (end - start)/ 2;
+    while (start < end){
+        mergeSort(arr, start, mid);
+        mergeSort(arr,mid + 1, end);
+        merge(arr, start , mid , end )
+    }
+   }
+
+ public static void merge (int[] arr, int start, int mid , int end){
+
+        int i = start;
+        int j = mid + 1 ;
+        int k = start;
+
+        int [] tmp = new int[end - start + 1 ];
+
+        while ( i <= mid  && j <= end ){
+
+            if (arr[i] <= arr[j]){
+                tmp[k] = arr[i];
+                i ++;
+            } else {
+                tmp[k] = arr[j];
+                j ++;
+                }
+            k++;
+            }
+        while( i <= mid){
+            tmp[k++] = arr[i++];
+            }
+        while(j <= end){
+            tmp[k++] = arr[i++];
+            }
+        for (int x = start; x <= end ; x ++){
+            arr[x] = tmp[x];
+        }
+      }
+ }
+
+        }
+
+
+
+        }
+
+        }
+        }
+
+
+ }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################
+start = 0;
+end = arr.length - 1;
+
+boolean isAscending  =  (arr[start] < arr[end])? true : false;
+
+while (start <= end ){
+
+    mid = start + (end - start)/ 2;
+
+     if (arr[mid] == target){
+                return true;
+        }
+    if (isAscending){
+        if ( arr[mid] < target){
+            start = mid + 1 ;
+            }
+        else {
+            end = mid - 1 ;
+            }
+          }
+
+    }else {
+        if (arr[mid] < target){
+            end = mid - 1 ;
+        } else {
+            start = mid + 1 ;
+            }
+        }
+
+    retirn -1;
+    }
+    }
+
+}
+}
+
+
+###################################
+
+BS 2D Matrix
+int start = 0 ;
+int end = row * cols -1 ;
+
+while (end <= start){
+    int mid = start + (end - start)/ 2;
+
+    int midNumber = arr[mid/ col][mid % col];
+
+    if (midNumber == target){
+
+        return false; }
+    else if (midNumber < target){
+        start  = mid + 1;
+        }
+    else {
+        end  = mid -1 ;
+        }
+
+    }
+ return false;
+}
+}
+
+
+###################################
+
+BS Rotated sorted array
+
+int start = 0;
+int end = arr.length - 1
+
+while (end <= start){
+
+    int mid = start + (end - start)/ 2;
+
+    if (arr[mid] == target){
+        return true;
+    }
+
+    // Left sorted
+    if (arr[left] < arr[mid]){
+        if (arr[left] <= target && target < arr[mid] ])
+           right = mid -1;
+        else
+           left = mid + 1;
+    }else{
+    //Right Sorted
+        if (arr[mid] < target && target <= arr[right])
+            left = mid + 1;
+        else
+            right = mid -1;
+    }}
+    return -1;
+}}
+
+
+###################################
+BS
+Arrays.sort(arr);
+start = 0;
+end = arr.length -1
+
+while (end <=  start ){
+    mid = start + (end - start)/ 2 ;
+
+    if (arr[mid] == target)
+        return true;
+    else if (arr[mid] < target)
+        start = mid + 1 ;
+
+    else
+        end = mid - 1;
+}
+
+return -1 ;
+###################################
+Valid Palindrome
+
+Main
+  while(end > start ){
+  if (s.charAt(end) != s.charAt(start))
+    return false;
+
+    end --;
+    start ++;
+
+}
+
+
+
+
+
+
+
+###################################
+class BFSTree {
+    // Define a TreeNode
+    public static class TreeNode{
+
+        Integer data;
+        TreeNode left;
+        TreeNode right;
+
+        public TreeNode(Integer input){
+        this.data = input;
+        }
+        public TreeNode(){
+        }
+    }
+    public List<Integer> levelOrderTraversal(TreeNode root){
+
+        if (root == null )
+            return new ArrayList<Integer>();
+
+        List<Integer> result = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+
+        q.offer(root);
+
+        while (! q.isEmpty()){
+
+        TreeNode current = q.poll();
+        result.add(current.data);
+        if (q.left != null)
+            q.offer(current.left);
+        if (q.right != null)
+            q.offer(current.right);
+        }
+
+        return result;
+    }
+
+    public List<Integer> zigzagOrderTraversal(TreeeNode root){
+
+            if (root == null )
+                return new ArrayList<Integer>();
+
+            List<Integer> result = new ArrayList<>();
+            Dequeue<TreeNode> q = new LinkedList<>();
+            bpplean direction = true;
+            q.offer(root);
+
+            while (! q.isEmpty()){
+            int qSize = q.size();
+            for (int i = 0 ; i < qSize; i ++){
+                TreeNode current = (direction) ? q.getFirst() : q.getLast();
+                result.add(current.data);
+                if (q.left != null)
+                    q.offer(current.left);
+                if (q.right != null)
+                    q.offer(current.right);
+            }
+            direction = !direction;
+            }
+            return result;
+            }
+    }
+}
+##################################
+Binary Search on an Array
+
+public int binarySerach(int[] array, int target){
+
+    if (array == null || array.length == 0 ){
+        return -1;
+    }
+
+    int left = 0;
+    int right = array.length -1 ;
+
+    while (left < right){
+
+        int mid =  left + (right -left)/2;
+
+        if (array[mid] == target){
+            return mid;
+        } else if (array[mid] < target){
+            left = mid + 1;
+        }else {
+            right = mid -1 ;
+            }
+        }
+
+    return -1;
+    } }
+
+##############################
+Binary Search with rotation
+
+Binary Search on an Array
+
+public int binarySerach(int[] array, int target){
+
+    if (array == null || array.length == 0 ){
+        return -1;
+    }
+
+    int left = 0;
+    int right = array.length -1 ;
+
+    while (left < right){
+
+        int mid =  left + (right -left)/2;
+
+        if (array[mid] == target){
+            return mid;
+        }
+
+        if (array[left] <= array[mid]){
+            if(array[left] <= target && target < array[mid]){
+                right = mid -1 ;
+                else
+                left = mid + 1 ;
+                }
+            }
+
+        }esle{
+            if (array[mid] < target && target < array[right]){
+                left = mid + 1;
+                else
+                right = mid - 1;
+                }
+            }
+        }}
+        }
+        }
+        }
+##########################
+Sliding Window Max :
+
+
+public int[] maxInSlidingWindow( int[] arr, int k){
+
+    if (arr == null || arr.length < 1){
+        return arr;
+        }
+
+    PriorityQueue<int[]> windowMaxHeap = new PriorityQueue<>((a,b) -> {b[0] - a[0]});
+    int[] result = new int[arr.length - k + 1];
+
+    for (int i =0 ; i < k ; i ++){
+        windowMaxHeap.offer(new int[]{ arr[i], i});
+
+    result[0]   = windowMaxHeap.peek()[0];
+
+    for (int i = k; i < arr.length -1 ; i ++){
+
+        windowMaxHeap.offer(new int[]{arr[k], i});
+
+        while(windowMaxHeap.peek() <= i - k ){
+            windowMaxHeap.poll();
+        }
+
+        result[i - k + 1] =  windowMaxHeap.peek()[0];
+
+        }
+
+        return result;
+    }}
+#############################
+
+Sub arrays Product Less than Target
+
+public int maxSubArrayProduct(int[] arr, int target){
+    product = 1 ;
+    left = 0;
+    for (int right = 0; right < arr.length ; right ++){
+
+        product *= arr[right];
+
+        while (product >= target ){
+            product /= arr[left++];
+        }
+
+        count += right - left + 1
+
+        }
+    }
+    }
+
+}
+}
