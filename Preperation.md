@@ -18,6 +18,7 @@ Experience with X509 Certificate Authorities and PKI Service is a plus.
 
 ## Spring
 - [Educative](https://www.educative.io/module/Y6GKZ1ipY4VA9DQQG/10370001/5079044300734464)
+- [Project](https://www.youtube.com/watch?v=DKlTBBuc32c&list=PLWKjhJtqVAbnRT_hue-3zyiuIYj0OlpyG&index=6)
 ***
 
 ## Java Interview Handbook
@@ -61,6 +62,7 @@ Experience with X509 Certificate Authorities and PKI Service is a plus.
 - [DOM Nodes](https://www.youtube.com/watch?v=BWVoPxob5DU&list=PLWKjhJtqVAbmoiNlqLJg1gxEjEuKHHcn_&index=26)
 - [eventListener](https://www.youtube.com/watch?v=F3odgpghXzY&list=PLWKjhJtqVAbmoiNlqLJg1gxEjEuKHHcn_&index=27)
 - [Proxies](https://www.youtube.com/watch?v=vExLi5bTt3k&list=PLWKjhJtqVAbmoiNlqLJg1gxEjEuKHHcn_&index=83)
+- https://www.youtube.com/watch?v=ZYb_ZU8LNxs&list=PLWKjhJtqVAbleDe3_ZA8h3AO2rXar-q2V&index=6
 
 **JQuery and Ajax**
 - [JQuery vs Vanilla JS](https://www.youtube.com/watch?v=X65s7WQLWJY&list=PLWKjhJtqVAbmoiNlqLJg1gxEjEuKHHcn_&index=2)

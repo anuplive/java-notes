@@ -18,7 +18,7 @@
 | [Cycle Detection](#cycle-detection)             | [Find Duplicate Number](#find-duplicate-number)               |                                                                           |                                                         |                                                               |
 | [Strings](#strings)                             | [Grouped Anargams](#grouped-anagrams)                         |                                                                           |                                                         |                                                               |
 | [Tree DFS](#tree-dfs)                           | [All Traversals](#all-traversals)                             |                                                                           |                                                         |                                                               |
-|                                                 |                                                               |                                                                           |                                                         |                                                               |
+| [Matrix](#matrix)                               |                                                               |                                                                           |                                                         |                                                               |
 |                                                 |                                                               |                                                                           |                                                         |                                                               |
 
 [HOME.md](HOME.md)
@@ -39,6 +39,7 @@
 - String to Integer (atoi)
 
 [Back to Top](#table-of-contents)
+
 #### Valid Palindrome
 
 ```java
@@ -77,14 +78,62 @@ public class Main{
  */
 ```
 
-#### Three Sum Problem
-
 ***
-[Back to Top](#table-of-contents)
 
-##########################################
+### Three Sum Problem
+#### Three Sum Target
+##### Pattern: Two Pointers
+[Back to Top](#Table-of-contents)
+##### Description:
+- **Input:** nums = [1, 2, -1, 0, -2, 1], target = 0
+- **Output:** [[-2, 1, 1], [-1, 0, 1]]
+- **Explanation:** The triplets [-2, 1, 1] and [-1, 0, 1] sum up to the target 0.
 
-##########################################
+```java
+import java.util.*;
+
+public class ThreeSumTarget {
+    public List<List<Integer>> threeSum(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        // Sort the array to make two-pointer technique possible
+        Arrays.sort(nums);
+        
+        // Iterate through the array
+        for (int i = 0; i < nums.length - 2; i++) {
+            // Skip duplicate elements
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            // Two pointers
+            int left = i + 1, right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum == target) {
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    // Skip duplicate elements
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
+                    left++;
+                    right--;
+                } else if (sum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+        return result;
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is \(O(n^2)\) due to the nested loops: one for iterating through the array and one for the two-pointer traversal.
+
+##### Space Complexity:
+- The space complexity is \(O(m)\) where \(m\) is the number of triplets found because of the space required to store the output list.
+***
+
+
+
 
 
 ### Searching
@@ -607,6 +656,8 @@ public class Solution {
 
 
 ##########################################
+
+
 
 ### Triplet Sum
 - Statement
@@ -1992,3 +2043,201 @@ class AllTraversals {
 ##### Space Complexity:
 - O(n), where n is the number of nodes in the tree.
 - The space is used by the stack in the worst case (when the tree is completely unbalanced).
+
+***
+
+### Matrix
+#### Rotate a Matrix
+##### Pattern: Matrix Manipulation
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: A 2D array (matrix).
+  ```java
+  [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ]
+  ```
+- Output: The matrix rotated 90 degrees clockwise.
+  ```java
+  [
+    [7, 4, 1],
+    [8, 5, 2],
+    [9, 6, 3]
+  ]
+  ```
+- Explanation: The matrix is rotated 90 degrees clockwise, shifting each element to its new position.
+
+```java
+public class RotateMatrix {
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        
+        // Step 1: Transpose the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        
+        // Step 2: Reverse each row
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - 1 - j];
+                matrix[i][n - 1 - j] = temp;
+            }
+        }
+    }
+}
+```
+
+##### Time Complexity:
+- The time complexity is O(n^2), where n is the number of rows (or columns) of the matrix, because we traverse the entire matrix twice: once for transposing and once for reversing each row.
+
+##### Space Complexity:
+- The space complexity is O(1) because we are performing the rotation in place without using any extra space.
+
+***
+
+#### Set Matrix Zeros
+##### Pattern: Matrix Manipulation
+[Back to Top](#Table-of-contents)
+##### Description:
+- Input:
+  ```
+  [
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1]
+  ]
+  ```
+- Output:
+  ```
+  [
+    [1, 0, 1],
+    [0, 0, 0],
+    [1, 0, 1]
+  ]
+  ```
+- Explanation: If an element is 0, set its entire row and column to 0. The example above shows the matrix before and after setting the required rows and columns to 0.
+
+```java
+public class SetMatrixZeros {
+    public void setZeroes(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        
+        boolean[] rowZero = new boolean[rows]; // To track which rows need to be set to 0
+        boolean[] colZero = new boolean[cols]; // To track which columns need to be set to 0
+        
+        // First pass: determine which rows and columns need to be zeroed
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 0) {
+                    rowZero[i] = true;
+                    colZero[j] = true;
+                }
+            }
+        }
+        
+        // Second pass: set the rows and columns to zero
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (rowZero[i] || colZero[j]) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is O(m * n), where m is the number of rows and n is the number of columns. This is because we iterate through the entire matrix twice.
+
+##### Space Complexity:
+- The space complexity is O(m + n) due to the additional arrays used to track which rows and columns need to be zeroed.
+***
+
+***
+#### Spiral Matrix
+##### Pattern: Matrix Traversal
+[Back to Top](#Table-of-contents)
+##### Description:
+- Input: `matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+- Output: `[1, 2, 3, 6, 9, 8, 7, 4, 5]`
+- Explanation: Starting at the top left, the traversal moves right, down, left, and up, repeating until all elements are covered.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class SpiralMatrix {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
+
+        // Define boundaries
+        int top = 0;
+        int bottom = matrix.length - 1;
+        int left = 0;
+        int right = matrix[0].length - 1;
+
+        while (top <= bottom && left <= right) {
+            // Traverse from left to right along the top boundary
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
+            }
+            top++;
+
+            // Traverse from top to bottom along the right boundary
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;
+
+            // Ensure we are within valid boundaries before proceeding
+            if (top <= bottom) {
+                // Traverse from right to left along the bottom boundary
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            // Ensure we are within valid boundaries before proceeding
+            if (left <= right) {
+                // Traverse from bottom to top along the left boundary
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+
+        return result;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        SpiralMatrix sm = new SpiralMatrix();
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        System.out.println(sm.spiralOrder(matrix)); // Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is O(m * n), where m is the number of rows and n is the number of columns in the matrix. This is because we visit each element exactly once.
+
+##### Space Complexity:
+- The space complexity is O(1) if we ignore the space used for the output list. Otherwise, it is O(m * n) to store the result.
+***
