@@ -1,10 +1,34 @@
+# Strings
+
+[HOME.md](HOME.md)
+==================
+
+## Table of contents
+
+<!--ts-->
+
+| Category                                    | Problems                              |                                         |                                                         |                                                 |
+|:--------------------------------------------|:--------------------------------------|:----------------------------------------|:--------------------------------------------------------|:------------------------------------------------|
+| [Sliding Window](#sliding-window)           | [Valid Palindrome](#valid-palindrome) | [Three Sum Problem](#three-sum-problem) | [Container with most Water](#container-with-most-water) | [Product except itself](#product-except-itself) |
+| [Palindromic](#palindromic)                 |                                       |                                         |                                                         |                                                 |
+| [Anagrams](#anagrams)                       |                                       |                                         |                                                         |                                                 |
+| [Parentheses Stack](#parentheses-stack)     |                                       |                                         |                                                         |                                                 |
+| [String Manipulation](#string-manipulation) |                                       |                                         |                                                         |                                                 |
+|                                             |                                       |                                         |                                                         |                                                 |
+
 
 ***
-###  Sliding Window
+
+### Sliding Window
+
 #### Longest Substring Without Repeating Characters
+
 ##### Pattern: Sliding Window
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: `"abcabcbb"`
 - Output: `3`
 - Explanation: The answer is `"abc"` with the length of `3`.
@@ -37,23 +61,37 @@ public class LongestSubstringWithoutRepeating {
 
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is `O(n)`, where `n` is the length of the string. Each character is processed at most twice, once by the right pointer and once by the left pointer.
+
+- The time complexity is `O(n)`, where `n` is the length of the string.
+  Each character is processed at most twice, once by the right pointer
+  and once by the left pointer.
 
 ##### Space Complexity:
-- The space complexity is `O(min(n, m))`, where `n` is the length of the string and `m` is the size of the character set. This is due to the extra space used by the HashSet to store the characters of the substring.
+
+- The space complexity is `O(min(n, m))`, where `n` is the length of the
+  string and `m` is the size of the character set. This is due to the
+  extra space used by the HashSet to store the characters of the
+  substring.
 
 
 ***
+
 ### Palindromic
+
 #### Longest Palindromic Substring
+
 ##### Pattern: Dynamic Programming
 
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: "babad"
 - Output: "bab" or "aba"
-- Explanation: The longest palindromic substrings in "babad" are "bab" and "aba", both have the same length.
+- Explanation: The longest palindromic substrings in "babad" are "bab"
+  and "aba", both have the same length.
 
 ```java
 public class LongestPalindromicSubstring {
@@ -95,20 +133,32 @@ public class LongestPalindromicSubstring {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is O(n^2), where n is the length of the input string. This is because for each character, we might expand around it to check for palindromes, which takes linear time.
+
+- The time complexity is O(n^2), where n is the length of the input
+  string. This is because for each character, we might expand around it
+  to check for palindromes, which takes linear time.
 
 ##### Space Complexity:
-- The space complexity is O(1) as we are using only a few additional variables and not any extra space that scales with the input size.
+
+- The space complexity is O(1) as we are using only a few additional
+  variables and not any extra space that scales with the input size.
+
 ***
 
 #### Longest Common Subsequence (Top-Down Approach Without Memoization)
+
 ##### Pattern: Dynamic Programming
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - **Input:** Two strings, e.g., `s1 = "abcde"` and `s2 = "ace"`
 - **Output:** Length of the longest common subsequence, e.g., `3`
-- **Explanation:** The longest common subsequence of `"abcde"` and `"ace"` is `"ace"`, which has a length of `3`.
+- **Explanation:** The longest common subsequence of `"abcde"` and
+  `"ace"` is `"ace"`, which has a length of `3`.
 
 ```java
 public class LongestCommonSubsequence {
@@ -140,19 +190,30 @@ public class LongestCommonSubsequence {
 ```
 
 ##### Time Complexity:
-- The time complexity is `O(2^n)` because there are two recursive calls for each character of the strings, resulting in an exponential number of recursive calls.
+
+- The time complexity is `O(2^n)` because there are two recursive calls
+  for each character of the strings, resulting in an exponential number
+  of recursive calls.
 
 ##### Space Complexity:
-- The space complexity is `O(n + m)` due to the recursive stack space, where `n` and `m` are the lengths of the two strings.
+
+- The space complexity is `O(n + m)` due to the recursive stack space,
+  where `n` and `m` are the lengths of the two strings.
 
 ***
+
 #### Longest Common Subsequence (Top-Down Approach + Memoization)
+
 ##### Pattern: Dynamic Programming
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: `text1 = "abcde"`, `text2 = "ace"`
 - Output: `3`
-- Explanation: The longest common subsequence is `"ace"`, which has length 3.
+- Explanation: The longest common subsequence is `"ace"`, which has
+  length 3.
 
 ```java
 public class LongestCommonSubsequence {
@@ -191,21 +252,30 @@ public class LongestCommonSubsequence {
     }
 }
 ```
+
 ##### Time Complexity:
-- `O(m * n)`, where `m` and `n` are the lengths of `text1` and `text2`, respectively. Each state is computed once.
+
+- `O(m * n)`, where `m` and `n` are the lengths of `text1` and `text2`,
+  respectively. Each state is computed once.
 
 ##### Space Complexity:
-- `O(m * n)`, due to the memoization table that stores results for each pair of indices.
+
+- `O(m * n)`, due to the memoization table that stores results for each
+  pair of indices.
+
 ***
 
 
-
-
 ### Anagrams
+
 #### Valid Anagram
+
 ##### Pattern: Hashing
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: `s = "anagram", t = "nagaram"`
 - Output: `true`
 - Explanation: The characters in `t` can be rearranged to form `s`.
@@ -262,20 +332,32 @@ public class ValidAnagram {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is O(n), where n is the length of the strings. We iterate over the strings a constant number of times.
+
+- The time complexity is O(n), where n is the length of the strings. We
+  iterate over the strings a constant number of times.
 
 ##### Space Complexity:
-- The space complexity is O(1) because the array used to count characters is of fixed size (26 characters).
+
+- The space complexity is O(1) because the array used to count
+  characters is of fixed size (26 characters).
+
 ***
 
 #### Group Anagrams
+
 ##### Pattern: Hashing
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: `["eat", "tea", "tan", "ate", "nat", "bat"]`
 - Output: `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]`
-- Explanation: Words like "eat", "tea", and "ate" are anagrams and hence grouped together. Similarly, "tan" and "nat" are grouped, and "bat" stands alone.
+- Explanation: Words like "eat", "tea", and "ate" are anagrams and hence
+  grouped together. Similarly, "tan" and "nat" are grouped, and "bat"
+  stands alone.
 
 ```java
 import java.util.*;
@@ -311,27 +393,44 @@ public class GroupAnagrams {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is `O(N * K log K)`, where `N` is the number of strings and `K` is the maximum length of a string. Sorting each string takes `O(K log K)` and we do this for each string.
+
+- The time complexity is `O(N * K log K)`, where `N` is the number of
+  strings and `K` is the maximum length of a string. Sorting each string
+  takes `O(K log K)` and we do this for each string.
 
 ##### Space Complexity:
-- The space complexity is `O(N * K)`, where `N` is the number of strings and `K` is the maximum length of a string. We store all strings in the hash map.
+
+- The space complexity is `O(N * K)`, where `N` is the number of strings
+  and `K` is the maximum length of a string. We store all strings in the
+  hash map.
+
 ***
 
 
 ***
+
 ### Parentheses Stack
+
 #### Valid Parentheses
+
 ##### Pattern: Stack
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: `"()[]{}"`, `"(]"`, `"{[()]}"`, `"{[(])}"`
 - Output: `true`, `false`, `true`, `false`
 - Explanation:
   - `"()[]{}"` is valid because all brackets are closed properly.
-  - `"(]"` is invalid because the parentheses and square brackets are mismatched.
-  - `"{[()]}"` is valid because all types of brackets are properly nested and closed.
-  - `"{[(])}"` is invalid because the brackets are not properly closed in the correct order.
+  - `"(]"` is invalid because the parentheses and square brackets are
+    mismatched.
+  - `"{[()]}"` is valid because all types of brackets are properly
+    nested and closed.
+  - `"{[(])}"` is invalid because the brackets are not properly closed
+    in the correct order.
 
 ```java
 import java.util.Stack;
@@ -376,22 +475,33 @@ public class ValidParentheses {
     }
 }
 ```
+
 ##### Time Complexity:
-- O(n) - where `n` is the length of the input string. Each character is processed once.
+
+- O(n) - where `n` is the length of the input string. Each character is
+  processed once.
 
 ##### Space Complexity:
-- O(n) - in the worst case, all opening brackets are pushed onto the stack.
+
+- O(n) - in the worst case, all opening brackets are pushed onto the
+  stack.
 
 ***
+
 ### String Manipulation
+
 #### String to Integer (atoi)
+
 ##### Pattern: String Manipulation
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
 
-- Input: `"   4193 with words"`
+- Input: `" 4193 with words"`
 - Output: `4193`
-- Explanation: Leading whitespace is ignored, and conversion stops at the first non-digit character.
+- Explanation: Leading whitespace is ignored, and conversion stops at
+  the first non-digit character.
 
 ```java
 public class StringToInteger {
@@ -430,17 +540,26 @@ public class StringToInteger {
     }
 }
 ```
+
 ##### Time Complexity:
-- **O(n)**, where `n` is the length of the string. We iterate through the string a few times.
+
+- **O(n)**, where `n` is the length of the string. We iterate through
+  the string a few times.
 
 ##### Space Complexity:
+
 - **O(1)**, as we use a constant amount of extra space.
+
 ***
 
 #### Implement strStr()
+
 ##### Pattern: Substring Search
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input:
   - `haystack = "hello", needle = "ll"`
   - `haystack = "aaaaa", needle = "bba"`
@@ -485,20 +604,32 @@ public class Solution {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is O(n * m), where n is the length of the haystack and m is the length of the needle. This is because for each character in the haystack, we may compare up to m characters of the needle.
+
+- The time complexity is O(n * m), where n is the length of the haystack
+  and m is the length of the needle. This is because for each character
+  in the haystack, we may compare up to m characters of the needle.
 
 ##### Space Complexity:
-- The space complexity is O(1), as we only use a fixed amount of extra space (variables for lengths and loop indices).
+
+- The space complexity is O(1), as we only use a fixed amount of extra
+  space (variables for lengths and loop indices).
+
 ***
 
 #### Longest Common Prefix
+
 ##### Pattern: String Manipulation
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: `["flower","flow","flight"]`
 - Output: `"fl"`
-- Explanation: The longest common prefix for the input array is `"fl"` as it is the longest string that is a prefix of all the input strings.
+- Explanation: The longest common prefix for the input array is `"fl"`
+  as it is the longest string that is a prefix of all the input strings.
 
 ```java
 public class LongestCommonPrefix {
@@ -526,21 +657,31 @@ public class LongestCommonPrefix {
 
 }
 ```
+
 ##### Time Complexity:
-- O(S) where S is the sum of all characters in all strings. In the worst case, we compare every character of every string.
+
+- O(S) where S is the sum of all characters in all strings. In the worst
+  case, we compare every character of every string.
 
 ##### Space Complexity:
+
 - O(1) since we use only a constant amount of extra space.
+
 ***
 
 
 #### Roman to Integer
+
 ##### Pattern: String Manipulation
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: "III", "IV", "IX", "LVIII", "MCMXCIV"
 - Output: 3, 4, 9, 58, 1994
-- Explanation: Converts a Roman numeral to an integer. Roman numerals are represented by seven different symbols: I, V, X, L, C, D, and M.
+- Explanation: Converts a Roman numeral to an integer. Roman numerals
+  are represented by seven different symbols: I, V, X, L, C, D, and M.
 
 ```java
 public class RomanToInteger {
@@ -590,21 +731,33 @@ public class RomanToInteger {
     }
 }
 ```
+
 ##### Time Complexity:
-- O(n), where n is the length of the string. We traverse the string once.
+
+- O(n), where n is the length of the string. We traverse the string
+  once.
 
 ##### Space Complexity:
-- O(1), constant space is used for the hashmap and a few integer variables.
+
+- O(1), constant space is used for the hashmap and a few integer
+  variables.
+
 ***
 
 ***
+
 #### Integer to Roman
+
 ##### Pattern: Conversion
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: 58
 - Output: "LVIII"
-- Explanation: 58 is represented as "LVIII" in Roman numerals (L = 50, V = 5, III = 3).
+- Explanation: 58 is represented as "LVIII" in Roman numerals (L = 50, V
+  = 5, III = 3).
 
 ```java
 public class IntegerToRoman {
@@ -636,17 +789,28 @@ public class IntegerToRoman {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is O(1) because the algorithm always processes a fixed number of Roman numeral symbols, regardless of the input number.
+
+- The time complexity is O(1) because the algorithm always processes a
+  fixed number of Roman numeral symbols, regardless of the input number.
 
 ##### Space Complexity:
-- The space complexity is O(1) because the space used by the output string is proportional to the number of symbols, which is fixed and does not depend on the input size.
+
+- The space complexity is O(1) because the space used by the output
+  string is proportional to the number of symbols, which is fixed and
+  does not depend on the input size.
+
 ***
 
 #### Integer to Binary
+
 ##### Pattern: Mathematical Calculation
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: 10
 - Output: 1010
 - Explanation: The binary representation of the integer 10 is 1010.
@@ -687,17 +851,29 @@ public class IntegerToBinary {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is O(log N) where N is the input number. This is because we divide the number by 2 in each iteration, which reduces the number of iterations logarithmically.
+
+- The time complexity is O(log N) where N is the input number. This is
+  because we divide the number by 2 in each iteration, which reduces the
+  number of iterations logarithmically.
 
 ##### Space Complexity:
-- The space complexity is O(log N) due to the space required to store the binary representation, which is proportional to the number of digits in the binary form of the number.
+
+- The space complexity is O(log N) due to the space required to store
+  the binary representation, which is proportional to the number of
+  digits in the binary form of the number.
+
 ***
 
 #### Integer to Binary (Using Queue)
+
 ##### Pattern: Queue
+
 [Back to Top](#Table-of-contents)
+
 ##### Description:
+
 - Input: 10
 - Output: 1010
 - Explanation: The binary representation of the integer 10 is 1010.
@@ -747,9 +923,18 @@ public class IntegerToBinaryQueue {
     }
 }
 ```
+
 ##### Time Complexity:
-- The time complexity is O(log N) where N is the input number. The number of operations is proportional to the number of bits in the binary representation.
+
+- The time complexity is O(log N) where N is the input number. The
+  number of operations is proportional to the number of bits in the
+  binary representation.
 
 ##### Space Complexity:
-- The space complexity is O(log N) due to the space required for the queue and the binary string, which is proportional to the number of bits in the binary representation.
+
+- The space complexity is O(log N) due to the space required for the
+  queue and the binary string, which is proportional to the number of
+  bits in the binary representation.
+
 ***
+

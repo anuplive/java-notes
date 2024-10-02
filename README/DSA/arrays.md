@@ -4,12 +4,44 @@
 ## Table of contents
 
 <!--ts-->
-| Category                                        | Problems                                                      |                                                                           |                                                         |                                                               |
-|:------------------------------------------------|:--------------------------------------------------------------|:--------------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------|
-| [Two Pointer](#two-pointer)                     | [Valid Palindrome](#valid-palindrome)                         | [Three Sum Problem](#three-sum-problem)                                   | [Container with most Water](#container-with-most-water) | [Product except itself](#product-except-itself)               |
+| [Two Pointer](#two-pointer)                             |    |    |    |    |
+|:--------------------------------------------------------|:---|:---|:---|:---|
+| [Squares of a Sorted Array](#squares-of-a-sorted-array) |    |    |    |    |
+| [Reverse String](#reverse-string)                       |    |    |    |    |
+| [Valid Palindrome](#valid-palindrome)                   |    |    |    |    |
+| [Two Sum](#two-sum)                                     |    |    |    |    |
+| [Three Sum Problem](#three-sum-problem)                 |    |    |    |    |
+| [Container with most Water](#container-with-most-water) |    |    |    |    |
+| [Product except itself](#product-except-itself)         |    |    |    |    |
+| [Triplet Sum](#triplet-sum)                             |    |    |    |    |
+|                                                         |    |    |    |    |
+
+
+<!--ts-->
+| [Arrays and Strings](#arrays-and-string)                            |    |    |    |    |
+|:--------------------------------------------------------------------|:---|:---|:---|:---|
+| [Find Closest Number to Zero](#find-closest-number-to-zero)         |    |    |    |    |
+| [Merge Strings Alternately](#merge-strings-alternately)             |    |    |    |    |
+| [Roman to Numeral](#roman-to-integer)                               |    |    |    |    |
+| [Is Subsequence](#is-subsequence)                                   |    |    |    |    |
+| [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock) |    |    |    |    |
+| [Longest Common Prefix](#longest-common-prefix)                     |    |    |    |    |
+| [Range Summary](#range-summary)                                     |    |    |    |    |
+| [Merge Intervals](#merge-intervals)                                 |    |    |    |    |
+| [Spiral Matrix](#spiral-matrix)                                     |    |    |    |    |
+| [Rotate Image](#rotate-image)                                       |    |    |    |    |
+| [Set Matrix Zeros](#set-matrix-zeros)                               |    |    |    |    |
+|                                                                     |    |    |    |    |
+
+
+
+
+
+
+
 | [Linked List](#linked-list)                     | [Reverse Linked List](#reverse-linked-list)                   | [Merge Two Sorted Lists](#merge-two-sorted-lists)                         | [Linked List Cycle](#linked-list-cycle)                 | [Remove Nth Node from End](#remove-nth-node-from-end)         |
 | [Searching](#searching)                         | [Binary Search](#binary-search)                               | [Binary Search Rotated Sorted Array](#binary-search-rotated-sorted-array) | [Binary Search 2D Matrix](#binary-search-2d-matrix)     | [Binary Search Order-Agnostic](#binary-search-order-agnostic) |
-| [Triplet Sum](#triplet-sum)                     |                                                               |                                                                           |                                                         |                                                               |
+|                    |                                                               |                                                                           |                                                         |                                                               |
 | [Sliding Window](#sliding-window)               | [Longest Substring No Repeats](#longest-substring-no-repeats) |                                                                           |                                                         |                                                               |
 | [Merging Intervals](#merging-intervals)         |                                                               |                                                                           |                                                         |                                                               |
 | [HashMap](#hashmap)                             | [Two-Sum](#two-sum)                                           |                                                                           |                                                         |                                                               |
@@ -38,46 +70,230 @@
 - Reverse String
 - String to Integer (atoi)
 
-[Back to Top](#table-of-contents)
+***
 
-#### Valid Palindrome
+#### Squares of a Sorted Array
+##### Pattern: Two Pointer
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `[-4, -1, 0, 3, 10]`
+- Output: `[0, 1, 9, 16, 100]`
+- Explanation: The square of each element in the array is calculated and then sorted in non-decreasing order.
 
 ```java
-/**
- Statement: Write a function that takes a string, s, as an input and determines whether or not it is a palindrome.
- */
+// Class to solve the problem of sorting the squares of a sorted array
+public class SortedSquares {
 
-import java.util.*;
+    // Method to return the squares of a sorted array
+    public static int[] sortedSquares(int[] nums) {
+        // Initialize a result array to store the squares
+        int[] result = new int[nums.length];
+        // Two pointers: one starting from the beginning and one from the end
+        int left = 0, right = nums.length - 1;
+        // Position to fill in the result array, starting from the end
+        int index = nums.length - 1;
 
-public class Main{
-    public static boolean isPalindrome(String s) {
+        // Traverse until the two pointers meet
+        while (left <= right) {
+            int leftSquare = nums[left] * nums[left];   // Square of the left pointer element
+            int rightSquare = nums[right] * nums[right]; // Square of the right pointer element
 
-        if(s == null || s.length() == 0)
-            return false; 
-
-        int start = 0; 
-        int end = s.length() - 1; 
-
-        while (end > start){
-            if (s.charAt(end) != s.charAt(start))
-                return false;
-            start ++; 
-            end --;    
+            // Compare squares and place the larger square at the current index
+            if (leftSquare > rightSquare) {
+                result[index] = leftSquare;
+                left++; // Move left pointer to the right
+            } else {
+                result[index] = rightSquare;
+                right--; // Move right pointer to the left
+            }
+            index--; // Move index left for next largest square
         }
 
-        return true;      
+        return result;
+    }
+
+    // Main method to test the function with an example
+    public static void main(String[] args) {
+        int[] nums = {-4, -1, 0, 3, 10};
+        int[] result = sortedSquares(nums);
+
+        // Print the result
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
     }
 }
-/**
- Time complexity
- The time complexity is O(n), where n is the number of characters in the string. 
- However, our algorithm will only run O(n/2) times, since two pointers are traversing toward each other.
-
- Space complexity
- The space complexity is O(1), since we use constant space to store two indexes.
- */
 ```
+##### Time Complexity:
+- O(n): We traverse the array once using two pointers, so the time complexity is linear.
 
+##### Space Complexity:
+- O(n): The space complexity is linear because we are using an additional array of the same size as the input array.
+***
+
+
+[Back to Top](#table-of-contents)
+
+
+#### Reverse String
+##### Pattern: Two Pointers
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `"hello"`
+- Output: `"olleh"`
+- Explanation: The characters in the string are reversed. The first and last characters are swapped, and this process continues until the entire string is reversed.
+
+```java
+public class ReverseString {
+    // Function to reverse a given string
+    public static String reverse(String s) {
+        // Convert the string to a character array
+        char[] chars = s.toCharArray();
+        
+        // Initialize two pointers, one at the start and the other at the end of the array
+        int left = 0;
+        int right = chars.length - 1;
+        
+        // Swap characters while left pointer is less than right pointer
+        while (left < right) {
+            // Swap the characters at left and right pointers
+            char temp = chars[left];
+            chars[left] = chars[right];
+            chars[right] = temp;
+            
+            // Move the pointers towards the center
+            left++;
+            right--;
+        }
+        
+        // Convert the character array back to a string and return it
+        return new String(chars);
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        String input = "hello";
+        String reversed = reverse(input);
+        System.out.println("Reversed string: " + reversed);  // Output: olleh
+    }
+}
+```
+##### Time Complexity:
+- **O(n)**: We iterate over half of the string with two pointers, making a single pass through the string.
+
+##### Space Complexity:
+- **O(n)**: The space is proportional to the input string size due to the character array creation.
+***
+
+
+#### Valid Palindrome
+##### Pattern: Two Pointer
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `"A man, a plan, a canal, Panama"`
+- Output: `true`
+- Explanation: The string reads the same forward and backward when ignoring non-alphanumeric characters and case.
+
+```java
+public class ValidPalindrome {
+    
+    // Function to check if a given string is a valid palindrome
+    public static boolean isPalindrome(String s) {
+        int left = 0;                 // Initialize left pointer
+        int right = s.length() - 1;   // Initialize right pointer
+        
+        // Traverse the string from both ends
+        while (left < right) {
+            // Skip non-alphanumeric characters from the left
+            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                left++;
+            }
+            // Skip non-alphanumeric characters from the right
+            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                right--;
+            }
+            
+            // Compare characters from both ends
+            if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                return false;  // Return false if characters do not match
+            }
+            
+            left++;   // Move left pointer to the right
+            right--;  // Move right pointer to the left
+        }
+        
+        return true;   // Return true if all characters match
+    }
+
+    public static void main(String[] args) {
+        // Test examples
+        System.out.println(isPalindrome("A man, a plan, a canal, Panama"));  // Output: true
+        System.out.println(isPalindrome("race a car"));                       // Output: false
+    }
+}
+```
+##### Time Complexity:
+- O(n), where n is the length of the string. Each character is checked once.
+
+##### Space Complexity:
+- O(1), no extra space is used other than the input string.
+
+***
+
+#### Two Sum
+##### Pattern: Two Pointer
+[Back to Top](#Table-of-contents)
+##### Description:
+- **Input:** A sorted array of integers `nums[]` and an integer `target`.
+- **Output:** Indices of the two numbers such that they add up to `target`.
+- **Explanation:** Given `nums = [2, 7, 11, 15]` and `target = 9`, the output would be `[0, 1]` because `nums[0] + nums[1] = 2 + 7 = 9`.
+
+```java
+public class TwoSumTwoPointer {
+    // Function to find indices of two numbers that add up to the target
+    public static int[] twoSum(int[] nums, int target) {
+        // Two pointers: one starting from the beginning, the other from the end
+        int left = 0;
+        int right = nums.length - 1;
+
+        // Loop until the two pointers meet
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+
+            // Check if we found the target sum
+            if (sum == target) {
+                return new int[] { left, right };
+            } 
+            // If sum is greater than target, move the right pointer to the left
+            else if (sum > target) {
+                right--;
+            } 
+            // If sum is less than target, move the left pointer to the right
+            else {
+                left++;
+            }
+        }
+
+        // Return an empty array if no solution is found (assuming there is always a solution)
+        return new int[] {};
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        int[] nums = {2, 7, 11, 15};
+        int target = 9;
+        int[] result = twoSum(nums, target);
+        
+        // Output: Indices [0, 1]
+        System.out.println("Indices: [" + result[0] + ", " + result[1] + "]");
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is **O(n)** because we are traversing the array once with two pointers, where `n` is the length of the array.
+
+##### Space Complexity:
+- The space complexity is **O(1)** as we only use a few extra variables (`left`, `right`, `sum`).
 ***
 
 ### Three Sum Problem
@@ -100,7 +316,7 @@ public class ThreeSumTarget {
         
         // Iterate through the array
         for (int i = 0; i < nums.length - 2; i++) {
-            // Skip duplicate elements
+            // Outer Loop Skip duplicate elements
             if (i > 0 && nums[i] == nums[i - 1]) continue;
 
             // Two pointers
@@ -476,7 +692,7 @@ public class Solution {
 O(1). We use a constant amount of extra space for the pointers (prev, curr, nextTemp).
 ***
 #### Merge Two Sorted Lists
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 ##### Problem
 - Merge two sorted linked lists and return it as a new sorted list. The new list should be made by splicing together the nodes of the first two lists.
 - Input:
@@ -547,7 +763,7 @@ public class MergeTwoSortedLists {
 - not including the space required for the output list which is allocated dynamically.
 ***
 #### Linked List Cycle
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 ##### Problem:
 Given a linked list, determine if it has a cycle in it.
 ###### Example
@@ -609,7 +825,7 @@ public class Solution {
 - O(1): We use a constant amount of extra space regardless of the input size.
 ***
 #### Remove Nth Node from End
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 ##### Problem: Given a linked list, remove the nth node from the end of the list and return its head.
 - Input: 1 -> 2 -> 3 -> 4 -> 5, n = 2
   Output: 1 -> 2 -> 3 -> 5
@@ -713,7 +929,7 @@ public class SumOfThree {
 - Using Arrays.sort(): O(log(n))
 
 ***
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 
 #### Container with most Water
 ##### Statement
@@ -760,9 +976,23 @@ O(n) - where n is the length of the height array. This code makes a single pass 
 ##### Space Complexity:
 O(1) - Constant extra space is used, regardless of the size of the input.
 
+##### Algorithm Explanation:
+- **Initialize two pointers**: `left` at the start, `right` at the end of the array.
+- **Calculate area** between `left` and `right`: `min(height[left], height[right]) * (right - left)`.
+- **Update maxArea**: Store the larger of the current area or the previously stored maxArea.
+- **Move the pointer with the smaller height**:
+  - If `height[left] <= height[right]`: Increment `left`.
+  - Else: Decrement `right`.
+- **Repeat** until the pointers meet.
+- **Return maxArea** found.
+
+This ensures the widest containers are checked first, narrowing inwards.
+
 ***
 
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
+
+
 #### Product Except Itself
 ##### Problem Statement:
 Given an integer array `arr`, return an array `res` where `res[i]` is the product of all elements of `arr` except `arr[i]`.
@@ -822,6 +1052,721 @@ public class Solution {
 
 
 ##########################################
+
+
+
+## Arrays and String
+#### Find Closest Number to Zero
+##### Pattern: Array Manipulation
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: An array of integers, e.g., `[-4, 2, 1, -3]`
+- **Output**: The closest number to zero from the array, e.g., `1`
+- **Explanation**: The function needs to find the number from the array that is closest to zero. If two numbers are equally close, return the positive number.
+
+```java
+public class ClosestToZero {
+
+    // Function to find the closest number to zero
+    public int findClosestNumber(int[] nums) {
+
+    // Edge case: If the array is empty, return -1 (or based on requirement)
+    if (nums == null || nums.length == 0) {
+        return -1;
+    }
+
+    // Variable to store the minimum distance (absolute value)
+    int minDistance = Integer.MAX_VALUE;
+    
+    // Variable to store the number closest to zero
+    int closestNumber = Integer.MAX_VALUE;
+
+    for (int i = 0; i < nums.length; i++) {
+        int current = nums[i];
+        
+        // Calculate the absolute value of the current number
+        int absCurrent = Math.abs(current);
+
+        // If we find a smaller distance, or if the distance is the same and the number is positive
+        if (absCurrent < minDistance || (absCurrent == minDistance && current > closestNumber)) {
+            minDistance = absCurrent;  // Update the minimum distance
+            closestNumber = current;   // Update the number closest to zero
+        }
+    }
+
+    return closestNumber;  // Return the number closest to zero
+}
+    public static void main(String[] args) {
+        // Example 1
+        int[] nums1 = {-4, 2, 1, -3};
+        System.out.println("Closest to zero: " + findClosestToZero(nums1)); // Output: 1
+
+        // Example 2
+        int[] nums2 = {-7, -5, 5, 7};
+        System.out.println("Closest to zero: " + findClosestToZero(nums2)); // Output: 5
+
+        // Example 3 (Edge case)
+        int[] nums3 = {};
+        System.out.println("Closest to zero: " + findClosestToZero(nums3)); // Output: 0
+    }
+}
+```
+
+##### Time Complexity:
+- The time complexity is **O(n)**, where `n` is the length of the array. This is because we iterate through the array once.
+
+##### Space Complexity:
+- The space complexity is **O(1)** since we are using a constant amount of extra space regardless of the input size.
+***
+
+
+
+
+
+#### Merge Strings Alternately
+##### Pattern: Two Pointers
+[Back to Top](#table-of-contents)
+##### Description:
+- Input:
+  - `word1 = "abc"`, `word2 = "pqr"`
+- Output:
+  - `"apbqcr"`
+- Explanation:
+  - The characters from both strings are merged alternately. After merging characters up to the length of the shorter string, any remaining characters from the longer string are appended.
+
+```java
+public class MergeStringsAlternately {
+
+    public String mergeAlternately(String word1, String word2) {
+        
+        // Check if any of the strings is null, return null if true
+        if (word1 == null || word2 == null)
+            return null; 
+
+        // Convert the strings to char arrays for efficient access
+        char[] ch1 = word1.toCharArray(); 
+        char[] ch2 = word2.toCharArray(); 
+        
+        // Initialize a StringBuilder to store the merged result
+        StringBuilder sb = new StringBuilder(); 
+        
+        // Iterate over both arrays up to the length of the shorter string
+        for (int i = 0; i < ch1.length && i < ch2.length; i++) {
+            // Append characters alternately from both char arrays
+            sb.append(ch1[i]); 
+            sb.append(ch2[i]); 
+        }
+        
+        // If word1 is longer, append the remaining characters
+        if (word1.length() > word2.length()) {
+            sb.append(word1.substring(word2.length(), word1.length())); 
+        }
+        
+        // If word2 is longer, append the remaining characters
+        if (word2.length() > word1.length()) {
+            sb.append(word2.substring(word1.length(), word2.length())); 
+        }
+
+        // Return the merged string
+        return sb.toString();   
+    }
+
+    public static void main(String[] args) {
+        MergeStringsAlternately mergeObj = new MergeStringsAlternately();
+        
+        // Test case 1
+        String word1 = "abc", word2 = "pqr";
+        System.out.println(mergeObj.mergeAlternately(word1, word2));  // Output: "apbqcr"
+        
+        // Test case 2
+        String word1_2 = "ab", word2_2 = "pqrs";
+        System.out.println(mergeObj.mergeAlternately(word1_2, word2_2));  // Output: "apbqrs"
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: The method processes both strings character by character, where `n` is the length of the longer string.
+
+##### Space Complexity:
+- **O(n)**: Space is used for the result stored in the `StringBuilder`, where `n` is the combined length of both strings.
+***
+
+
+
+#### Roman to Integer
+##### Pattern: No specific pattern
+
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input:** "IX"
+- **Output:** 9
+- **Explanation:** The Roman numeral "IX" translates to 9 because I (1) is placed before X (10), which means subtract I from X.
+
+```java
+public class RomanToInteger {
+    
+    // Function to convert a Roman numeral to an integer
+    public static int romanToInt(String s) {
+        // Map to store Roman numerals and their corresponding integer values
+        Map<Character, Integer> romanMap = new HashMap<>();
+        romanMap.put('I', 1);
+        romanMap.put('V', 5);
+        romanMap.put('X', 10);
+        romanMap.put('L', 50);
+        romanMap.put('C', 100);
+        romanMap.put('D', 500);
+        romanMap.put('M', 1000);
+
+        int total = 0; // To store the final integer value
+        int prev = 0;  // To store the previous Roman numeral's value
+
+        // Loop through each character in the Roman numeral string
+        for (int i = s.length() - 1; i >= 0; i--) {
+            // Get the integer value of the current Roman numeral
+            int current = romanMap.get(s.charAt(i));
+
+            // If the current numeral is less than the previous one, subtract it
+            // Otherwise, add it to the total
+            if (current < prev) {
+                total -= current;
+            } else {
+                total += current;
+            }
+
+            // Update the previous numeral to the current one
+            prev = current;
+        }
+
+        return total; // Return the final integer value
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(romanToInt("III"));  // Output: 3
+        System.out.println(romanToInt("IV"));   // Output: 4
+        System.out.println(romanToInt("IX"));   // Output: 9
+        System.out.println(romanToInt("LVIII"));// Output: 58
+        System.out.println(romanToInt("MCMXCIV"));// Output: 1994
+    }
+}
+```
+
+##### Time Complexity:
+- O(n), where n is the length of the input string, because we iterate through the Roman numeral once.
+
+##### Space Complexity:
+- O(1), since the space used by the map and variables is constant and does not grow with the input size.
+
+##### Algorithm Explanation:
+- Initialize a map to store the values of Roman numerals.
+- Loop through the Roman numeral string in reverse:
+  - If the current value is less than the previous value, subtract it from the total.
+  - Otherwise, add it to the total.
+- Return the total as the final integer value.
+***
+
+
+#### Is Subsequence
+##### Pattern: Two Pointer
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `s = "abc", t = "ahbgdc"`
+- Output: `true`
+- Explanation: `"abc"` is a subsequence of `"ahbgdc"` because all characters of `"abc"` appear in order in `"ahbgdc"`.
+
+```java
+public class Solution {
+    // Method to check if s is a subsequence of t
+    public boolean isSubsequence(String s, String t) {
+        // Two pointers: one for each string
+        int i = 0, j = 0;
+        
+        // Traverse the second string t
+        while (i < s.length() && j < t.length()) {
+            // If characters match, move the pointer for s
+            if (s.charAt(i) == t.charAt(j)) {
+                i++;
+            }
+            // Always move the pointer for t
+            j++;
+        }
+        
+        // If i reaches the end of s, it means all characters of s are found in t in order
+        return i == s.length();
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**, where `n` is the length of string `t`. We traverse `t` while checking each character with `s`.
+
+##### Space Complexity:
+- **O(1)**, as no extra space is used except for pointers.
+
+##### Algorithm Explanation:
+- Initialize two pointers `i` (for `s`) and `j` (for `t`).
+- Traverse through `t`:
+  - If `s[i] == t[j]`, increment `i`.
+  - Always increment `j`.
+- Return true if all characters of `s` are found (`i == s.length()`), else false.
+***
+
+#### Best Time to Buy and Sell Stock
+##### Pattern: Dynamic Programming
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: `[7, 1, 5, 3, 6, 4]`
+- **Output**: `5`
+- **Explanation**: The maximum profit can be achieved by buying on day 2 (price = 1) and selling on day 5 (price = 6), for a profit of 6 - 1 = 5.
+
+```java
+// Function to find the maximum profit from buying and selling a stock
+public class StockProfit {
+    public int maxProfit(int[] prices) {
+        // Edge case: If prices array is empty or has only one element, return 0
+        if (prices == null || prices.length < 2) {
+            return 0;
+        }
+        
+        // Initialize variables
+        int minPrice = prices[0]; // Tracks the lowest price encountered so far
+        int maxProfit = 0; // Tracks the maximum profit
+        
+        // Loop through the prices array
+        for (int i = 1; i < prices.length; i++) {
+            // If the current price is lower than the minPrice, update minPrice
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else {
+                // If selling at current price gives better profit, update maxProfit
+                maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+            }
+        }
+        return maxProfit; // Return the maximum profit
+    }
+}
+```
+##### Time Complexity:
+- **O(n)**: We loop through the prices array once, where `n` is the number of days.
+
+##### Space Complexity:
+- **O(1)**: We only use a few extra variables (`minPrice` and `maxProfit`).
+***
+
+### Longest Common Prefix
+
+
+
+
+#### Longest Common Prefix
+##### Pattern: String Processing
+[Back to Top](#Table-of-contents)
+##### Description:
+- Input: `["flower", "flow", "flight"]`
+- Output: `"fl"`
+- Explanation: The longest common prefix among the strings is `"fl"`. All strings start with this sequence of characters.
+
+```java
+// Java program to find the longest common prefix
+
+public class LongestCommonPrefix {
+
+    // Method to find the longest common prefix
+    public static String longestCommonPrefix(String[] strs) {
+        // Base case: if the array is empty, return an empty string
+        if (strs == null || strs.length == 0) return "";
+
+        // Initialize the prefix as the first string in the array
+        String prefix = strs[0];
+
+        // Iterate over the remaining strings in the array
+        for (int i = 1; i < strs.length; i++) {
+            // Reduce the prefix until it matches the beginning of each string
+            while (strs[i].indexOf(prefix) != 0) {
+                // Remove the last character from the prefix
+                prefix = prefix.substring(0, prefix.length() - 1);
+                // If the prefix becomes empty, return an empty string
+                if (prefix.isEmpty()) return "";
+            }
+        }
+        // Return the common prefix
+        return prefix;
+    }
+
+    public static void main(String[] args) {
+        String[] words = {"flower", "flow", "flight"};
+        System.out.println("Longest Common Prefix: " + longestCommonPrefix(words));
+    }
+}
+```
+##### Time Complexity:
+- **O(S)** where `S` is the sum of all characters in all strings. The program iterates over each character once, shortening the prefix as needed.
+
+##### Space Complexity:
+- **O(1)** (excluding input storage), since no extra space proportional to the input size is used apart from storing the result.
+***
+
+
+
+
+#### Range Summary
+##### Pattern: Merging Intervals
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: [0, 1, 2, 4, 5, 7]
+- Output: ["0->2", "4->5", "7"]
+- Explanation: The input represents numbers that can be grouped into continuous ranges: 0->2, 4->5, and 7 by itself.
+
+```java
+import java.util.*;
+
+public class RangeSummary {
+    public List<String> summaryRanges(int[] nums) {
+        // Handle the case when input is empty
+        if (nums == null || nums.length == 0) {
+            return new ArrayList<>(); // Return empty list
+        }
+
+        // Handle the case when input has only one element
+        if (nums.length == 1) {
+            return Arrays.asList(String.valueOf(nums[0])); // Return list with one element
+        }
+
+        // Initialize result list to store range summaries
+        List<String> result = new ArrayList<>();
+
+        // Set start to track the beginning of the range
+        int start = nums[0];
+        
+        // Start iterating from the second element
+        for (int i = 1; i < nums.length; i++) {
+            // If current number is not consecutive
+            if (nums[i - 1] + 1 != nums[i]) {
+                // Check if start and previous number are the same
+                if (start == nums[i - 1]) {
+                    result.add(String.valueOf(start)); // Add a single number
+                } else {
+                    result.add(start + "->" + nums[i - 1]); // Add the range
+                }
+                // Move the start to the current number
+                start = nums[i];
+            }
+        }
+
+        // Add the last range or number after loop ends
+        if (start == nums[nums.length - 1]) {
+            result.add(String.valueOf(start)); // Add single number
+        } else {
+            result.add(start + "->" + nums[nums.length - 1]); // Add the final range
+        }
+
+        return result; // Return the result list
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {0, 1, 2, 4, 5, 7};
+        System.out.println(summaryRanges(nums)); // Output: [0->2, 4->5, 7]
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: We loop through the array once.
+
+##### Space Complexity:
+- **O(1)**: No extra space is used except for the output list.
+
+***
+
+#### Merge Intervals
+##### Pattern: Merging Intervals
+[Back to Top](#table-of-contents)
+
+##### Description:
+- Input: `[[1,3],[2,6],[8,10],[15,18]]`
+- Output: `[[1,6],[8,10],[15,18]]`
+- Explanation: Intervals `[1,3]` and `[2,6]` overlap, so we merge them into `[1,6]`. Other intervals remain unchanged.
+
+```java
+import java.util.*;
+
+public class MergeIntervals {
+
+    public static int[][] merge(int[][] intervals) {
+        // If there are no intervals, return an empty array
+        if (intervals.length == 0) {
+            return new int[0][];
+        }
+
+        // Sort intervals based on the starting point
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+        // Resultant list of merged intervals
+        List<int[]> merged = new ArrayList<>();
+
+        // Start with the first interval
+        int[] currentInterval = intervals[0];
+        merged.add(currentInterval);
+
+        // Iterate through each interval
+        for (int[] interval : intervals) {
+            // Check if the current interval overlaps with the last added interval
+            if (interval[0] <= currentInterval[1]) {
+                // Merge intervals by updating the end time
+                currentInterval[1] = Math.max(currentInterval[1], interval[1]);
+            } else {
+                // No overlap, add the new interval
+                currentInterval = interval;
+                merged.add(currentInterval);
+            }
+        }
+
+        // Convert the merged list to an array and return
+        return merged.toArray(new int[merged.size()][]);
+    }
+
+    public static void main(String[] args) {
+        // Test case 1
+        int[][] intervals1 = {{1,3},{2,6},{8,10},{15,18}};
+        System.out.println(Arrays.deepToString(merge(intervals1))); 
+        // Output: [[1,6],[8,10],[15,18]]
+
+        // Test case 2
+        int[][] intervals2 = {{1,4},{4,5}};
+        System.out.println(Arrays.deepToString(merge(intervals2))); 
+        // Output: [[1,5]]
+    }
+}
+```
+
+##### Time Complexity:
+- Sorting the intervals takes `O(n log n)`, where `n` is the number of intervals. Merging takes `O(n)`.
+
+##### Space Complexity:
+- The space complexity is `O(n)` due to the output list of merged intervals.
+
+***
+
+#### Spiral Matrix
+##### Pattern: Matrix Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: A 2D matrix.
+  ```
+  matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ]
+  ```
+- **Output**: List of elements in spiral order.
+  ```
+  [1, 2, 3, 6, 9, 8, 7, 4, 5]
+  ```
+- **Explanation**: Start from the top-left and move in a spiral pattern: right → down → left → up.
+
+```java
+import java.util.*;
+
+public class SpiralMatrix {
+    // Function to return spiral order of a matrix
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        
+        if (matrix == null || matrix.length == 0) {
+            return result;  // Edge case: empty matrix
+        }
+        
+        // Initialize boundaries
+        int top = 0, bottom = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+        
+        // Traverse the matrix while the boundaries are valid
+        while (top <= bottom && left <= right) {
+            // Traverse from left to right along the top boundary
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
+            }
+            top++;  // Move top boundary down
+            
+            // Traverse from top to bottom along the right boundary
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;  // Move right boundary left
+            
+            if (top <= bottom) {
+                // Traverse from right to left along the bottom boundary
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;  // Move bottom boundary up
+            }
+            
+            if (left <= right) {
+                // Traverse from bottom to top along the left boundary
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;  // Move left boundary right
+            }
+        }
+        
+        return result;
+    }
+
+    // Main method for testing the solution
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        List<Integer> result = spiralOrder(matrix);
+        System.out.println(result);  // Expected output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+    }
+}
+```
+
+##### Time Complexity:
+- **O(m * n)**, where `m` is the number of rows and `n` is the number of columns. Each element is visited exactly once.
+
+##### Space Complexity:
+- **O(1)** for the traversal itself. The result list uses **O(m * n)** space to store the output.
+***
+
+
+
+#### Rotate Image
+##### Pattern: Matrix Manipulation
+[Back to Top](#table-of-contents)
+
+##### Description:
+- Input: A 2D array representing an image, e.g., `[[1,2,3],[4,5,6],[7,8,9]]`
+- Output: The image rotated 90 degrees clockwise, e.g., `[[7,4,1],[8,5,2],[9,6,3]]`
+- Explanation: The input matrix is transformed by rotating its elements in a clockwise direction.
+
+```java
+public class RotateImage {
+    public static void rotate(int[][] matrix) {
+        int n = matrix.length;
+        
+        // Step 1: Transpose the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                // Swap elements to transpose the matrix
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+
+        // Step 2: Reverse each row to achieve rotation
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                // Swap elements to reverse the row
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - j - 1];
+                matrix[i][n - j - 1] = temp;
+            }
+        }
+    }
+
+    // Method to print the matrix
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] image = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        rotate(image);
+        printMatrix(image); // Output rotated matrix
+    }
+}
+```
+
+##### Time Complexity:
+- O(n²), where n is the number of rows (or columns) in the matrix, as we traverse the entire matrix twice.
+
+##### Space Complexity:
+- O(1), since we are performing the rotation in place without using extra space.
+***
+
+
+
+#### Set Matrix Zeros
+##### Pattern: Matrix Manipulation
+[Back to Top](#table-of-contents)
+##### Description:
+- Input:
+  ```
+  [
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1]
+  ]
+  ```
+- Output:
+  ```
+  [
+    [1, 0, 1],
+    [0, 0, 0],
+    [1, 0, 1]
+  ]
+  ```
+- Explanation: If an element is 0, set its entire row and column to 0. The example above shows the matrix before and after setting the required rows and columns to 0.
+
+```java
+public class SetMatrixZeros {
+    public void setZeroes(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        
+        boolean[] rowZero = new boolean[rows]; // To track which rows need to be set to 0
+        boolean[] colZero = new boolean[cols]; // To track which columns need to be set to 0
+        
+        // First pass: determine which rows and columns need to be zeroed
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 0) {
+                    rowZero[i] = true;
+                    colZero[j] = true;
+                }
+            }
+        }
+        
+        // Second pass: set the rows and columns to zero
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (rowZero[i] || colZero[j]) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is O(m * n), where m is the number of rows and n is the number of columns. This is because we iterate through the entire matrix twice.
+
+##### Space Complexity:
+- The space complexity is O(m + n) due to the additional arrays used to track which rows and columns need to be zeroed.
+***
+
+***
+
 
 ### Sliding Window
 
@@ -1693,7 +2638,7 @@ public class MaximumSubarray {
 
 ##########################################
 ### Array Rotation
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 
 ##### Rotate an Array
 ###### Problem Description
@@ -1790,7 +2735,7 @@ public class FindDuplicate {
 ##########################################
 ### Strings
 #### Grouped Anagrams
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 ##### Problem
 - Given an array of strings, group the anagrams together.
 - An anagram is a word formed by rearranging the letters of another, such as "eat" and "tea".
@@ -1967,7 +2912,7 @@ class AllTraversals{
 }
 
 ```
-[Back to Top](#Table-of-contents)
+[Back to Top](#table-of-contents)
 ##### POST-ORDER (left - right - Node)
 - Input Tree:
         1
@@ -2103,66 +3048,6 @@ public class RotateMatrix {
 
 ***
 
-#### Set Matrix Zeros
-##### Pattern: Matrix Manipulation
-[Back to Top](#Table-of-contents)
-##### Description:
-- Input:
-  ```
-  [
-    [1, 1, 1],
-    [1, 0, 1],
-    [1, 1, 1]
-  ]
-  ```
-- Output:
-  ```
-  [
-    [1, 0, 1],
-    [0, 0, 0],
-    [1, 0, 1]
-  ]
-  ```
-- Explanation: If an element is 0, set its entire row and column to 0. The example above shows the matrix before and after setting the required rows and columns to 0.
-
-```java
-public class SetMatrixZeros {
-    public void setZeroes(int[][] matrix) {
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-        
-        boolean[] rowZero = new boolean[rows]; // To track which rows need to be set to 0
-        boolean[] colZero = new boolean[cols]; // To track which columns need to be set to 0
-        
-        // First pass: determine which rows and columns need to be zeroed
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (matrix[i][j] == 0) {
-                    rowZero[i] = true;
-                    colZero[j] = true;
-                }
-            }
-        }
-        
-        // Second pass: set the rows and columns to zero
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (rowZero[i] || colZero[j]) {
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-    }
-}
-```
-##### Time Complexity:
-- The time complexity is O(m * n), where m is the number of rows and n is the number of columns. This is because we iterate through the entire matrix twice.
-
-##### Space Complexity:
-- The space complexity is O(m + n) due to the additional arrays used to track which rows and columns need to be zeroed.
-***
-
-***
 #### Spiral Matrix
 ##### Pattern: Matrix Traversal
 [Back to Top](#Table-of-contents)

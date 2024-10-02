@@ -1125,4 +1125,105 @@ public class SymmetricTree {
 - The space complexity is O(n) where n is the number of nodes in the tree. This space is used by the queue.
 
 ***
+### Theory
+
+#### Types of Binary Trees
+
+1. **Full Binary Tree**
+   - **Definition:** A binary tree in which every node has either 0 or 2 children.
+   - **Diagram:**
+     ```
+         1
+        / \
+       2   3
+      / \
+     4   5
+     ```
+
+2. **Complete Binary Tree**
+   - **Definition:** A binary tree in which all levels are completely filled except possibly the last level, and the last level has all keys as left as possible.
+   - **Diagram:**
+     ```
+         1
+        / \
+       2   3
+      / \ /
+     4  5 6
+     ```
+
+3. **Perfect Binary Tree**
+   - **Definition:** A binary tree in which all internal nodes have two children and all leaf nodes are at the same level.
+   - **Diagram:**
+     ```
+         1
+        / \
+       2   3
+      / \ / \
+     4  5 6  7
+     ```
+
+4. **Binary Search Tree (BST)**
+   - **Definition:** A binary tree in which for every node, the value of all the nodes in the left subtree is less or equal to the node's value, and the value of all the nodes in the right subtree is greater than the node's value.
+   - **Diagram:**
+     ```
+         4
+        / \
+       2   6
+      / \ / \
+     1  3 5  7
+     ```
+
+### Tree Measurements
+
+1. **Height of Binary Tree**
+   - **Definition:** The number of edges in the longest path from the root to a leaf node. Sometimes, the number of nodes in the longest path is used.
+   - **Example:** In the following tree, height = 2
+     ```
+         1
+        / \
+       2   3
+      /
+     4
+     ```
+
+2. **Depth of Binary Tree**
+   - **Definition:** The number of edges from the root node to the given node. The depth of the root node is 0.
+   - **Example:** Depth of node 4 is 2
+     ```
+         1
+        / \
+       2   3
+      /
+     4
+     ```
+   - **Note:** Height and depth are related but not the same. Height is measured from the root to the farthest leaf, while depth is measured from the root to a particular node.
+
+3. **Width of Binary Tree**
+   - **Definition:** The maximum number of nodes present in any level of the tree.
+   - **Example:** Width = 4 (level 2 has the maximum nodes)
+     ```
+         1
+        / \
+       2   3
+      / \ / \
+     4  5 6  7
+     ```
+
+4. **Diameter of Binary Tree**
+   - **Definition:** The number of nodes on the longest path between any two nodes in the tree. This path may or may not pass through the root.
+   - **Example:** Diameter = 5 (path: 4 -> 2 -> 1 -> 3 -> 7)
+     ```
+         1
+        / \
+       2   3
+      / \   \
+     4  5    7
+     ```
+
+##### Redundancy Note
+- **Height and Depth of BT:** While height and depth are closely related, they are not the same thing. Height refers to the longest path from the root to a leaf (global measure), while depth refers to the distance from the root to a particular node (local measure). Thus, discussing both provides a comprehensive understanding of tree structure.
+***
+
+
+
 

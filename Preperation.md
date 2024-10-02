@@ -1,4 +1,29 @@
+### Current Preparation
+Projects:
+-  [AWS Cloud Labs ](https://www.educative.io/cloudlabs/understanding-networking-services-in-aws-from-zero-to-hero)
+-  [AWS Project ](https://www.educative.io/projects/networking-and-security-on-the-aws)
+- [Kubernetes Lab ](https://www.educative.io/cloudlabs/create-an-eks-cluster-and-deploy-an-application)
+- [Spring Boot](https://github.com/in28minutes/spring-microservices-v2)
+
+System Design:
+
+
+DSA :
+
+Personal Experience:
+
+Certifications:  
+AWS Certified Developer
+https://app.pluralsight.com/paths/certificate/aws-certified-developer-associate-dva-c01
+
+
+
+
+
+###
+
 ### Security
+Job description:
 Expertise in applying threat modeling or other risk identification techniques to develop security solutions
 Experience and understanding of Cryptograph, DDoS, CVE, CIS, SAST, DAST, or similar security and compliance knowledge
 Experience with X509 Certificate Authorities and PKI Service is a plus.
@@ -8,27 +33,37 @@ Experience with X509 Certificate Authorities and PKI Service is a plus.
 
 ## AWS
 - [Udemy](https://www.educative.io/courses/good-parts-of-aws/compute-ec2)
+ß
+
 ***
 ## Kubernetes
 - [Intro to Kubernetes](https://www.youtube.com/watch?v=3Il0EgYdkWc)
 - [AWS EKS with Terraform](https://www.youtube.com/watch?v=mTIf6YcST1M)
+- [Kubernetes](https://www.youtube.com/watch?v=2T86xAtR6Fo)
+- [Docker + Kuberbnetes](https://www.youtube.com/watch?v=kTp5xUtcalw)
 
 
 ***
 
 ## Spring
-- [Educative](https://www.educative.io/module/Y6GKZ1ipY4VA9DQQG/10370001/5079044300734464)
+- [Educative]( )
 - [Project](https://www.youtube.com/watch?v=DKlTBBuc32c&list=PLWKjhJtqVAbnRT_hue-3zyiuIYj0OlpyG&index=6)
 ***
 
 ## Java Interview Handbook
 - [Educative](https://www.educative.io/courses/java-interview-handbook)
+- [Java Backend Developer](https://www.youtube.com/watch?v=SSIHM-mSmcY&t=561s)
+- [Java Multi Threading](https://www.youtube.com/watch?v=4aYvLz4E1Ts&t=4148s)
+
+
+
 ***
 
 ## Data Structure and Algo
 - [Educative Path](https://www.educative.io/path/ace-java-coding-interview)
 - [Data Structures](https://www.educative.io/module/Z4JLg2tDQPVv6QjgO/10370001/6546848606322688)
 - [Coding Interview Patterns](https://www.educative.io/module/Z4JLg2tDQPVv6QjgO/10370001/4976190424350720)
+- [Graphs](https://www.youtube.com/watch?v=M8H4F3fw2WE)
 
 **5: 20min sessions**
 - [Dynamic Programming](https://www.youtube.com/watch?v=oBt53YbR9Kk)
@@ -57,6 +92,10 @@ Experience with X509 Certificate Authorities and PKI Service is a plus.
 
 
 ## JavaScript
+
+***
+### Backend
+[Java Script Backend](https://courses.chaicode.com/learn/home/javascript-backend/section/494099/lesson/3061861?)
 
 **DOM Nodes in HTML**
 - [DOM Nodes](https://www.youtube.com/watch?v=BWVoPxob5DU&list=PLWKjhJtqVAbmoiNlqLJg1gxEjEuKHHcn_&index=26)

@@ -3,15 +3,30 @@
 ## Table of contents
 
 <!--ts-->
-| Category        | Problems                                |    |    |    |
-|:----------------|:----------------------------------------|:---|:---|:---|
-| [Basic](#basic) | [Implement a Stack](#implement-a-stack) |    |    |    |
-|                 |                                         |    |    |    |
+| Category                                                                                                | Problems |    |    |    |
+|:--------------------------------------------------------------------------------------------------------|:---------|:---|:---|:---|
+| [Basic](#basic)                                                                                         |          |    |    |    |
+| [Implement a Stack](#implement-a-stack)                                                                 |          |    |    |    |
+| [Implement a Queue Using Array](#implement-a-queue-using-array)                                         |          |    |    |    |
+| [Generate Binary Numbers From 1 to n Using a Queue](#generate-binary-numbers-from-1-to-n-using-a-queue) |          |    |    |    |
+| [Implement Two Stacks Using One Array](#implement-two-stacks-using-one-array)                           |          |    |    |    |
+| [Reverse First k Elements of Queue](#reverse-first-k-elements-of-queue)                                 |          |    |    |    |
+| [Implement Queue Using Stacks](#implement-queue-using-stacks)                                           |          |    |    |    |
+| [Sort Values in a Stack](#sort-values-in-a-stack)                                                       |          |    |    |    |
+| [Evaluate Postfix Expression Using a Stack](#evaluate-postfix-expression-using-a-stack)                 |          |    |    |    |
+| [Evaluate Reverse Polish Notation (RPN)](#evaluate-reverse-polish-notation-rpn)                         |          |    |    |    |
+|                                                                                                         |          |    |    |    |
+| [AlgoMap](#algomap)                                                                                     |          |    |    |    |
+| [Baseball Game](#baseball-game)                                                                         |          |    |    |    |
+| [Valid Parentheses](#valid-parentheses)                                                                 |          |    |    |    |
+| [Daily Temperatures](#daily-temperatures)                                                               |          |    |    |    |
+| [Min Stack](#min-stack)                                                                                 |          |    |    |    |
+|                                                                                                         |          |    |    |    |
 
 
 <!--te-->
 ***
-### Basic
+#### Basic
 ```java
 class Intro{
     public static void intro(){
@@ -60,6 +75,8 @@ class Intro{
     
 ```
 ***
+
+
 #### Implement a Stack
 ##### Pattern: Stack
 [Back to Top](#table-of-contents)
@@ -541,76 +558,376 @@ public class SortStack {
 - The space complexity is O(n), where n is the number of elements in the stack, due to the additional auxiliary stack used for sorting.
 ***
 
-### Evaluate Postfix Expression Using a Stack
-##### Pattern: Stack
+#### Evaluate Postfix Expression Using a Stack
+##### Pattern: Stack-based Evaluation
 [Back to Top](#table-of-contents)
 ##### Description:
-Evaluate a postfix expression (also known as Reverse Polish Notation) using a stack.
-The expression is given as an array of strings, where each string is either an operand or an operator.
-The function should return the evaluated result of the expression.
-
-- Input: `["2", "1", "+", "3", "*"]`
-  Output: `9`
-  Explanation:
-    - 2 and 1 are pushed onto the stack.
-    - "+" pops 2 and 1, adds them (2 + 1 = 3), and pushes the result (3) onto the stack.
-    - 3 is pushed onto the stack.
-    - "*" pops 3 and 3, multiplies them (3 * 3 = 9), and pushes the result (9) onto the stack.
-    - The final result is 9.
+- Input: `"231*+9-"`
+- Output: `-4`
+- Explanation:
+  - Postfix notation is evaluated from left to right.
+  - Operands are pushed onto the stack, and operators pop the last two operands for evaluation.
 
 ```java
 import java.util.Stack;
 
 public class PostfixEvaluator {
-
-    // Method to evaluate postfix expression
-    public static int evaluatePostfix(String[] tokens) {
+    // Function to evaluate a postfix expression
+    public static int evaluatePostfix(String expression) {
+        // Stack to store operands
         Stack<Integer> stack = new Stack<>();
-
-        for (String token : tokens) {
-            // If the token is a number, push it onto the stack
-            if (isNumber(token)) {
-                stack.push(Integer.parseInt(token));
-            } else {
-                // Token is an operator, pop two operands from stack
-                int operand2 = stack.pop();
-                int operand1 = stack.pop();
-                switch (token) {
-                    case "+":
+        
+        // Traverse the expression character by character
+        for (char c : expression.toCharArray()) {
+            // If the character is a digit, push it onto the stack
+            if (Character.isDigit(c)) {
+                stack.push(c - '0');  // Convert char to int and push
+            } 
+            // If the character is an operator, pop two operands and apply the operator
+            else {
+                int operand2 = stack.pop();  // Second operand
+                int operand1 = stack.pop();  // First operand
+                
+                switch (c) {
+                    case '+':
                         stack.push(operand1 + operand2);
                         break;
-                    case "-":
+                    case '-':
                         stack.push(operand1 - operand2);
                         break;
-                    case "*":
+                    case '*':
                         stack.push(operand1 * operand2);
                         break;
-                    case "/":
+                    case '/':
                         stack.push(operand1 / operand2);
                         break;
                 }
             }
         }
-        // The result is the last remaining element on the stack
+        // The final result is at the top of the stack
         return stack.pop();
     }
 
-    // Helper method to determine if a string is a number
-    private static boolean isNumber(String token) {
-        try {
-            Integer.parseInt(token);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    public static void main(String[] args) {
+        String expression = "231*+9-"; // Example input
+        System.out.println("Result: " + evaluatePostfix(expression)); // Expected output: -4
     }
-
-  
 }
 ```
 ##### Time Complexity:
-- The time complexity is O(n), where n is the number of tokens in the expression. Each token is processed exactly once.
+- **O(n)**: We traverse the postfix expression once, processing each character in constant time.
 
 ##### Space Complexity:
-- The space complexity is O(n), where n is the number of tokens in the expression. In the worst case, the stack could hold all the operands at once.
+- **O(n)**: In the worst case, the stack can store all operands.
+
 ***
+
+#### Evaluate Reverse Polish Notation (RPN)
+##### Pattern: Stack
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** ["2", "1", "+", "3", "*"]
+- **Output:** 9
+- **Explanation:**
+  - Reverse Polish Notation evaluates as: (2 + 1) * 3 = 9.
+  - Each operator works on the last two operands in the stack.
+
+```java
+import java.util.Stack;
+
+public class EvaluateRPN {
+    public int evalRPN(String[] tokens) {
+        // Initialize a stack to store operands
+        Stack<Integer> stack = new Stack<>();
+        
+        // Loop through the input tokens
+        for (String token : tokens) {
+            switch (token) {
+                case "+": // Pop the top two numbers, apply addition, and push the result back
+                    stack.push(stack.pop() + stack.pop());
+                    break;
+                case "-": // Pop the top two numbers, subtract, and push the result
+                    int b = stack.pop();
+                    int a = stack.pop();
+                    stack.push(a - b);
+                    break;
+                case "*": // Pop the top two numbers, multiply, and push the result
+                    stack.push(stack.pop() * stack.pop());
+                    break;
+                case "/": // Pop the top two numbers, divide, and push the result
+                    int divisor = stack.pop();
+                    int dividend = stack.pop();
+                    stack.push(dividend / divisor);
+                    break;
+                default: // Push the number onto the stack
+                    stack.push(Integer.parseInt(token));
+            }
+        }
+        // The final result will be the only element in the stack
+        return stack.pop();
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        EvaluateRPN rpnEvaluator = new EvaluateRPN();
+        String[] tokens = {"2", "1", "+", "3", "*"};
+        System.out.println(rpnEvaluator.evalRPN(tokens)); // Output: 9
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: We iterate over each token exactly once where `n` is the number of tokens.
+
+##### Space Complexity:
+- **O(n)**: In the worst case, all tokens might be operands and will be pushed onto the stack.
+***
+
+
+
+
+#### AlgoMap
+[Back to Top](#table-of-contents)
+***
+
+
+#### Baseball Game
+##### Pattern: Stack-based
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `["5","-2","4","C","D","9","+","+"]`
+- **Output:** `27`
+- **Explanation:** The operations represent points in a baseball game:
+  - "5": Add 5 to the total.
+  - "-2": Add -2 to the total.
+  - "4": Add 4 to the total.
+  - "C": Remove the last score.
+  - "D": Double the last valid score and add to the total.
+  - "9": Add 9 to the total.
+  - "+": Sum of the last two scores.
+
+```java
+import java.util.*;
+
+public class BaseballGame {
+    public static int calPoints(String[] ops) {
+        // Stack to keep track of valid scores
+        Stack<Integer> stack = new Stack<>();
+        
+        // Loop through each operation
+        for (String op : ops) {
+            if (op.equals("C")) {
+                // "C" means remove the last score
+                stack.pop();
+            } else if (op.equals("D")) {
+                // "D" means double the last score and add to stack
+                stack.push(2 * stack.peek());
+            } else if (op.equals("+")) {
+                // "+" means add the sum of last two scores
+                int last = stack.pop(); // get last score
+                int newScore = last + stack.peek(); // sum of last two
+                stack.push(last); // push last back
+                stack.push(newScore); // push new score
+            } else {
+                // Otherwise, it's a valid score, convert to integer and add to stack
+                stack.push(Integer.parseInt(op));
+            }
+        }
+        
+        // Sum up all valid scores in the stack
+        int total = 0;
+        for (int score : stack) {
+            total += score;
+        }
+        
+        return total;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        String[] ops1 = {"5", "2", "C", "D", "+"};
+        System.out.println(calPoints(ops1)); // Output: 30
+
+        String[] ops2 = {"5", "-2", "4", "C", "D", "9", "+", "+"};
+        System.out.println(calPoints(ops2)); // Output: 27
+    }
+}
+```
+##### Time Complexity:
+- **O(n)** where `n` is the number of operations. We process each operation once.
+##### Space Complexity:
+- **O(n)** for storing the valid scores in the stack.
+
+
+#### Valid Parentheses
+##### Pattern: Stack
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `s = "()[]{}"`
+- Output: `true`
+- Explanation: The input string contains only valid matching parentheses.
+
+- Input: `s = "(]"`
+- Output: `false`
+- Explanation: The parentheses do not match properly.
+
+```java
+import java.util.Stack;
+
+public class ValidParentheses {
+    public static boolean isValid(String s) {
+        // Stack to hold opening brackets
+        Stack<Character> stack = new Stack<>();
+        
+        // Traverse through each character in the string
+        for (char c : s.toCharArray()) {
+            // Push the opening brackets to stack
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } 
+            // Check for corresponding closing brackets
+            else if (c == ')' && !stack.isEmpty() && stack.peek() == '(') {
+                stack.pop(); // Remove matching opening bracket
+            } 
+            else if (c == '}' && !stack.isEmpty() && stack.peek() == '{') {
+                stack.pop(); // Remove matching opening bracket
+            } 
+            else if (c == ']' && !stack.isEmpty() && stack.peek() == '[') {
+                stack.pop(); // Remove matching opening bracket
+            } 
+            else {
+                // If no match, return false
+                return false;
+            }
+        }
+        
+        // Stack should be empty if all brackets are valid
+        return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isValid("()[]{}")); // true
+        System.out.println(isValid("(]")); // false
+    }
+}
+```
+##### Time Complexity:
+- **O(n)** where n is the length of the string. We traverse the string once.
+
+##### Space Complexity:
+- **O(n)** in the worst case where only opening brackets are present and added to the stack.
+
+
+#### Daily Temperatures
+##### Pattern: Monotonic Stack
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `[73, 74, 75, 71, 69, 72, 76, 73]`
+- **Output:** `[1, 1, 4, 2, 1, 1, 0, 0]`
+- **Explanation:** For each day, the result is the number of days you would have to wait until a warmer temperature. If no future day has a higher temperature, return `0`.
+
+```java
+import java.util.Stack;
+
+public class DailyTemperatures {
+    public int[] dailyTemperatures(int[] T) {
+        // Result array to store the number of days to wait
+        int[] result = new int[T.length];
+        
+        // Stack to store the indices of the temperatures
+        Stack<Integer> stack = new Stack<>();
+        
+        // Iterate over the temperature array
+        for (int i = 0; i < T.length; i++) {
+            // Check if the current temperature is higher than the temperature at the index stored in the stack
+            while (!stack.isEmpty() && T[i] > T[stack.peek()]) {
+                int index = stack.pop();
+                // Calculate the difference between the current day and the day stored in the stack
+                result[index] = i - index;
+            }
+            // Push the current index onto the stack
+            stack.push(i);
+        }
+        
+        // If no warmer day is found, the result array will remain 0 by default
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        DailyTemperatures solver = new DailyTemperatures();
+        int[] temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
+        int[] result = solver.dailyTemperatures(temperatures);
+        
+        // Print the result array
+        for (int days : result) {
+            System.out.print(days + " ");
+        }
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)** where `n` is the number of days. Each element is pushed and popped from the stack once.
+
+##### Space Complexity:
+- **O(n)** due to the use of a stack to store indices of temperatures.
+***
+
+
+#### Min Stack
+##### Pattern: Stack
+[Back to Top](#table-of-contents)
+
+##### Description:
+- Input: Push elements to the stack, pop elements, retrieve the top element, and get the minimum element at any time.
+- Output: Operations of `push`, `pop`, `top`, and `getMin` should work in constant time O(1).
+- Explanation: Maintain a stack that supports retrieving the minimum element in constant time. We use an auxiliary stack to keep track of the minimum element.
+
+```java
+class MinStack {
+    private Stack<Integer> mainStack;   // Stack to store all elements
+    private Stack<Integer> minStack;    // Stack to store minimum elements
+
+    // Constructor initializes both stacks
+    public MinStack() {
+        mainStack = new Stack<>();
+        minStack = new Stack<>();
+    }
+
+    // Pushes the element onto the stack
+    public void push(int x) {
+        mainStack.push(x);  // Push element onto the main stack
+        // If the min stack is empty or the current element is smaller or equal to the top of the min stack, push it onto the min stack
+        if (minStack.isEmpty() || x <= minStack.peek()) {
+            minStack.push(x);
+        }
+    }
+
+    // Removes the top element from the stack
+    public void pop() {
+        // If the top element of the main stack equals the top element of the min stack, pop both
+        if (mainStack.peek().equals(minStack.peek())) {
+            minStack.pop();
+        }
+        mainStack.pop();  // Pop element from the main stack
+    }
+
+    // Returns the top element of the stack
+    public int top() {
+        return mainStack.peek();  // Return the top element of the main stack
+    }
+
+    // Retrieves the minimum element in the stack
+    public int getMin() {
+        return minStack.peek();  // Return the top element of the min stack (which is the minimum)
+    }
+}
+```
+##### Time Complexity:
+- Push, pop, top, and getMin operations are all O(1) because we only perform basic stack operations.
+
+##### Space Complexity:
+- O(n), where `n` is the number of elements in the stack. We use an additional stack to store the minimums.
+***
+
+
