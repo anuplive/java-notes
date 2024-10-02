@@ -3,42 +3,140 @@
 =================
 ### Table of contents
 
-<!--ts--> 
-| Category                                                    | Problems |    |    |    |    |    |    |    |
-|:------------------------------------------------------------|:---------|:---|:---|:---|:---|:---|:---|:---|
-| [Theory](#theory)                                           |          |    |    |    |    |    |    |    |
-| [Tree DFS](#tree-dfs)                                       |          |    |    |    |    |    |    |    |
-| [All Traversals](#all-traversals)                           |          |    |    |    |    |    |    |    |
-| [Validate Binary Search Tree](#validate-binary-search-tree) |          |    |    |    |    |    |    |    |
-| [Lowest Common Ancestor](#lowest-common-ancestor)           |          |    |    |    |    |    |    |    |
-|                                                             |          |    |    |    |    |    |    |    |
-|                                                             |          |    |    |    |    |    |    |    |
-|                                                             |          |    |    |    |    |    |    |    |
-| [Tree BFS](#tree-bfs)                                       |          |    |    |    |    |    |    |    |
-| [BTree Level Order](#btree-level-order)                     |          |    |    |    |    |    |    |    |
-| [BTree Zigzag](#btree-zigzag)                               |          |    |    |    |    |    |    |    |
-| [BTree Vertical Order](#btree-vertical-order)               |          |    |    |    |    |    |    |    |
-| [BTree Average of Levels](#btree-average-of-levels)         |          |    |    |    |    |    |    |    |
-| [BTree Right Side View](#btree-right-side-view)             |          |    |    |    |    |    |    |    |
-| [BTree Cousins](#btree-cousins)                             |          |    |    |    |    |    |    |    |
-| [BTree Next Right Pointers](#btree-next-right-pointers)     |          |    |    |    |    |    |    |    |
-| [BTree Check Symmetric](#btree-check-symmetric)             |          |    |    |    |    |    |    |    |
+<!--ts-->
+| Category                                                        | Problems |    |    |    |    |    |    |    |
+|:----------------------------------------------------------------|:---------|:---|:---|:---|:---|:---|:---|:---|
+| [Binary Tree Theory](#binary-tree-theory)                       |          |    |    |    |    |    |    |    |
+| [Tree DFS](#tree-dfs)                                           |          |    |    |    |    |    |    |    |
+| [All Traversals](#all-traversals)                               |          |    |    |    |    |    |    |    |
+| [Pre-ORDER  ( N - left - right)](#pre-order---n---left---right) |          |    |    |    |    |    |    |    |
+| [IN-ORDER TRAVERS](#in-order-traversal-left---node---right)     |          |    |    |    |    |    |    |    |
+| [POST-ORDER](#post-order-left---right---node)                   |          |    |    |    |    |    |    |    |
+| [Validate Binary Search Tree](#validate-binary-search-tree)     |          |    |    |    |    |    |    |    |
+| [Lowest Common Ancestor](#lowest-common-ancestor)               |          |    |    |    |    |    |    |    |
+| [BTree Level Order](#btree-level-order)                         |          |    |    |    |    |    |    |    |
+| [BTree Zigzag](#btree-zigzag)                                   |          |    |    |    |    |    |    |    |
+| [BTree Vertical Order](#btree-vertical-order)                   |          |    |    |    |    |    |    |    |
+| [BTree Average of Levels](#btree-average-of-levels)             |          |    |    |    |    |    |    |    |
+| [BTree Right Side View](#btree-right-side-view)                 |          |    |    |    |    |    |    |    |
+| [BTree Cousins](#btree-cousins)                                 |          |    |    |    |    |    |    |    |
+| [BTree Next Right Pointers](#btree-next-right-pointers)         |          |    |    |    |    |    |    |    |
+| [BTree Check Symmetric](#btree-check-symmetric)                 |          |    |    |    |    |    |    |    |
+
+
+#### Binary Tree Theory
+
+##### Types of Binary Trees
+- Full BT: Every node has 0 or 2 children.
+- Complete BT: All levels are fully filled except possibly the last level.
+- Perfect BT: All internal nodes have two children and all leaves are at the same level.
+- Balanced BT: Heights of subtrees differ by no more than 1.
+- Skewed BT: All nodes have only one child, creating a linear tree structure.
+
+**Full Binary Tree**
+   - **Definition:** A binary tree in which every node has either 0 or 2 children.
+   - **Diagram:**
+     ```
+         1
+        / \
+       2   3
+      / \
+     4   5
+     ```
+
+ **Complete Binary Tree**
+   - **Definition:** A binary tree in which all levels are completely filled except possibly the last level, and the last level has all keys as left as possible.
+   - **Diagram:**
+     ```
+         1
+        / \
+       2   3
+      / \ /
+     4  5 6
+     ```
+
+ **Perfect Binary Tree**
+   - **Definition:** A binary tree in which all internal nodes have two children and all leaf nodes are at the same level.
+   - **Diagram:**
+     ```
+         1
+        / \
+       2   3
+      / \ / \
+     4  5 6  7
+     ```
+
+ **Binary Search Tree (BST)**
+   - **Definition:** A binary tree in which for every node, the value of all the nodes in the left subtree is less or equal to the node's value, and the value of all the nodes in the right subtree is greater than the node's value.
+   - **Diagram:**
+     ```
+         4
+        / \
+       2   6
+      / \ / \
+     1  3 5  7
+     ```
+
+##### Tree Measurements
+
+ **Height of Binary Tree**
+   - **Definition:** The number of edges in the longest path from the root to a leaf node. Sometimes, the number of nodes in the longest path is used.
+   - **Example:** In the following tree, height = 2
+     ```
+         1
+        / \
+       2   3
+      /
+     4
+     ```
+
+ **Depth of Binary Tree**
+   - **Definition:** The number of edges from the root node to the given node. The depth of the root node is 0.
+   - **Example:** Depth of node 4 is 2
+     ```
+         1
+        / \
+       2   3
+      /
+     4
+     ```
+   - **Note:** Height and depth are related but not the same. Height is measured from the root to the farthest leaf, while depth is measured from the root to a particular node.
+
+ **Width of Binary Tree**
+   - **Definition:** The maximum number of nodes present in any level of the tree.
+   - **Example:** Width = 4 (level 2 has the maximum nodes)
+     ```
+         1
+        / \
+       2   3
+      / \ / \
+     4  5 6  7
+     ```
+
+ **Diameter of Binary Tree**
+   - **Definition:** The number of nodes on the longest path between any two nodes in the tree. This path may or may not pass through the root.
+   - **Example:** Diameter = 5 (path: 4 -> 2 -> 1 -> 3 -> 7)
+     ```
+         1
+        / \
+       2   3
+      / \   \
+     4  5    7
+     ```
+
+##### Redundancy Note
+- **Height and Depth of BT:** While height and depth are closely related, they are not the same thing. Height refers to the longest path from the root to a leaf (global measure), while depth refers to the distance from the root to a particular node (local measure). Thus, discussing both provides a comprehensive understanding of tree structure.
 
 
 
 
-
-
-
-
-
-[Back to Top](#table-of-contents)
 
 #### All Traversals
-##### Problem: Iterative and Recursive code for  DFS
+
+#### Problem: Iterative and Recursive code for  DFS
 - In-ORDER, Pre-ORDER and Post-ORDER Traversals
 
-##### Pre-ORDER  ( N - left - right)
+#### Pre-ORDER  ( N - left - right)
 ```java
 // In-order Recursive
 class AllTraversals{
@@ -89,7 +187,8 @@ class AllTraversals{
 }
 ```
 [Back to Top](#table-of-contents)
-##### IN-ORDER TRAVERSAL [left - Node - right]
+
+#### IN-ORDER TRAVERSAL [left - Node - right]
 - Input
   Tree:  
     1
@@ -151,7 +250,9 @@ class AllTraversals{
 
 ```
 [Back to Top](#table-of-contents)
-##### POST-ORDER (left - right - Node)
+
+
+#### POST-ORDER (left - right - Node)
 - Input Tree:
   1
   /   \
@@ -221,12 +322,15 @@ class AllTraversals {
 }
 
 ```
+
 ##### Time Complexity:
 - O(n), where n is the number of nodes in the tree. This is because each node is visited exactly once.
+
 ##### Space Complexity:
 - O(n), where n is the number of nodes in the tree.
 - The space is used by the stack in the worst case (when the tree is completely unbalanced).
 
+***
 ***
 
 #### Validate Binary Search Tree
@@ -241,7 +345,7 @@ class AllTraversals {
 
     Output : true
 
-- Input 
+- Input
       5
      / \
     1   4
@@ -364,7 +468,7 @@ public class ValidateBinarySearchTree {
 [Back to Top](#table-of-contents)
 ##### Problem:
 ###### Sample Scenarios
-- Input : LCA of 0 and 5 ? 
+- Input : LCA of 0 and 5 ?
       6
      / \
     2   8
@@ -428,16 +532,14 @@ public class Solution {
 }
 ```
 ##### Time Complexity:
-- O(log N) in average case, where N is the number of nodes in the BST. 
+- O(log N) in average case, where N is the number of nodes in the BST.
  This is because in each recursive call, we reduce the search space roughly in half.
 ##### Space Complexity:
 -  O(log N) in average case due to the space used by the recursion stack,
  where N is the number of nodes in the BST.
-- O(1) in case oo iterative approach. 
+- O(1) in case oo iterative approach.
 ***
 
-
-### Tree BFS
 #### BTree Level Order
 ##### Pattern: Tree Traversal
 [Back to Top](#table-of-contents)
@@ -1143,7 +1245,3 @@ public class SymmetricTree {
 - The space complexity is O(n) where n is the number of nodes in the tree. This space is used by the queue.
 
 ***
-
-
-
-
