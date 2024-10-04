@@ -4,24 +4,31 @@
 ### Table of contents
 
 <!--ts-->
-| Category                                                        | Problems |    |    |    |    |    |    |    |
-|:----------------------------------------------------------------|:---------|:---|:---|:---|:---|:---|:---|:---|
-| [Binary Tree Theory](#binary-tree-theory)                       |          |    |    |    |    |    |    |    |
-| [Tree DFS](#tree-dfs)                                           |          |    |    |    |    |    |    |    |
-| [All Traversals](#all-traversals)                               |          |    |    |    |    |    |    |    |
-| [Pre-ORDER  ( N - left - right)](#pre-order---n---left---right) |          |    |    |    |    |    |    |    |
-| [IN-ORDER TRAVERS](#in-order-traversal-left---node---right)     |          |    |    |    |    |    |    |    |
-| [POST-ORDER](#post-order-left---right---node)                   |          |    |    |    |    |    |    |    |
-| [Validate Binary Search Tree](#validate-binary-search-tree)     |          |    |    |    |    |    |    |    |
-| [Lowest Common Ancestor](#lowest-common-ancestor)               |          |    |    |    |    |    |    |    |
-| [BTree Level Order](#btree-level-order)                         |          |    |    |    |    |    |    |    |
-| [BTree Zigzag](#btree-zigzag)                                   |          |    |    |    |    |    |    |    |
-| [BTree Vertical Order](#btree-vertical-order)                   |          |    |    |    |    |    |    |    |
-| [BTree Average of Levels](#btree-average-of-levels)             |          |    |    |    |    |    |    |    |
-| [BTree Right Side View](#btree-right-side-view)                 |          |    |    |    |    |    |    |    |
-| [BTree Cousins](#btree-cousins)                                 |          |    |    |    |    |    |    |    |
-| [BTree Next Right Pointers](#btree-next-right-pointers)         |          |    |    |    |    |    |    |    |
-| [BTree Check Symmetric](#btree-check-symmetric)                 |          |    |    |    |    |    |    |    |
+| Category                                                                                              | Problems |    |    |    |    |    |    |    |
+|:------------------------------------------------------------------------------------------------------|:---------|:---|:---|:---|:---|:---|:---|:---|
+| [Binary Tree Theory](#binary-tree-theory)                                                             |          |    |    |    |    |    |    |    |
+| [Tree DFS](#tree-dfs)                                                                                 |          |    |    |    |    |    |    |    |
+| [All Traversals](#all-traversals)                                                                     |          |    |    |    |    |    |    |    |
+| [Pre-ORDER  ( N - left - right)](#pre-order---n---left---right)                                       |          |    |    |    |    |    |    |    |
+| [IN-ORDER TRAVERS](#in-order-traversal-left---node---right)                                           |          |    |    |    |    |    |    |    |
+| [POST-ORDER](#post-order-left---right---node)                                                         |          |    |    |    |    |    |    |    |
+| [Validate Binary Search Tree](#validate-binary-search-tree)                                           |          |    |    |    |    |    |    |    |
+| [Lowest Common Ancestor](#lowest-common-ancestor)                                                     |          |    |    |    |    |    |    |    |
+| [BTree Level Order](#btree-level-order)                                                               |          |    |    |    |    |    |    |    |
+| [BTree Zigzag](#btree-zigzag)                                                                         |          |    |    |    |    |    |    |    |
+| [BTree Vertical Order](#btree-vertical-order)                                                         |          |    |    |    |    |    |    |    |
+| [BTree Average of Levels](#btree-average-of-levels)                                                   |          |    |    |    |    |    |    |    |
+| [BTree Right Side View](#btree-right-side-view)                                                       |          |    |    |    |    |    |    |    |
+| [BTree Cousins](#btree-cousins)                                                                       |          |    |    |    |    |    |    |    |
+| [BTree Next Right Pointers](#btree-next-right-pointers)                                               |          |    |    |    |    |    |    |    |
+| [BTree Check Symmetric](#btree-check-symmetric)                                                       |          |    |    |    |    |    |    |    |
+| [AlgoMap](#algomap)                                                                                   |          |    |    |    |    |    |    |    |
+| [Invert Binary Tree (Iterative Solution)](#invert-binary-tree-iterative-solution)                     |          |    |    |    |    |    |    |    |
+| [Maximum Depth of Binary Tree (Iterative Solution)](#maximum-depth-of-binary-tree-iterative-solution) |          |    |    |    |    |    |    |    |
+| [Maximum Depth of Binary Tree (Recursive)](#maximum-depth-of-binary-tree-recursive)                   |          |    |    |    |    |    |    |    |
+| [Diameter of Binary Tree](#diameter-of-binary-tree)                                                   |          |    |    |    |    |    |    |    |
+| [Diameter of Binary Tree (Iterative Approach](#diameter-of-binary-tree-iterative-approach)            |          |    |    |    |    |    |    |    |
+|                                                                                                       |          |    |    |    |    |    |    |    |
 
 
 #### Binary Tree Theory
@@ -1245,3 +1252,1120 @@ public class SymmetricTree {
 - The space complexity is O(n) where n is the number of nodes in the tree. This space is used by the queue.
 
 ***
+
+
+#### Algomap
+
+#### Invert Binary Tree (Iterative Solution)
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: A binary tree (e.g., root of a tree).
+- Output: A new tree where the left and right children of all nodes are swapped.
+- Explanation: The function will invert the binary tree using an iterative approach (level-order traversal with a queue).
+
+Example:
+- Input:
+```
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+```
+- Output:
+```
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+```
+
+```java
+// Definition for a binary tree node
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val) { 
+        this.val = val; 
+    }
+}
+
+public class InvertBinaryTree {
+
+    // Iterative function to invert the binary tree
+    public TreeNode invertTree(TreeNode root) {
+        // If the tree is empty, return null
+        if (root == null) return null;
+
+        // Initialize a queue to store the nodes for level-order traversal
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        // Process nodes level by level
+        while (!queue.isEmpty()) {
+            // Remove the current node from the queue
+            TreeNode current = queue.poll();
+
+            // Swap its left and right children
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+
+            // Add the left and right children to the queue if they exist
+            if (current.left != null) queue.add(current.left);
+            if (current.right != null) queue.add(current.right);
+        }
+        // Return the root of the inverted tree
+        return root;
+    }
+}
+```
+##### Algorithm Explanation:
+- Use a queue to perform level-order traversal.
+- For each node, swap its left and right children.
+- Continue processing all nodes until the queue is empty.
+
+##### Time Complexity:
+- O(n) where **n** is the number of nodes in the tree. Each node is processed once.
+
+##### Space Complexity:
+- O(n), where **n** is the number of nodes. The queue can hold all nodes in the worst case (e.g., for a complete binary tree).
+
+***
+
+#### Maximum Depth of Binary Tree (Iterative Solution)
+##### Pattern: Tree Traversal (Level Order)
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**: A binary tree.
+  ```
+      3
+     / \
+    9  20
+      /  \
+     15   7
+  ```
+- **Output**: 3
+- **Explanation**: The maximum depth of the tree is 3 because the longest path from the root to a leaf is 3 levels deep.
+
+```java
+// Definition for a binary tree node.
+import java.util.LinkedList;
+import java.util.Queue;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode(int x) {
+        val = x;
+        left = null;
+        right = null;
+    }
+}
+
+public class Solution {
+    // Function to calculate the maximum depth of a binary tree using an iterative approach
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
+        // Initialize a queue for level order traversal
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int depth = 0;
+        
+        // Loop until the queue is empty
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size(); // Get the number of nodes at the current level
+            depth++; // Increment depth for each level
+            
+            // Process all nodes at the current level
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode currentNode = queue.poll(); // Get the next node in the queue
+                
+                // Add the left and right children to the queue, if they exist
+                if (currentNode.left != null) {
+                    queue.add(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    queue.add(currentNode.right);
+                }
+            }
+        }
+        
+        return depth; // Return the final depth
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: Every node in the tree is processed once.
+
+##### Space Complexity:
+- **O(n)**: In the worst case, the queue will hold all the nodes at the deepest level, which can be up to n/2 nodes.
+
+***
+
+
+#### Maximum Depth of Binary Tree (Recursive)
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**: A binary tree.
+  ```
+      3
+     / \
+    9  20
+      /  \
+     15   7
+  ```
+- **Output**: 3
+- **Explanation**: The maximum depth of the tree is the longest path from the root to a leaf, which in this case is 3 (root -> 20 -> 7).
+
+```java
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode(int x) {
+        val = x;
+        left = null;
+        right = null;
+    }
+}
+
+public class Solution {
+    // Function to calculate the maximum depth of a binary tree
+    public int maxDepth(TreeNode root) {
+        // Base case: if the node is null, return depth 0
+        if (root == null) {
+            return 0;
+        }
+        
+        // Recursively calculate the depth of left and right subtrees
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+        
+        // The depth of the current node is max of left and right subtree depths plus 1 (for the current node)
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: We visit every node in the binary tree exactly once.
+
+##### Space Complexity:
+- **O(h)**: The space complexity is determined by the height of the tree, which is the maximum depth of recursion calls (h is the height of the tree).
+
+***
+
+#### Diameter of Binary Tree
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: A binary tree with nodes having integer values.
+- Output: An integer representing the diameter of the tree (the number of nodes on the longest path between two leaves).
+- Explanation: The diameter of the tree is the length of the longest path between any two nodes, which may or may not pass through the root. For example, for a tree with 5 nodes, the diameter may be 4.
+
+```java
+// Java program to find the diameter of a binary tree
+
+// Definition for a binary tree node
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int x) {
+        val = x;
+        left = right = null;
+    }
+}
+
+public class BinaryTree {
+    
+    // Variable to store the diameter
+    int diameter = 0;
+
+    // Function to calculate the height of the tree and update diameter
+    public int height(TreeNode node) {
+        // Base case: if the node is null, the height is 0
+        if (node == null) return 0;
+
+        // Recursive call for left and right subtrees
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+
+        // Update the diameter. The diameter is the max of the current diameter
+        // and the sum of heights of left and right subtrees
+        diameter = Math.max(diameter, leftHeight + rightHeight);
+
+        // Return the height of the tree from the current node
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    // Function to calculate the diameter of the tree
+    public int diameterOfBinaryTree(TreeNode root) {
+        height(root); // Update the diameter during height calculation
+        return diameter; // Return the final diameter
+    }
+
+    public static void main(String[] args) {
+        // Create a binary tree
+        BinaryTree tree = new BinaryTree();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        // Calculate and print the diameter of the binary tree
+        System.out.println("Diameter of the tree: " + tree.diameterOfBinaryTree(root));
+    }
+}
+```
+##### Time Complexity:
+- O(N): Where N is the number of nodes in the tree. We visit each node once.
+
+##### Space Complexity:
+- O(H): Where H is the height of the tree, due to recursion stack space.
+
+
+***
+
+***
+
+#### Diameter of Binary Tree (Iterative Approach)
+##### Pattern: Tree Traversal (Using Stack/DFS)
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: A binary tree with nodes having integer values.
+- Output: An integer representing the diameter of the tree (the number of nodes on the longest path between two leaves).
+- Explanation: The diameter of the tree is the longest path between two nodes in the tree, which may or may not pass through the root. The iterative approach uses a stack for depth-first traversal.
+
+```java
+import java.util.HashMap;
+import java.util.Stack;
+
+// Definition for a binary tree node
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int x) {
+        val = x;
+        left = right = null;
+    }
+}
+
+public class BinaryTreeIterative {
+
+    // Function to calculate the diameter of the tree
+    public int diameterOfBinaryTree(TreeNode root) {
+        if (root == null) return 0;
+
+        // Stack for DFS traversal
+        Stack<TreeNode> stack = new Stack<>();
+        HashMap<TreeNode, Integer> heights = new HashMap<>();
+
+        stack.push(root);
+        int diameter = 0;
+
+        // Depth-first traversal to calculate heights of all nodes
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.peek();
+
+            if (current.left != null && !heights.containsKey(current.left)) {
+                stack.push(current.left); // Explore left subtree
+            } else if (current.right != null && !heights.containsKey(current.right)) {
+                stack.push(current.right); // Explore right subtree
+            } else {
+                // Both children are visited, or current node is a leaf
+                current = stack.pop();
+
+                // Get heights of left and right children (0 if null)
+                int leftHeight = heights.getOrDefault(current.left, 0);
+                int rightHeight = heights.getOrDefault(current.right, 0);
+
+                // Calculate height of the current node
+                int currentHeight = 1 + Math.max(leftHeight, rightHeight);
+                heights.put(current, currentHeight);
+
+                // Update diameter with the longest path at the current node
+                diameter = Math.max(diameter, leftHeight + rightHeight);
+            }
+        }
+
+        return diameter;
+    }
+
+    public static void main(String[] args) {
+        // Create a binary tree
+        BinaryTreeIterative tree = new BinaryTreeIterative();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        // Calculate and print the diameter of the binary tree
+        System.out.println("Diameter of the tree: " + tree.diameterOfBinaryTree(root));
+    }
+}
+```
+##### Time Complexity:
+- O(N): We process each node once, where N is the number of nodes in the tree.
+
+##### Space Complexity:
+- O(N): Due to the stack used in the iterative DFS, and the HashMap storing the heights.
+***
+
+
+
+
+#### Same Binary Tree (Iterative Solution)
+##### Pattern: Breadth First Search (BFS)
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: Two binary trees `p` and `q`
+- **Output**: `true` if both trees are structurally identical and the nodes have the same values; otherwise, `false`
+- **Explanation**: Compare each node in the first tree to the corresponding node in the second tree using an iterative approach with BFS.
+
+Example:
+- Input: `p = [1,2,3]`, `q = [1,2,3]`
+- Output: `true`
+- Input: `p = [1,2]`, `q = [1,null,2]`
+- Output: `false`
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class SameTreeIterative {
+
+    // Iterative function to check if two binary trees are the same
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        // Use a queue to perform BFS for both trees
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(p);
+        queue.add(q);
+
+        while (!queue.isEmpty()) {
+            TreeNode node1 = queue.poll();
+            TreeNode node2 = queue.poll();
+
+            // If both nodes are null, continue
+            if (node1 == null && node2 == null) {
+                continue;
+            }
+
+            // If one is null and the other isn't, or the values differ, return false
+            if (node1 == null || node2 == null || node1.val != node2.val) {
+                return false;
+            }
+
+            // Add the left and right children of both nodes to the queue for comparison
+            queue.add(node1.left);
+            queue.add(node2.left);
+            queue.add(node1.right);
+            queue.add(node2.right);
+        }
+
+        // If we finish without returning false, the trees are the same
+        return true;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        SameTreeIterative sameTree = new SameTreeIterative();
+        
+        // Creating tree 1
+        TreeNode p = new TreeNode(1);
+        p.left = new TreeNode(2);
+        p.right = new TreeNode(3);
+
+        // Creating tree 2
+        TreeNode q = new TreeNode(1);
+        q.left = new TreeNode(2);
+        q.right = new TreeNode(3);
+
+        // Check if both trees are the same
+        System.out.println(sameTree.isSameTree(p, q)); // Output: true
+    }
+}
+```
+
+##### Time Complexity:
+- O(n), where n is the number of nodes in the trees. We visit every node once.
+
+##### Space Complexity:
+- O(n), due to the space used by the queue to store nodes during traversal.
+
+***
+
+#### Same Binary Tree
+##### Pattern: Depth First Search
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: Two binary trees `p` and `q`
+- **Output**: `true` if both trees are structurally identical and the nodes have the same values; otherwise, `false`
+- **Explanation**: Compare each node in the first tree to the corresponding node in the second tree.
+
+Example:
+- Input: `p = [1,2,3]`, `q = [1,2,3]`
+- Output: `true`
+- Input: `p = [1,2]`, `q = [1,null,2]`
+- Output: `false`
+
+```java
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode(int val) {
+        this.val = val;
+        left = null;
+        right = null;
+    }
+}
+
+public class SameTree {
+
+    // Recursive function to check if two binary trees are the same.
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        // If both trees are empty, they are the same
+        if (p == null && q == null) {
+            return true;
+        }
+
+        // If one of the trees is empty, they are not the same
+        if (p == null || q == null) {
+            return false;
+        }
+
+        // If the current node values differ, the trees are not the same
+        if (p.val != q.val) {
+            return false;
+        }
+
+        // Recursively check the left and right subtrees
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        SameTree sameTree = new SameTree();
+        
+        // Creating tree 1
+        TreeNode p = new TreeNode(1);
+        p.left = new TreeNode(2);
+        p.right = new TreeNode(3);
+
+        // Creating tree 2
+        TreeNode q = new TreeNode(1);
+        q.left = new TreeNode(2);
+        q.right = new TreeNode(3);
+
+        // Check if both trees are the same
+        System.out.println(sameTree.isSameTree(p, q)); // Output: true
+    }
+}
+```
+
+##### Time Complexity:
+- O(n), where n is the number of nodes in the trees. We visit every node once.
+
+##### Space Complexity:
+- O(h), where h is the height of the tree, due to the recursive call stack.
+
+***
+
+
+#### Symmetric Tree (Iterative Approach)
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** A binary tree:
+  ```
+      1
+     / \
+    2   2
+   / \ / \
+  3  4 4  3
+  ```
+- **Output:** `true`
+- **Explanation:** The binary tree is symmetric around its center.
+
+```java
+// Java program to check if a tree is symmetric using an iterative approach
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class TreeNode {
+    int val;
+    TreeNode left, right;
+    TreeNode(int x) {
+        val = x;
+        left = null;
+        right = null;
+    }
+}
+
+public class SymmetricTreeIterative {
+    public boolean isSymmetric(TreeNode root) {
+        // If the tree is empty, it's symmetric
+        if (root == null) return true;
+
+        // Use a queue to store pairs of nodes to compare
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+
+        // Process nodes in pairs
+        while (!queue.isEmpty()) {
+            // Remove two nodes to compare
+            TreeNode t1 = queue.poll();
+            TreeNode t2 = queue.poll();
+
+            // Both are null, symmetric at this level, continue
+            if (t1 == null && t2 == null) continue;
+
+            // One is null or values are different, not symmetric
+            if (t1 == null || t2 == null || t1.val != t2.val) return false;
+
+            // Enqueue children in mirror order:
+            // Compare t1's left with t2's right and t1's right with t2's left
+            queue.add(t1.left);
+            queue.add(t2.right);
+            queue.add(t1.right);
+            queue.add(t2.left);
+        }
+
+        // If all pairs matched, the tree is symmetric
+        return true;
+    }
+
+    public static void main(String[] args) {
+        // Example input
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(2);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+        root.right.left = new TreeNode(4);
+        root.right.right = new TreeNode(3);
+
+        SymmetricTreeIterative obj = new SymmetricTreeIterative();
+        System.out.println(obj.isSymmetric(root)); // Output: true
+    }
+}
+```
+##### Time Complexity:
+- **O(n):** We process each node once.
+
+##### Space Complexity:
+- **O(n):** Space used by the queue, where `n` is the number of nodes. In the worst case, all nodes at a level are stored in the queue.
+***
+
+
+#### Symmetric Tree
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** A binary tree:
+  ```
+      1
+     / \
+    2   2
+   / \ / \
+  3  4 4  3
+  ```
+- **Output:** `true`
+- **Explanation:** The binary tree is symmetric around its center.
+
+```java
+// Java program to check if a tree is symmetric
+
+// Definition for a binary tree node
+class TreeNode {
+    int val;
+    TreeNode left, right;
+    TreeNode(int x) {
+        val = x;
+        left = null;
+        right = null;
+    }
+}
+
+public class SymmetricTree {
+    // Main function to check if the tree is symmetric
+    public boolean isSymmetric(TreeNode root) {
+        // If the tree is empty, it's symmetric
+        if (root == null) return true;
+        // Use helper function to compare the left and right subtrees
+        return isMirror(root.left, root.right);
+    }
+
+    // Helper function to compare two subtrees
+    private boolean isMirror(TreeNode t1, TreeNode t2) {
+        // Both are null, meaning symmetric
+        if (t1 == null && t2 == null) return true;
+        // One is null and the other is not, meaning not symmetric
+        if (t1 == null || t2 == null) return false;
+        // Both nodes must have the same value, and their respective subtrees must mirror each other
+        return (t1.val == t2.val)
+            && isMirror(t1.left, t2.right)  // Compare left subtree of t1 with right subtree of t2
+            && isMirror(t1.right, t2.left); // Compare right subtree of t1 with left subtree of t2
+    }
+
+    public static void main(String[] args) {
+        // Example input
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(2);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+        root.right.left = new TreeNode(4);
+        root.right.right = new TreeNode(3);
+
+        SymmetricTree obj = new SymmetricTree();
+        System.out.println(obj.isSymmetric(root)); // Output: true
+    }
+}
+```
+##### Time Complexity:
+- **O(n):** We traverse each node of the tree once.
+
+##### Space Complexity:
+- **O(h):** Recursive stack space, where `h` is the height of the tree.
+
+***
+
+#### Path Sum
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: A binary tree and an integer `targetSum`.
+- Output: Return `true` if there is a root-to-leaf path such that adding up all the values along the path equals `targetSum`, otherwise return `false`.
+- Explanation: Check if there exists a path from root to leaf where the sum of node values matches `targetSum`.
+
+```java
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class PathSum {
+    // Function to check if a path with the target sum exists
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        // If the current node is null, return false as we can't find a path here
+        if (root == null) {
+            return false;
+        }
+        
+        // If we've reached a leaf node, check if the current sum equals targetSum
+        if (root.left == null && root.right == null) {
+            return root.val == targetSum;
+        }
+        
+        // Update the targetSum by subtracting the current node's value
+        int remainingSum = targetSum - root.val;
+        
+        // Recursively check the left and right subtrees for a valid path
+        return hasPathSum(root.left, remainingSum) || hasPathSum(root.right, remainingSum);
+    }
+}
+```
+
+##### Time Complexity:
+- The algorithm visits every node once, so the time complexity is **O(N)**, where `N` is the number of nodes in the binary tree.
+
+##### Space Complexity:
+- In the worst case (for a completely unbalanced tree), the recursion stack can go as deep as the height of the tree. Hence, the space complexity is **O(H)**, where `H` is the height of the tree.
+
+***
+
+#### Problem: Path Sum (Iterative Approach)
+
+##### Pattern: Tree Traversal (DFS using Stack)
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: A binary tree and an integer `targetSum`.
+- Output: Return `true` if there is a root-to-leaf path such that adding up all the values along the path equals `targetSum`, otherwise return `false`.
+- Explanation: Use an iterative DFS approach to check if there exists a path from root to leaf where the sum of node values matches `targetSum`.
+
+```java
+import java.util.Stack;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class PathSumIterative {
+    // Function to check if a path with the target sum exists (Iterative)
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        // If the root is null, no path exists
+        if (root == null) {
+            return false;
+        }
+
+        // Stack to hold pairs of the current node and the remaining sum needed
+        Stack<TreeNode> nodeStack = new Stack<>();
+        Stack<Integer> sumStack = new Stack<>();
+        
+        // Initialize the stacks with the root node and initial targetSum
+        nodeStack.push(root);
+        sumStack.push(targetSum - root.val);
+        
+        // Iterate until the stack is empty
+        while (!nodeStack.isEmpty()) {
+            TreeNode currentNode = nodeStack.pop();
+            int currentSum = sumStack.pop();
+            
+            // Check if it's a leaf node and the path sum matches
+            if (currentNode.left == null && currentNode.right == null && currentSum == 0) {
+                return true;
+            }
+            
+            // Push the left and right children into the stack if they exist
+            if (currentNode.left != null) {
+                nodeStack.push(currentNode.left);
+                sumStack.push(currentSum - currentNode.left.val);
+            }
+            
+            if (currentNode.right != null) {
+                nodeStack.push(currentNode.right);
+                sumStack.push(currentSum - currentNode.right.val);
+            }
+        }
+        
+        return false;  // If no path matches the targetSum
+    }
+}
+```
+
+##### Time Complexity:
+- The algorithm still visits every node once, so the time complexity is **O(N)**, where `N` is the number of nodes in the binary tree.
+
+##### Space Complexity:
+- The space complexity is **O(H)**, where `H` is the height of the tree. In the worst case (completely unbalanced tree), the stack could grow up to `H`, and in the best case (completely balanced tree), it would be `O(log N)`.
+
+***
+
+
+
+#### Subtree of Another Tree
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:**
+  - Two binary trees `root` and `subRoot`.
+  - `root = [3,4,5,1,2]`, `subRoot = [4,1,2]`
+- **Output:**
+  - `true`
+- **Explanation:**
+  - Check if `subRoot` is a subtree of `root`. A subtree means all nodes of `subRoot` match with some subtree of `root`.
+
+```java
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val) { 
+        this.val = val; 
+    }
+}
+
+public class SubtreeOfAnotherTree {
+
+    // Function to check if two trees are identical
+    private boolean isSameTree(TreeNode s, TreeNode t) {
+        // Base case: both are null, they are identical
+        if (s == null && t == null) return true;
+        // If one is null and the other is not, they aren't identical
+        if (s == null || t == null) return false;
+        // Check current node and recursively check left and right subtrees
+        return (s.val == t.val) && isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
+    }
+
+    // Main function to check if subRoot is a subtree of root
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        // Base case: If root is null, it can't contain any subtree
+        if (root == null) return false;
+        // If the trees match, return true
+        if (isSameTree(root, subRoot)) return true;
+        // Otherwise, check subtrees of left and right children
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+
+    public static void main(String[] args) {
+        // Example tree creation for root and subRoot
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(2);
+
+        TreeNode subRoot = new TreeNode(4);
+        subRoot.left = new TreeNode(1);
+        subRoot.right = new TreeNode(2);
+
+        SubtreeOfAnotherTree solution = new SubtreeOfAnotherTree();
+        System.out.println(solution.isSubtree(root, subRoot)); // Expected output: true
+    }
+}
+```
+##### Time Complexity:
+- **O(m * n)**: For each node of `root`, we are calling the `isSameTree` function, which can take up to `O(n)` time (where `m` and `n` are the sizes of `root` and `subRoot`).
+
+##### Space Complexity:
+- **O(h)**: The space complexity is proportional to the height of the tree due to recursive calls, where `h` is the height of the tree.
+***
+
+#### Subtree of Another Tree (Iterative Approach)
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:**
+  - Two binary trees `root` and `subRoot`.
+  - `root = [3,4,5,1,2]`, `subRoot = [4,1,2]`
+- **Output:**
+  - `true`
+- **Explanation:**
+  - Check if `subRoot` is a subtree of `root` using an iterative approach. A subtree means all nodes of `subRoot` match with some subtree of `root`.
+
+```java
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val) { 
+        this.val = val; 
+    }
+}
+
+public class SubtreeOfAnotherTreeIterative {
+
+    // Helper method to check if two trees are identical
+    private boolean isSameTree(TreeNode s, TreeNode t) {
+        if (s == null && t == null) return true;
+        if (s == null || t == null) return false;
+        return s.val == t.val && isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
+    }
+
+    // Main function to check if subRoot is a subtree of root using iteration
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if (root == null) return false;
+
+        // Use a stack to iteratively traverse the tree
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        // Iterate through each node in the tree
+        while (!stack.isEmpty()) {
+            TreeNode currentNode = stack.pop();
+
+            // If the current node matches the root of subRoot, check for subtree
+            if (currentNode.val == subRoot.val && isSameTree(currentNode, subRoot)) {
+                return true;
+            }
+
+            // Add the left and right children to the stack for further exploration
+            if (currentNode.right != null) stack.push(currentNode.right);
+            if (currentNode.left != null) stack.push(currentNode.left);
+        }
+
+        return false; // Return false if no matching subtree is found
+    }
+
+    public static void main(String[] args) {
+        // Example tree creation for root and subRoot
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(2);
+
+        TreeNode subRoot = new TreeNode(4);
+        subRoot.left = new TreeNode(1);
+        subRoot.right = new TreeNode(2);
+
+        SubtreeOfAnotherTreeIterative solution = new SubtreeOfAnotherTreeIterative();
+        System.out.println(solution.isSubtree(root, subRoot)); // Expected output: true
+    }
+}
+```
+##### Time Complexity:
+- **O(m * n)**: For each node in `root`, we are performing a subtree comparison which takes `O(n)` time, where `m` is the number of nodes in `root` and `n` is the number of nodes in `subRoot`.
+
+##### Space Complexity:
+- **O(h)**: The space complexity is proportional to the height of the tree `h` due to the stack used for the iterative traversal.
+***
+
+#### BTree Level Order
+##### Pattern: Tree Traversal
+[Back to Top](#table-of-contents)
+
+##### Description:
+Example:
+- Input:
+  ```
+      1
+     / \
+    2   3
+   / \   \
+  4   5   6
+  ```
+- Output: `[1, 2, 3, 4, 5, 6]`
+- Explanation: Starting from the root (1), then level 2 (2, 3), and finally level 3 (4, 5, 6).
+
+```java
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class BinaryTreeBFS {
+    // TreeNode definition
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        TreeNode(int x) {
+            val = x;
+            left = right = null;
+        }
+    }
+
+    // Method to perform BFS on binary tree
+    public List<Integer> levelOrder(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            result.add(node.val);
+
+            // Add left child to queue if it exists
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            // Add right child to queue if it exists
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+
+        return result;
+    }
+    
+}
+```
+
+##### Time Complexity:
+- The time complexity is O(n), where n is the number of nodes in the binary tree. Each node is visited exactly once.
+
+##### Space Complexity:
+- The space complexity is O(n) as well. In the worst case, the queue will hold all the nodes at the deepest level of the binary tree.
+***
+
+
+#### Kth Smallest Element in a BST
+##### Pattern: Inorder Traversal, Binary Search Tree
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**: A Binary Search Tree (BST) and an integer `k`.
+- **Output**: The `k`th smallest element in the BST.
+- **Explanation**: Given a BST, the elements are ordered in a specific way, and the `k`th smallest can be found using an inorder traversal, which processes nodes in sorted order for a BST.
+
+##### Example:
+- **Input**:
+  - `root = [3, 1, 4, null, 2]`, `k = 1`
+- **Output**:
+  - `1`
+- **Explanation**: Inorder traversal gives [1, 2, 3, 4]. The 1st smallest element is 1.
+
+```java
+// Java program to find the kth smallest element in a BST
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
+
+public class KthSmallestElementInBST {
+    
+    // Helper function to perform inorder traversal
+    private int inorderTraversal(TreeNode root, int[] k) {
+        if (root == null) {
+            return -1;  // Base case: return an invalid value
+        }
+
+        // Traverse the left subtree
+        int left = inorderTraversal(root.left, k);
+        if (left != -1) return left; // If found, return the result
+
+        // Decrease k after visiting the current node
+        k[0]--; 
+        if (k[0] == 0) {
+            return root.val; // Found the kth smallest element
+        }
+
+        // Traverse the right subtree
+        return inorderTraversal(root.right, k);
+    }
+
+    public int kthSmallest(TreeNode root, int k) {
+        // Wrap k into an array to simulate pass by reference
+        return inorderTraversal(root, new int[]{k});
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: We perform an inorder traversal that visits each node exactly once.
+
+##### Space Complexity:
+- **O(h)**: The space complexity is determined by the depth of the recursive stack, which is the height of the tree. In the worst case (unbalanced tree), the height can be `O(n)`, but in a balanced tree, it is `O(log n)`.
+
+***
+
