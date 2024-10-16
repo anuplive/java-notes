@@ -821,44 +821,47 @@ public class ValidParentheses {
 #### Daily Temperatures
 ##### Pattern: Monotonic Stack
 [Back to Top](#table-of-contents)
+
 ##### Description:
-- **Input:** `[73, 74, 75, 71, 69, 72, 76, 73]`
-- **Output:** `[1, 1, 4, 2, 1, 1, 0, 0]`
-- **Explanation:** For each day, the result is the number of days you would have to wait until a warmer temperature. If no future day has a higher temperature, return `0`.
+- Input: `[73, 74, 75, 71, 69, 72, 76, 73]`
+- Output: `[1, 1, 4, 2, 1, 1, 0, 0]`
+- Explanation: For each day, return the number of days until a warmer temperature. If there is no future day with a warmer temperature, return 0 for that day.
 
 ```java
+// Java solution to solve Daily Temperatures problem iterating backwards
 import java.util.Stack;
 
 public class DailyTemperatures {
-    public int[] dailyTemperatures(int[] T) {
-        // Result array to store the number of days to wait
-        int[] result = new int[T.length];
-        
+    public int[] dailyTemperatures(int[] temperatures) {
+        // Result array to store the number of days to wait for a warmer temperature
+        int[] result = new int[temperatures.length];
         // Stack to store the indices of the temperatures
         Stack<Integer> stack = new Stack<>();
         
-        // Iterate over the temperature array
-        for (int i = 0; i < T.length; i++) {
-            // Check if the current temperature is higher than the temperature at the index stored in the stack
-            while (!stack.isEmpty() && T[i] > T[stack.peek()]) {
-                int index = stack.pop();
-                // Calculate the difference between the current day and the day stored in the stack
-                result[index] = i - index;
+        // Iterate backwards through the temperatures array
+        for (int i = temperatures.length - 1; i >= 0; i--) {
+            // Pop elements from the stack until we find a warmer temperature
+            while (!stack.isEmpty() && temperatures[i] >= temperatures[stack.peek()]) {
+                stack.pop();
+            }
+            // If stack is not empty, calculate the difference in days
+            if (!stack.isEmpty()) {
+                result[i] = stack.peek() - i;
             }
             // Push the current index onto the stack
             stack.push(i);
         }
         
-        // If no warmer day is found, the result array will remain 0 by default
         return result;
     }
-    
+
+    // Example usage
     public static void main(String[] args) {
-        DailyTemperatures solver = new DailyTemperatures();
+        DailyTemperatures solution = new DailyTemperatures();
         int[] temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
-        int[] result = solver.dailyTemperatures(temperatures);
+        int[] result = solution.dailyTemperatures(temperatures);
         
-        // Print the result array
+        // Output the result array
         for (int days : result) {
             System.out.print(days + " ");
         }
@@ -867,12 +870,11 @@ public class DailyTemperatures {
 ```
 
 ##### Time Complexity:
-- **O(n)** where `n` is the number of days. Each element is pushed and popped from the stack once.
+- **O(n)** where `n` is the number of temperatures. Each temperature is pushed and popped from the stack at most once.
 
 ##### Space Complexity:
-- **O(n)** due to the use of a stack to store indices of temperatures.
+- **O(n)** for the stack and result array, where `n` is the length of the input array.
 ***
-
 
 #### Min Stack
 ##### Pattern: Stack

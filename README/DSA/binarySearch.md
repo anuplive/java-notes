@@ -441,7 +441,7 @@ public class KokoEatingBananas {
 
         // Perform binary search on the speed
         while (left < right) {
-            int mid = left + (left - right) / 2;
+            int mid = left + (right - left) / 2;
             if (canFinish(piles, mid, H)) {
                 right = mid; // Try a smaller speed
             } else {

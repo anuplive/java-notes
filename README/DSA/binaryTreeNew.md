@@ -769,7 +769,7 @@ public class BinaryTreeVerticalOrderTraversal {
                 return output;
             }
             //  Create a map of column index and elements in the column
-            Map<Integer, ArrayList<Integer>> nodeList = new HashMap<Integer, ArrayList<Integer>>() ;
+            Map<Integer, ArrayList<Integer>> nodeMap = new HashMap<Integer, ArrayList<Integer>>() ;
             
             // Create a queue of Tuples Queue<Map.Entry<TreeNode<Integer>, Integer>> qTuple = new LinkedList<>(); 
             
@@ -790,10 +790,10 @@ public class BinaryTreeVerticalOrderTraversal {
                 column = p.getValue();
     
                 if (root != null) {
-                    if (!nodeList.containsKey(column)) {
-                        nodeList.put(column, new ArrayList<Integer> ());
+                    if (!nodeMap.containsKey(column)) {
+                        nodeMap.put(column, new ArrayList<Integer> ());
                     }
-                    nodeList.get(column).add(root.data);
+                    nodeMap.get(column).add(root.data);
                     minColumn = Math.min(minColumn, column);
                     maxIndex = Math.max(maxIndex, column);
                     
@@ -804,7 +804,7 @@ public class BinaryTreeVerticalOrderTraversal {
             }
     
             for (int i = minColumn; i<maxIndex + 1; ++i) {
-                output.add(nodeList.get(i));
+                output.add(nodeMap.get(i));
             }
             return output;
 	}
@@ -1001,8 +1001,9 @@ public class BinaryTreeRightSideView {
                     rightMost = node.val; 
                 }
 
-                if (node.right != null) queue.offer(node.right);
+                
                 if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
             // Add the rightMost element into the result array. 
             result.add(rightMost);
