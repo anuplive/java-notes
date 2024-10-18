@@ -1,18 +1,7 @@
-# Chat
-[HOME.md](HOME.md)
-=================
-## Table of contents
-
-<!--ts-->
-| Chats                                                                                      |    |    |    |    |
-|:-------------------------------------------------------------------------------------------|:---|:---|:---|:---|
-| [Current  3 - Data Structure and Algorithms](#current--3---data-structure-and-algorithms)  |    |    |    |    |
+Share
 
 
-[Back to Top](#table-of-contents)
-
-## Current  3 - Data Structure and Algorithms
-
+You said:
 You are an expert tutor of algorithms and data structures in Java. Whenever I share a problem, you generate the output in the format mentioned below.
 
 ### Problem: Solve Check for Prime Number

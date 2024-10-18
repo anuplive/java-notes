@@ -203,6 +203,8 @@ public class PalindromeChecker {
 
 ***
 
+
+
 #### Print All Subsequences of a String using Recursion
 ##### Pattern: Backtracking
 [Back to Top](#table-of-contents)
@@ -361,3 +363,266 @@ public class PermutationWithSpaces {
 - The space complexity is \(O(n)\) due to the recursion stack used for the backtracking approach.
 ***
 
+***
+
+#### Permutations of String with Case Change
+##### Pattern: Backtracking
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `abc`
+- Output: `["abc", "abC", "aBc", "aBC", "Abc", "AbC", "ABc", "ABC"]`
+- Explanation: The input string can have its letters in lower or upper case, generating all possible combinations.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class CaseChangePermutations {
+    public static void main(String[] args) {
+        String input = "abc"; // Input string
+        List<String> results = new ArrayList<>(); // List to store the results
+        generatePermutations(input, 0, "", results); // Start generating permutations
+        System.out.println(results); // Print the final list of permutations
+    }
+
+    // Recursive function to generate permutations
+    private static void generatePermutations(String input, int index, String current, List<String> results) {
+        // Base case: if the current index reaches the length of input, add the current permutation to results
+        if (index == input.length()) {
+            results.add(current);
+            return;
+        }
+
+        // Recursive case: process the current character in lower case
+        generatePermutations(input, index + 1, current + Character.toLowerCase(input.charAt(index)), results);
+
+        // Recursive case: process the current character in upper case
+        generatePermutations(input, index + 1, current + Character.toUpperCase(input.charAt(index)), results);
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is \(O(2^n)\) because each character can be either lowercase or uppercase, leading to \(2^n\) possible combinations.
+
+##### Space Complexity:
+- The space complexity is \(O(n)\) for the recursion stack, where \(n\) is the length of the input string.
+***
+
+
+
+#### Letter Case Permutation
+##### Pattern: Backtracking
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `"a1b2"`
+- Output: `["a1b2", "a1B2", "A1b2", "A1B2"]`
+- Explanation: The output contains all possible permutations of the string where each letter can be either lowercase or uppercase, while digits remain unchanged.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class LetterCasePermutation {
+    public List<String> letterCasePermutation(String s) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, s, 0, new StringBuilder());
+        return result;
+    }
+
+    private void backtrack(List<String> result, String s, int index, StringBuilder current) {
+        // Base case: if we've processed all characters, add the current combination to the result
+        if (index == s.length()) {
+            result.add(current.toString());
+            return;
+        }
+        
+        // Get the current character
+        char ch = s.charAt(index);
+        
+        // If it's a digit, keep it as is and move to the next character
+        if (Character.isDigit(ch)) {
+            current.append(ch); // Append digit
+            backtrack(result, s, index + 1, current); // Move to the next index
+            current.deleteCharAt(current.length() - 1); // Backtrack
+        } else {
+            // If it's a letter, we have two choices: lowercase and uppercase
+            // Append lowercase version and recurse
+            current.append(Character.toLowerCase(ch));
+            backtrack(result, s, index + 1, current);
+            current.deleteCharAt(current.length() - 1); // Backtrack
+            
+            // Append uppercase version and recurse
+            current.append(Character.toUpperCase(ch));
+            backtrack(result, s, index + 1, current);
+            current.deleteCharAt(current.length() - 1); // Backtrack
+        }
+    }
+
+    public static void main(String[] args) {
+        LetterCasePermutation lcp = new LetterCasePermutation();
+        System.out.println(lcp.letterCasePermutation("a1b2")); // Example usage
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is \(O(2^n)\), where \(n\) is the length of the input string, as each letter can be in two states (lowercase and uppercase).
+
+##### Space Complexity:
+- The space complexity is \(O(n)\) for the recursive call stack and the result list.
+***
+
+#### Generate All Balanced Parentheses
+##### Pattern: Backtracking
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input:** `n = 3` (number of pairs of parentheses)
+- **Output:** `["((()))", "(()())", "(())()", "()(())", "()()()"]`
+- **Explanation:** The output contains all possible valid combinations of balanced parentheses for `n` pairs.
+
+```java
+// Java program to generate all combinations of balanced parentheses using recursion
+import java.util.ArrayList;
+import java.util.List;
+
+public class BalancedParentheses {
+
+    // Function to generate all valid combinations
+    public static List<String> generateParentheses(int n) {
+        List<String> result = new ArrayList<>();
+        generateCombinations(result, "", 0, 0, n); // Start the recursive backtracking
+        return result;
+    }
+
+    // Recursive function to generate parentheses
+    private static void generateCombinations(List<String> result, String current, int open, int close, int max) {
+        // Base condition: If the current string has max pairs of parentheses
+        if (current.length() == max * 2) {
+            result.add(current); // Add valid combination to result
+            return;
+        }
+
+        // If we can add an open parenthesis (i.e., open count is less than max)
+        if (open < max) {
+            generateCombinations(result, current + "(", open + 1, close, max); // Add '(' and increase open count
+        }
+
+        // If we can add a close parenthesis (i.e., close count is less than open)
+        if (close < open) {
+            generateCombinations(result, current + ")", open, close + 1, max); // Add ')' and increase close count
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 3; // Example input
+        System.out.println(generateParentheses(n)); // Expected output: ["((()))", "(()())", "(())()", "()(())", "()()()"]
+    }
+}
+```
+
+##### Time Complexity:
+- **O(2^n):** We make two recursive calls (one for open and one for close), generating `2^n` combinations for `n` pairs.
+
+##### Space Complexity:
+- **O(n):** The space used by the recursion stack is proportional to `n`, the depth of recursion.
+
+##### Algorithm Explanation:
+- Start with an empty string and backtrack.
+- Add `(` if open brackets are available.
+- Add `)` if it can form a valid pair with an open one.
+- Stop when a valid combination is formed with `n` pairs.
+***
+
+
+#### Print N-bit binary numbers having more 1's than 0's for any given prefix
+##### Pattern: Backtracking
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: N = 3
+- Output: "111", "110", "101"
+- Explanation: All 3-bit binary numbers where at every prefix, the number of 1's is greater than or equal to the number of 0's.
+
+```java
+public class BinaryNumberGenerator {
+    // Main function to generate N-bit binary numbers
+    public static void generateBinaryNumbers(int n) {
+        generateHelper(n, 0, 0, "");
+    }
+
+    // Recursive helper function
+    // countOnes: number of 1's in the current prefix
+    // countZeros: number of 0's in the current prefix
+    // prefix: the current binary number
+    private static void generateHelper(int n, int countOnes, int countZeros, String prefix) {
+        // Base case: If the length of the prefix is equal to n, print it
+        if (prefix.length() == n) {
+            System.out.println(prefix);
+            return;
+        }
+
+        // Recursive case 1: Add '1' to the prefix
+        // Always allowed to add '1', so we call the helper recursively
+        generateHelper(n, countOnes + 1, countZeros, prefix + "1");
+
+        // Recursive case 2: Add '0' to the prefix only if countOnes > countZeros
+        // To maintain the condition that there are more 1's than 0's at every prefix
+        if (countOnes > countZeros) {
+            generateHelper(n, countOnes, countZeros + 1, prefix + "0");
+        }
+    }
+
+    // Main function to test the solution
+    public static void main(String[] args) {
+        int n = 3;
+        generateBinaryNumbers(n);
+    }
+}
+```
+##### Time Complexity:
+- O(2^N), since for each bit, there are 2 choices, but due to pruning when adding 0's, the complexity is lower than generating all 2^N combinations.
+
+##### Space Complexity:
+- O(N), as the recursion depth is N and each recursive call adds one character to the prefix.
+
+##### Algorithm:
+- Start with an empty string as the prefix.
+- Recursively add '1' and '0', ensuring that the number of 1's is always greater than or equal to the number of 0's in any prefix.
+- Terminate when the length of the prefix is N.
+***
+
+#### Josephus Problem
+##### Pattern: Recursion / Dynamic Programming
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `n = 7`, `k = 3`
+- Output: `4`
+- Explanation: In a group of 7 people, every 3rd person is eliminated until only one remains. The last person standing is at position 4.
+
+```java
+public class Josephus {
+    // Function to find the position of the last person standing
+    public static int josephus(int n, int k) {
+        // Base case: when there's only one person, return 0 (the position of the last person)
+        if (n == 1) {
+            return 0;
+        } else {
+            // Recursive case: calculate the position of the last person
+            // Use (josephus(n - 1, k) + k) % n to find the new position
+            return (josephus(n - 1, k) + k) % n;
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 7; // Number of people
+        int k = 3; // Step count
+        int lastPosition = josephus(n, k) + 1; // Adjusting for 1-based index
+        System.out.println("The position of the last person standing is: " + lastPosition);
+    }
+}
+```
+##### Time Complexity:
+- O(n): The recursion occurs for `n` levels, where each call does a constant amount of work.
+
+##### Space Complexity:
+- O(n): The recursion stack can go as deep as `n`, leading to linear space complexity.
+***
