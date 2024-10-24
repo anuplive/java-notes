@@ -590,6 +590,11 @@ public class BinaryNumberGenerator {
 - Terminate when the length of the prefix is N.
 ***
 
+Here’s the solution to the **Decode Ways** problem using a recursive approach.
+
+***
+
+
 #### Josephus Problem
 ##### Pattern: Recursion / Dynamic Programming
 [Back to Top](#table-of-contents)

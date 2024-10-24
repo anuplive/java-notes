@@ -4,10 +4,40 @@
 ## Table of contents
 
 <!--ts-->
-| [Beginner Level] |    |    |    |    |
-|:-----------------|:---|:---|:---|:---|
-|                  |    |    |    |    |
-|                  |    |    |    |    |
+| [Beginner Level]                                                                                              |    |    |    |    |
+|:--------------------------------------------------------------------------------------------------------------|:---|:---|:---|:---|
+| [Knapsack Problem (Recursive)](#knapsack-problem-recursive)                                                   |    |    |    |    |
+| [Knapsack Problem (Recursive with Memoization)](#knapsack-problem-recursive-with-memoization)                 |    |    |    |    |
+| [Knapsack Problem (Top-Down Approach)](#knapsack-problem-top-down-approach)                                   |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+| [Subset Sum Problem](#subset-sum-problem)                                                                     |    |    |    |    |
+| [Subset Sum Problem Memoization](#subset-sum-problem-memoization)                                             |    |    |    |    |
+| [Subset Sum Problem Top-Down](#subset-sum-problem-top-down)                                                   |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+| [Equal Sum Partition Problem](#equal-sum-partition-problem)                                                   |    |    |    |    |
+| [Count of Subset with a Given Sum Problem](#count-of-subset-with-a-given-sum-problem)                         |    |    |    |    |
+| [Minimum Subset Sum Difference Problem](#minimum-subset-sum-difference-problem)                               |    |    |    |    |
+| [Count the Number of Subsets with a Given Difference](#count-the-number-of-subsets-with-a-given-difference)   |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+| [Additional Problems Hello Interview](#additional-problems-hello-interview)                                   |    |    |    |    |
+| [Counting Bits](#counting-bits)                                                                               |    |    |    |    |
+| [Decode Ways](#decode-ways)                                                                                   |    |    |    |    |
+| [Unique Paths](#unique-paths-recursive-only)                                                                  |    |    |    |    |
+| [Longest Increasing Subsequence](#longest-increasing-subsequence-lis)                                         |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+| [Beginner Level](#beginner-level)                                                                             |    |    |    |    |
+| [Climb Stairs (Recursive Only)](#climb-stairs-recursive-only)                                                 |    |    |    |    |
+| [House Robber](#house-robber)                                                                                 |    |    |    |    |
+| [Min Cost Climbing Stairs](#min-cost-climbing-stairs)                                                         |    |    |    |    |
+| [Fibonacci Number](#fibonacci-number)                                                                         |    |    |    |    |
+| [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)                                           |    |    |    |    |
+| [Maximum Subarray](#maximum-subarray)                                                                         |    |    |    |    |
+| [Coin Change Minimum Number of Coins](#coin-change-minimum-number-of-coins)                                   |    |    |    |    |
+| [Coin Change II - Total Number of Ways to Get a Value](#coin-change-ii---total-number-of-ways-to-get-a-value) |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+|                                                                                                               |    |    |    |    |
 
 
 ### Problem Equal Sum partition problem  recursive , state each condition explicitly
@@ -133,7 +163,7 @@ public class Knapsack {
 - O(n * capacity) for the memoization table, plus O(n) for the recursive call stack.
 ***
 
-#### Knapsack Problem (Top-Down Approach, No Recursion)
+#### Knapsack Problem (Top-Down Approach)
 ##### Pattern: Dynamic Programming
 [Back to Top](#table-of-contents)
 ##### Description:
@@ -248,7 +278,7 @@ public class SubsetSum {
   - Including the last element (reduce `sum` by that element's value).
 ***
 
-#### Subset Sum Problem with Memoization
+#### Subset Sum Problem Memoization
 ##### Pattern: Dynamic Programming (Memoization)
 [Back to Top](#table-of-contents)
 
@@ -346,7 +376,7 @@ public class SubsetSumMemoization {
 
 
 
-#### Subset Sum Problem with Non-Recursive Top-Down Approach
+#### Subset Sum Problem Top-Down
 ##### Pattern: Dynamic Programming (Top-Down)
 [Back to Top](#table-of-contents)
 
@@ -1061,6 +1091,7 @@ public class MinimumSubsetSumDifference {
 - When the recursion reaches the base case (end of the array), calculate the difference between the two subsets formed.
 - Store and return the minimum difference found among all possible subsets.
 ***
+
 #### Minimum Subset Sum Difference Problem with Top-Down Approach (Non-Recursive)
 ##### Pattern: Dynamic Programming
 [Back to Top](#table-of-contents)
@@ -1162,8 +1193,6 @@ public class MinimumSubsetSumDifference {
 - Calculate the minimum difference between the total sum and twice the achieved subset sum.
 - Return the minimum difference found.
 ***
-
-
 
 
 
@@ -1514,7 +1543,6 @@ public class TargetSum {
 - Return the total number of ways the target sum can be achieved.
 - No pointers are updated here; instead, recursion explores every possibility (adding/subtracting).
 ***
-
 #### Target Sum Problem(Memoization)
 ##### Pattern: Dynamic Programming (Memoization)
 
@@ -1710,27 +1738,262 @@ public class TargetSum {
 
 
 
-## All Problems
-### Beginner Level
-Climbing Stairs - Link
-House Robber - Link
-Min Cost Climbing Stairs - Link
-Fibonacci Number - Link
-Best Time to Buy and Sell Stock - Link
-Maximum Subarray - Link
-Coin Change - Link
-Intermediate Level
-Longest Increasing Subsequence - Link
 
-### Intermediate
- LevelLongest Increasing Subsequence - Link
-Unique Paths - Link
-Word Break - Link
-Jump Game - Link
-Partition Equal Subset Sum - Link
-Longest Palindromic Substring - Link
-Decode Ways - Link
-Advanced Level
+
+## Additional Problems Hello Interview
+
+#### Counting Bits
+##### Pattern: Dynamic Programming
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**: An integer `n`.
+- **Output**: An array `result` where `result[i]` is the number of `1`s in the binary representation of `i` for `0 <= i <= n`.
+- **Explanation**: For each number from 0 to `n`, return the count of `1`s in its binary representation. The solution should use recursion, with each condition explicitly defined.
+
+```java
+public class CountingBits {
+    // Function to count bits using recursion
+    public static int[] countBits(int n) {
+        int[] result = new int[n + 1]; // Array to store result
+        countBitsRecursive(result, n); // Fill array using recursion
+        return result; // Return the result array
+    }
+
+    // Recursive function to calculate the number of 1s
+    private static int countBitsRecursive(int[] result, int num) {
+        // Base case: 0 has no 1s in its binary representation
+        if (num == 0) {
+            result[0] = 0;
+            return 0;
+        }
+        // If the value is already computed, return it
+        if (result[num] != 0) {
+            return result[num];
+        }
+        // Recursive relation: result[i] = result[i / 2] + i % 2
+        result[num] = countBitsRecursive(result, num / 2) + num % 2;
+        return result[num];
+    }
+
+    // Main method to test the function
+    public static void main(String[] args) {
+        int n = 5; // Example input
+        int[] result = countBits(n); // Get the result
+        // Print the result
+        for (int i = 0; i <= n; i++) {
+            System.out.println("Number of 1s in " + i + " (" + Integer.toBinaryString(i) + "): " + result[i]);
+        }
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**: The recursion visits each number from `0` to `n` once, and each bit-count operation is constant.
+
+##### Space Complexity:
+- **O(n)**: We use an array of size `n+1` to store the result, and the recursion stack depth is proportional to `n`.
+
+##### Algorithm:
+- Initialize an array `result` to store the count of 1s for each number.
+- Use a recursive function to compute the number of bits:
+  - Base case: If the number is `0`, return `0`.
+  - If the result is already computed for the number, return it (memoization).
+  - Otherwise, calculate the result using `countBitsRecursive(num / 2) + num % 2`:
+    - This breaks down the number recursively by dividing by `2`.
+    - Add `1` if the number is odd (`num % 2`).
+- Repeat this for every number from `0` to `n`.
+***
+
+#### Decode Ways
+##### Pattern: Dynamic Programming (Recursion)
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `"226"`
+- Output: `3`
+- Explanation: Possible decodings are "BZ" (2 26), "VF" (22 6), "BBF" (2 2 6).
+
+```java
+public class DecodeWays {
+
+   public int numDecodings(String s) {
+    // Edge case: if the string is empty or starts with '0', no valid decoding
+    if (s == null || s.length() == 0 || s.charAt(0) == '0') {
+        return 0;
+    }
+    
+    return decodeHelper(s, 0); 
+}
+
+int decodeHelper(String s, int index) {
+    // Base case: if we reach the end of the string, there's one valid way to decode
+    if (index == s.length()) {
+        return 1; 
+    }
+
+    // If the current character is '0', it's an invalid path
+    if (s.charAt(index) == '0') {
+        return 0;
+    }
+
+    // Option 1: Decode one character
+    int selectOne = decodeHelper(s, index + 1);
+
+    // Option 2: Decode two characters (check if it's valid)
+    int selectTwo = 0;
+    if (index + 1 < s.length()) {
+        int twoDigit = Integer.parseInt(s.substring(index, index + 2));
+        if (twoDigit >= 10 && twoDigit <= 26) {
+            selectTwo = decodeHelper(s, index + 2);
+        }
+    }
+
+    // Return the total count from both options
+    return selectOne + selectTwo;  
+ }
+}
+```
+
+##### Time Complexity:
+- The time complexity is **O(2^n)** due to the two recursive calls at each step.
+
+##### Space Complexity:
+- The space complexity is **O(n)**, due to the recursion stack in the worst case.
+
+##### Algorithm:
+- Base condition: If string is empty or starts with '0', return 0.
+- If current character is '0', it's an invalid decoding path.
+- Recursively check for valid single and two-digit combinations.
+- Update the recursive calls by advancing either by 1 or 2 based on the valid decodings.
+***
+
+
+
+#### Unique Paths (Recursive Only)
+##### Pattern: Dynamic Programming (Recursion)
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**:
+  - `m = 3`, `n = 2` (Grid of 3 rows and 2 columns)
+- **Output**:
+  - `3` (There are 3 unique paths from top-left to bottom-right)
+- **Explanation**:
+  - We need to find all unique paths from the top-left corner to the bottom-right corner, moving only right or down.
+
+```java
+public class UniquePaths {
+
+    // Recursive function to calculate unique paths
+    public static int uniquePaths(int down, int right) {
+        // Base case: If we reach the bottom-right corner
+        if (down == 1 && right == 1) {
+            return 1;
+        }
+        
+        // Out of bounds: If m or n is less than 1, there's no valid path
+        if (down < 1 || right < 1) {
+            return 0;
+        }
+        
+        // Recursive case:
+        // Move down
+        int moveDown = uniquePaths(down - 1, right); 
+        // Move right
+        int moveRight = uniquePaths(down, right - 1);
+        
+        // Sum of paths from moving down (m-1, n) and moving right (m, n-1)
+        return  moveDown + moveRight;
+    }
+
+    // Example to test the function
+    public static void main(String[] args) {
+        int m = 3, n = 2;
+        System.out.println("Unique paths for a grid of " + m + "x" + n + " is: " + uniquePaths(m, n));
+    }
+}
+```
+
+##### Time Complexity:
+- **O(2^(m+n))**: The time complexity is exponential since for each recursive call, we have two possible paths (down and right). This leads to 2 recursive calls per step.
+
+##### Space Complexity:
+- **O(m+n)**: The space complexity is due to the recursion stack, where the maximum depth will be `m + n` (sum of rows and columns).
+
+##### Algorithm:
+- Base case: If `m == 1` and `n == 1`, we have reached the target.
+- Check out-of-bounds conditions for invalid moves (`m < 1` or `n < 1`).
+- Recursively move down by decreasing `m` (moving to the row below).
+- Recursively move right by decreasing `n` (moving to the next column).
+- Sum the result of both moves to get the total unique paths.
+***
+
+
+#### Longest Increasing Subsequence (LIS)
+##### Pattern: Recursion
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `[10, 9, 2, 5, 3, 7, 101, 18]`
+- **Output:** `4`
+- **Explanation:** The longest increasing subsequence is `[2, 3, 7, 101]` and its length is 4.
+
+```java
+// Class to solve the Longest Increasing Subsequence using Recursion
+public class LISRecursion {
+
+    // Helper function to find the longest increasing subsequence
+    public static int lisRecursive(int[] nums, int currentIndex, int prevIndex) {
+        // Base case: if we reach the end of the array
+        if (currentIndex == nums.length) {
+            return 0;
+        }
+
+        // Option 1: Exclude the current element and move to the next element
+        int exclude = lisRecursive(nums, currentIndex + 1, prevIndex);
+
+        // Option 2: Include the current element if it's greater than the previous included element
+        int include = 0;
+        if (prevIndex == -1 || nums[currentIndex] > nums[prevIndex]) {
+            include = 1 + lisRecursive(nums, currentIndex + 1, currentIndex);
+        }
+
+        // Return the maximum of include and exclude
+        return Math.max(include, exclude);
+    }
+
+    // Wrapper function to call the recursive solution
+    public static int longestIncreasingSubsequence(int[] nums) {
+        // Start with index 0 and previous index -1 (no element considered yet)
+        return lisRecursive(nums, 0, -1);
+    }
+
+    // Driver code to test the function
+    public static void main(String[] args) {
+        int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
+        System.out.println("Length of Longest Increasing Subsequence: " + longestIncreasingSubsequence(nums));
+    }
+}
+```
+
+##### Time Complexity:
+- The time complexity of this solution is **O(2^n)**, where `n` is the length of the input array. This is because we have two choices at each step (include or exclude), leading to an exponential number of recursive calls.
+
+##### Space Complexity:
+- The space complexity is **O(n)**, due to the recursive call stack depth, where `n` is the length of the array.
+
+##### Algorithm
+- Start from index 0 with no previously selected element (prevIndex = -1).
+- For each element, we decide whether to include it in the subsequence or not.
+- If we include it, the current element must be greater than the previously included one.
+- If we don't include it, move to the next element.
+- Recursively evaluate both options and return the maximum length.
+***
+
+
+
+
+
+## All Problems
 
 ### Advanced Level
 Edit Distance - Link
@@ -1750,3 +2013,506 @@ Word Search II - Link
 Distinct Subsequences - Link
 Dungeon Game - Link
 Scramble String - Link
+
+### Beginner Level
+Climbing Stairs - Link
+House Robber - Link
+Min Cost Climbing Stairs - Link
+Fibonacci Number - Link
+Best Time to Buy and Sell Stock - Link
+Maximum Subarray - Link
+Coin Change - Link
+
+
+
+#### Climb Stairs (Recursive Only)
+##### Pattern: Dynamic Programming
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `n = 3` (Number of steps)
+- Output: `3`
+- Explanation: There are three ways to climb 3 stairs: `(1+1+1)`, `(1+2)`, and `(2+1)`.
+
+```java
+// Recursive solution for Climb Stairs problem
+public class ClimbStairs {
+    
+    // Recursive function to find the number of ways to climb 'n' stairs
+    public static int climbStairs(int n) {
+        // Base case 1: If there are no stairs, there is only one way (do nothing)
+        if (n == 0) {
+            return 1;
+        }
+        // Base case 2: If there is only one stair, there is only one way to climb it
+        if (n == 1) {
+            return 1;
+        }
+        // Recursive case: Sum of the ways to climb (n-1) stairs and (n-2) stairs
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+
+    public static void main(String[] args) {
+        int n = 3; // Example input
+        System.out.println(climbStairs(n)); // Expected output: 3
+    }
+}
+```
+##### Time Complexity:
+- `O(2^n)`: Each call branches into two recursive calls, leading to an exponential number of calls.
+
+##### Space Complexity:
+- `O(n)`: The depth of the recursion tree is `n`, so the space complexity is linear due to the function call stack.
+
+##### Algorithm:
+- Start from the top and recursively calculate the number of ways to climb the last step.
+- Base cases:
+  - If `n == 0`, return 1 (1 way to stay on the ground).
+  - If `n == 1`, return 1 (1 way to climb one step).
+- For other cases, add the results of `climbStairs(n-1)` and `climbStairs(n-2)` (ways to climb from the last two steps).
+***
+***
+
+#### House Robber
+##### Pattern: Dynamic Programming (Recursion)
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `[1, 2, 3, 1]` (List of non-negative integers representing the amount of money at each house)
+- **Output:** `4` (Maximum amount of money that can be robbed without robbing two adjacent houses)
+- **Explanation:** Rob houses 1 and 3 (money = 1 + 3 = 4).
+
+```java
+public class HouseRobber {
+
+    // Main function to calculate the maximum amount that can be robbed
+    public int rob(int[] nums) {
+        int houseCount = nums.length;  // Total number of houses
+        return robHelper(nums, houseCount);  // Start the recursive process
+    }
+
+    // Helper recursive function to calculate maximum money that can be robbed
+    public int robHelper(int[] nums, int houseCount) {
+        // Base case 1: If there are no houses left, return 0
+        if (houseCount == 0) return 0;
+
+        // Base case 2: If there's only one house, return its value
+        if (houseCount == 1) return nums[houseCount - 1];
+
+        // Recursive relation:
+        // Option 1: Rob the current house (nums[houseCount - 1]) and skip one house (houseCount - 2)
+        int robHouse = nums[houseCount - 1] + robHelper(nums, houseCount - 2);
+
+        // Option 2: Skip the current house and move to the next (houseCount - 1)
+        int dontRobHouse = robHelper(nums, houseCount - 1);
+
+        // Return the maximum value of the two options
+        return Math.max(robHouse, dontRobHouse);
+    }
+
+    // Example to test the function
+    public static void main(String[] args) {
+        HouseRobber houseRobber = new HouseRobber();
+        int[] nums = {1, 2, 3, 1};
+        System.out.println(houseRobber.rob(nums));  // Output: 4
+    }
+}
+```
+
+##### Time Complexity:
+- **O(2^n)**: Each house generates two recursive calls, leading to exponential time complexity.
+
+##### Space Complexity:
+- **O(n)**: The depth of recursion can go up to `n` (the total number of houses), requiring linear space.
+
+##### Algorithm:
+- **Step 1:** If no houses are left (`houseCount == 0`), return `0`.
+- **Step 2:** If only one house is left (`houseCount == 1`), return its value (`nums[houseCount - 1]`).
+- **Step 3:** Calculate the two choices:
+  - **Choice 1:** Rob the current house (`nums[houseCount - 1]`) and skip the previous house.
+  - **Choice 2:** Skip the current house and check the next.
+- **Step 4:** Return the maximum of these two choices.
+***
+
+
+#### Min Cost Climbing Stairs
+##### Pattern: Dynamic Programming (Recursion)
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**: Array of integers `cost[]` where `cost[i]` is the cost of step `i`.
+- **Output**: Minimum cost to reach the top of the staircase.
+- **Explanation**: You can start from step 0 or step 1. At each step, you can take 1 or 2 steps forward. The goal is to minimize the total cost to reach the top.
+
+Example:
+```
+Input: cost = [10, 15, 20]
+Output: 15
+Explanation: The minimum cost path is to start at step 1 (cost 15), then directly jump to the top.
+```
+
+```java
+public class MinCostClimbingStairs {
+    // Main function to calculate the minimum cost to climb the stairs
+    public int minCostClimbingStairs(int[] cost) {
+        int totalSteps = cost.length; // Total number of steps
+        // Start by calling the helper function with totalSteps (not totalSteps - 1)
+        return minCostHelper(cost, totalSteps);
+    }
+
+    // Helper function to recursively calculate the minimum cost for the current step
+    public int minCostHelper(int[] cost, int totalSteps) {
+        // Base condition 1: If there are no steps, no cost
+        if (totalSteps == 0) return 0;
+        
+        // Base condition 2: If there's only 1 step, no cost to start
+        if (totalSteps == 1) return 0;
+        
+        // Base condition 3: When we're on step 2, return the minimum cost of starting from step 0 or 1
+        if (totalSteps == 2) return Math.min(cost[0], cost[1]);
+
+        // Recursive case: Calculate the cost for taking one step or two steps
+        // Take one step from totalSteps-1 and add the cost
+        int takeOneStep = cost[totalSteps - 1] + minCostHelper(cost, totalSteps - 1);
+        
+        // Take two steps from totalSteps-2 and add the cost
+        int takeTwoStep = cost[totalSteps - 2] + minCostHelper(cost, totalSteps - 2);
+
+        // Return the minimum of the two choices
+        return Math.min(takeOneStep, takeTwoStep);
+    }
+
+    // Test the function
+    public static void main(String[] args) {
+        MinCostClimbingStairs obj = new MinCostClimbingStairs();
+        int[] cost = {10, 15, 20};
+        System.out.println(obj.minCostClimbingStairs(cost)); // Output: 15
+    }
+}
+```
+
+##### Time Complexity:
+- **O(2^n)**: Each recursive call spawns two more calls, resulting in exponential time complexity.
+
+##### Space Complexity:
+- **O(n)**: The recursive call stack depth is proportional to the number of steps, i.e., `n`.
+
+##### Algorithm:
+- **Base Case**:
+  - If there are 0 steps, no cost is incurred.
+  - If there is only 1 step, no cost is incurred to start.
+  - If there are 2 steps, the minimum cost is either starting at step 0 or step 1.
+
+- **Recursive Case**:
+  - Calculate the cost if you take 1 step from `totalSteps-1`.
+  - Calculate the cost if you take 2 steps from `totalSteps-2`.
+
+- **Return**:
+  - Return the minimum of the two calculated costs.
+***
+
+
+
+#### Fibonacci Number
+##### Pattern: Recursion
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: `n = 5`
+- **Output**: `5`
+- **Explanation**: The Fibonacci sequence is: 0, 1, 1, 2, 3, 5. The 5th Fibonacci number is 5.
+
+```java
+// Recursive solution to find the nth Fibonacci number
+public class Fibonacci {
+
+    // Function to calculate nth Fibonacci number
+    public static int fib(int n) {
+        // Base case 1: If n is 0, return 0
+        if (n == 0) {
+            return 0;
+        }
+        // Base case 2: If n is 1, return 1
+        if (n == 1) {
+            return 1;
+        }
+        // Recursive case: Fib(n) = Fib(n-1) + Fib(n-2)
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    // Main function to test the Fibonacci function
+    public static void main(String[] args) {
+        int n = 5; // Example input
+        System.out.println("Fibonacci number at position " + n + " is: " + fib(n));
+    }
+}
+```
+
+##### Time Complexity:
+- The time complexity is **O(2^n)** because each recursive call splits into two more calls.
+
+##### Space Complexity:
+- The space complexity is **O(n)** due to the recursion stack depth.
+
+##### Algorithm:
+- Start with base cases:
+  - If `n == 0`, return 0.
+  - If `n == 1`, return 1.
+- Recursively compute Fibonacci for `(n-1)` and `(n-2)`.
+- Add the results of `(n-1)` and `(n-2)` to get Fibonacci of `n`.
+***
+
+#### Best Time to Buy and Sell Stock
+##### Pattern: Greedy
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input**: `[7, 1, 5, 3, 6, 4]`
+- **Output**: `5`
+- **Explanation**: Buy at price `1` (on day 2) and sell at price `6` (on day 5), profit = `6 - 1 = 5`.
+
+```java
+public class BestTimeToBuyAndSellStock {
+
+    public int maxProfit(int[] prices) {
+
+        // If there are less than 2 prices, no transactions can be made
+        if (prices == null || prices.length < 2)
+            return 0;
+
+        // Initialize lowest price to the first element and max profit to 0
+        int lowestPrice = prices[0];
+        int maxProfit = 0;
+
+        // Loop through the prices starting from the second day (index 1)
+        for (int i = 1; i < prices.length; i++) {
+
+            // If the current price is lower than the lowest recorded price, update lowestPrice
+            if (prices[i] < lowestPrice) {
+                lowestPrice = prices[i]; 
+            }
+
+            // Calculate the profit if sold today and update maxProfit if it's higher than previous
+            maxProfit = Math.max(maxProfit, prices[i] - lowestPrice);
+        }
+
+        // Return the maximum profit that can be achieved
+        return maxProfit;
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        BestTimeToBuyAndSellStock solution = new BestTimeToBuyAndSellStock();
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        System.out.println("Maximum Profit: " + solution.maxProfit(prices));  // Output: 5
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n)**, where `n` is the number of prices. We traverse the array once, so the time complexity is linear.
+
+##### Space Complexity:
+- **O(1)**, since we are using only a few extra variables (`lowestPrice` and `maxProfit`) regardless of the input size.
+
+##### Algorithm:
+- **Step 1**: Start by initializing `lowestPrice` to the first day's price and `maxProfit` to 0.
+- **Step 2**: For each subsequent day:
+  - If the current price is less than the `lowestPrice`, update `lowestPrice`.
+  - Calculate profit by subtracting the `lowestPrice` from the current price and update `maxProfit` if this profit is higher.
+- **Step 3**: Continue the process for all days and return the maximum profit found.
+
+This method efficiently solves the problem by using a **greedy approach**, always keeping track of the lowest price seen so far and calculating the maximum profit at each step.
+
+***
+
+#### Maximum Subarray
+##### Pattern: Dynamic Programming
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `[−2,1,−3,4,−1,2,1,−5,4]`
+- Output: `6`
+- Explanation: The contiguous subarray `[4,−1,2,1]` has the largest sum, which is `6`.
+
+```java
+public class MaximumSubarray {
+    public static int maxSubArray(int[] nums) {
+        // Initialize current max and global max with the first element
+        int currentMax = nums[0];
+        int globalMax = nums[0];
+
+        // Iterate through the array starting from the second element
+        for (int i = 1; i < nums.length; i++) {
+            // Update current max to be the maximum of current element or 
+            // current element + current max
+            currentMax = Math.max(nums[i], currentMax + nums[i]);
+            // Update global max if current max is greater
+            globalMax = Math.max(globalMax, currentMax);
+        }
+
+        return globalMax; // Return the largest sum found
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        System.out.println("Maximum Subarray Sum: " + maxSubArray(nums)); // Output: 6
+    }
+}
+```
+##### Time Complexity:
+- O(n), where n is the number of elements in the array; we traverse the array once.
+
+##### Space Complexity:
+- O(1), since we use a constant amount of space for storing variables.
+
+##### Algorithm
+- Initialize `currentMax` and `globalMax` with the first element of the array.
+- Iterate through the array from the second element:
+  - Update `currentMax` to be the maximum of the current element or the sum of the current element and `currentMax`.
+  - Update `globalMax` if `currentMax` is greater than `globalMax`.
+- Return `globalMax` as the result.
+***
+
+
+
+Here’s a detailed breakdown of the issues in your current solution and how to fix them:
+
+#### Coin Change Minimum Number of Coins
+##### Pattern: Dynamic Programming (Recursion)
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input**: An integer array `coins[]` representing available coin denominations and an integer `amount` representing the target value.
+  - Example: `coins = [1, 2, 5]`, `amount = 11`
+- **Output**: Minimum number of coins required to make up the amount.
+  - Example: `Output = 3` (5 + 5 + 1)
+- **Explanation**: Use recursive calls to explore all combinations of coins to form the target amount.
+
+```java
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // Edge case: If the amount is 0, no coins are needed
+        if (amount == 0) return 0;
+
+        // Call the recursive helper function
+        int result = coinHelper(coins, amount, 0);
+
+        // If the result is too large, return -1 (indicating no valid solution)
+        return result >= Integer.MAX_VALUE ? -1 : result;
+    }
+
+    int coinHelper(int[] coins, int amount, int index) {
+        // Base case: If amount becomes 0, no more coins are needed
+        if (amount == 0) return 0;
+
+        // If we run out of coins (index exceeds coins array) or the amount is negative, return a large value
+        if (index == coins.length || amount < 0) {
+            return Integer.MAX_VALUE;  // Large value indicates no solution
+        }
+
+        // Recursive Case 1: Take the current coin
+        int takeCoin = coinHelper(coins, amount - coins[index], index);  // Stay at the same coin
+        if (takeCoin != Integer.MAX_VALUE) {
+            takeCoin += 1;  // Add 1 to the result for taking this coin
+        }
+
+        // Recursive Case 2: Don't take the current coin, move to the next coin
+        int dontTakeCoin = coinHelper(coins, amount, index + 1);
+
+        // Return the minimum of both choices
+        return Math.min(takeCoin, dontTakeCoin);
+    }
+}
+```
+
+##### Time Complexity:
+- **O(2^n)**: Each recursive call branches into multiple subproblems, leading to exponential growth.
+
+##### Space Complexity:
+- **O(amount)**: The depth of the recursive call stack is proportional to the amount.
+
+##### Algorithm:
+- If `amount == 0`, return 0 as no more coins are needed.
+- If `amount < 0`, return -1 because it's impossible to achieve the negative amount.
+- For each coin:
+  - Subtract the coin's value from `amount` and make a recursive call with the new amount.
+  - If the recursive call returns a valid number, update the minimum number of coins required.
+- Return the minimum number of coins found, or -1 if no solution is possible.
+
+***
+
+
+
+#### Coin Change II - Total Number of Ways to Get a Value
+##### Pattern: Dynamic Programming (Recursive Approach)
+[Back to Top](#table-of-contents)
+##### Description:
+- Input: `amount = 5`, `coins = [1, 2, 5]`
+- Output: `4`
+- Explanation: There are four ways to make the amount 5 using the given coins:
+    1. 1+1+1+1+1
+    2. 1+1+1+2
+    3. 1+2+2
+    4. 5
+
+```java
+class Solution {
+    
+    // Main function that initiates the recursive helper
+    public int change(int amount, int[] coins) {
+        int index = 0; // Start from the first coin
+        return changeCountHelper(amount, index, coins); // Call helper function
+    }
+
+    // Recursive helper function
+    public int changeCountHelper(int amount, int index, int[] coins) {
+        
+        // Base Case 1: If amount becomes 0, there's exactly one way to form it (no coins)
+        if (amount == 0)
+            return 1;
+
+        // Base Case 2: If all coins are used or amount is negative, no valid solution
+        if (index == coins.length || amount < 0)
+            return 0;
+
+        // Option 1: Include the current coin (coins[index]) and reduce the amount
+        int takeCoin = changeCountHelper(amount - coins[index], index, coins);
+
+        // Option 2: Exclude the current coin and move to the next coin
+        int dontTakeCoin = changeCountHelper(amount, index + 1, coins);
+
+        // Total ways is sum of both options
+        return takeCoin + dontTakeCoin;
+    }
+    
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] coins = {1, 2, 5};
+        int amount = 5;
+        System.out.println("Number of ways to get the amount: " + solution.change(amount, coins));  // Output: 4
+    }
+}
+```
+
+##### Time Complexity:
+- **O(2^n)**: The time complexity is exponential since each recursive call branches into two possibilities (taking or not taking the coin), leading to a total of `2^n` recursive calls.
+
+##### Space Complexity:
+- **O(amount)**: The space complexity depends on the recursion depth, which is proportional to the amount being reduced. Each recursive call reduces the amount.
+
+##### Algorithm:
+- Start from the first coin (`index = 0`) and the full amount.
+- **Base Case 1**: If `amount == 0`, return 1 (this means a valid combination is found).
+- **Base Case 2**: If `amount < 0` or `index == coins.length`, return 0 (no valid combination).
+- **Recursive Case**:
+  - **Take the current coin**: Reduce the amount by the coin value and make another recursive call without changing the index (same coin can be used again).
+  - **Skip the current coin**: Move to the next coin by incrementing the index.
+- **Pointers**: `index` is updated to move to the next coin, and `amount` is reduced when a coin is taken.
+***
+
+
+### Intermediate
+LevelLongest Increasing Subsequence - Link
+Unique Paths - Link
+Word Break - Link
+Jump Game - Link
+Partition Equal Subset Sum - Link
+Longest Palindromic Substring - Link
+Decode Ways - Link
+Advanced Level

@@ -358,3 +358,12 @@ Here’s a list of **100 questions** organized into key areas you should prepare
 ---
 
 These questions cover the full spectrum of Kafka concepts from basics to advanced topics, giving you a thorough understanding of how to use Kafka with Java in production environments. Preparing for these will help you master Kafka and be ready for real-world challenges.
+
+## Kafka - Top of my mind
+Will revisit this
+Issue while repaving the cluster and back consumers
+Issue with the vault password and clients accessing the password
+Issue with selecting the partition key .
+Slowness in Kafka
+Message replay and retry logic
+Multiple Consumers trying to and finally no consumer is making ant progress to read the messages
