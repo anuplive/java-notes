@@ -15,6 +15,7 @@
 | [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array) |    |    |    |    |
 | [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)             |    |    |    |    |
 | [Koko Eating Bananas](#koko-eating-bananas)                                   |    |    |    |    |
+| [Infinite Binary Search Array](#infinite-binary-search-array)                 |    |    |    |    |
 
 #### AlgoMap
 [Back to Top](#table-of-contents)
@@ -463,4 +464,97 @@ public class KokoEatingBananas {
 
 ##### Space Complexity:
 - O(1), since we are using constant extra space apart from the input array.
+***
+
+#### Infinite Binary Search Array
+##### Pattern: Binary Search
+[Back to Top](#table-of-contents)
+
+##### Description:
+- **Input:** An infinite sorted array containing integers, e.g., `[1, 3, 5, 7, 9, 10, 12, ...]`, and a target integer `k`.
+- **Output:** The index of the target integer if present, otherwise `-1`.
+- **Explanation:** Given an array of infinite size, find the target by dynamically determining the search boundaries.
+
+```java
+// Class to simulate an infinite array
+class InfiniteArray {
+    int[] array;
+
+    public InfiniteArray(int[] arr) {
+        this.array = arr;
+    }
+
+    // Simulate accessing an infinite array
+    public int get(int index) {
+        if (index < array.length) {
+            return array[index];
+        } else {
+            return Integer.MAX_VALUE; // Beyond array bounds
+        }
+    }
+}
+
+public class SearchInInfiniteArray {
+    public static int searchInInfiniteArray(InfiniteArray arr, int target) {
+        // Step 1: Find the bounds
+        int start = 0;
+        int end = 1;
+
+        // Expand the range until the target is within bounds
+        while (arr.get(end) < target) {
+            start = end;
+            end *= 2;
+        }
+
+        // Step 2: Perform Binary Search within the identified range
+        return binarySearch(arr, target, start, end);
+    }
+
+    private static int binarySearch(InfiniteArray arr, int target, int start, int end) {
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            int midVal = arr.get(mid);
+
+            if (midVal == target) {
+                return mid; // Target found
+            } else if (midVal > target || midVal == Integer.MAX_VALUE) {
+                end = mid - 1; // Move left
+            } else {
+                start = mid + 1; // Move right
+            }
+        }
+        return -1; // Target not found
+    }
+
+    public static void main(String[] args) {
+        // Example array and target
+        int[] nums = {1, 3, 5, 7, 9, 10, 12, 15, 18, 20};
+        InfiniteArray infiniteArray = new InfiniteArray(nums);
+        
+        // Searching for target
+        int target = 10;
+        int index = searchInInfiniteArray(infiniteArray, target);
+        System.out.println("Index of " + target + ": " + index);
+
+        // Searching for a non-existing target
+        target = 14;
+        index = searchInInfiniteArray(infiniteArray, target);
+        System.out.println("Index of " + target + ": " + index);
+    }
+}
+```
+
+##### Time Complexity:
+- **O(log p):** Where `p` is the position of the target. Finding the range takes `O(log p)` and binary search also takes `O(log p)`.
+
+##### Space Complexity:
+- **O(1):** Constant space is used.
+
+##### Algorithm:
+- **Step 1:** Start with bounds `start = 0` and `end = 1`.
+- **Step 2:** Expand `end` exponentially (`end *= 2`) until the target is within the bounds.
+- **Step 3:** Perform binary search within the identified range:
+  - Calculate `mid`.
+  - Compare the target with `arr.get(mid)`.
+  - Update `start` or `end` accordingly.
 ***

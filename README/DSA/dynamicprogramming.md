@@ -35,10 +35,21 @@
 | [Coin Change Minimum Number of Coins](#coin-change-minimum-number-of-coins)                                   |    |    |    |    |
 | [Coin Change II - Total Number of Ways to Get a Value](#coin-change-ii---total-number-of-ways-to-get-a-value) |    |    |    |    |
 |                                                                                                               |    |    |    |    |
+| [Intermediate Level](#intermediate-level)                                                                     |    |    |    |    |
+| [Longest Increasing Subsequence](#longest-increasing-subsequence)                                             |    |    |    |    |
+| [Longest Palindromic Substring](#longest-palindromic-substring)                                               |    |    |    |    |
+| [Longest Common Subsequence](#longest-common-subsequence)                                                     |    |    |    |    |
+| [Word Break](#word-break)                                                                                     |    |    |    |    |
+| [Jump Game](#jump-game)                                                                                       |    |    |    |    |
+| [Jump Game with Memoization](#jump-game-with-memoization)                                                     |    |    |    |    |
+| [Equal Sum Partition Problem](#equal-sum-partition-problem)                                                   |    |    |    |    |
+| [Decode Ways](#decode-ways)                                                                                   |    |    |    |    |
 |                                                                                                               |    |    |    |    |
 |                                                                                                               |    |    |    |    |
 |                                                                                                               |    |    |    |    |
-
+|                                                                                                               |    |    |    |    |
+|                                                                                                               |    |    |    |    |
+|                                                                                                               |    |    |    |    |
 
 ### Problem Equal Sum partition problem  recursive , state each condition explicitly
 
@@ -1638,7 +1649,7 @@ public class TargetSum {
 - The algorithm uses recursion instead of pointers to explore combinations of signs.
 ***
 
-#### Target Sum Problem(Top - Down)
+#### Target Sum Problem(Top - Down)—
 ##### Pattern: Dynamic Programming (Top-Down)
 
 [Back to Top](#table-of-contents)
@@ -1995,24 +2006,6 @@ public class LISRecursion {
 
 ## All Problems
 
-### Advanced Level
-Edit Distance - Link
-Maximum Product Subarray - Link
-Burst Balloons - Link
-Palindrome Partitioning II - Link
-Wildcard Matching - Link
-Regular Expression Matching - Link
-Russian Doll Envelopes - Link
-Comprehensive Challenges
-
-### Comprehensive Challenges
-Longest Common Subsequence - Link
-Interleaving String - Link
-Maximal Square - Link
-Word Search II - Link
-Distinct Subsequences - Link
-Dungeon Game - Link
-Scramble String - Link
 
 ### Beginner Level
 Climbing Stairs - Link
@@ -2507,12 +2500,516 @@ class Solution {
 ***
 
 
-### Intermediate
-LevelLongest Increasing Subsequence - Link
+### Intermediate Level
+Longest Increasing Subsequence - Link
 Unique Paths - Link
 Word Break - Link
 Jump Game - Link
 Partition Equal Subset Sum - Link
 Longest Palindromic Substring - Link
 Decode Ways - Link
-Advanced Level
+
+
+
+***
+#### Longest Increasing Subsequence
+##### Pattern: Dynamic Programming
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `[10, 9, 2, 5, 3, 7, 101, 18]`
+- **Output:** `4`
+- **Explanation:** The longest increasing subsequence is `[2, 3, 7, 101]`, which has a length of 4.
+
+- **Input:** `[0, 1, 0, 3, 2, 3]`
+- **Output:** `4`
+- **Explanation:** The longest increasing subsequence is `[0, 1, 2, 3]`, which has a length of 4.
+
+- **Input:** `[7, 7, 7, 7, 7, 7, 7]`
+- **Output:** `1`
+- **Explanation:** The longest increasing subsequence is `[7]`, which has a length of 1.
+
+```java
+public class LongestIncreasingSubsequence {
+    public static void main(String[] args) {
+        int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
+        System.out.println("Length of LIS is " + lengthOfLIS(nums));
+    }
+
+    /**
+     * Function to find the length of the longest increasing subsequence using recursion.
+     * @param nums The input array of integers.
+     * @return The length of the longest increasing subsequence.
+     */
+    public static int lengthOfLIS(int[] nums) {
+        // Start recursion from index 0 with no previous element
+        return helper(nums, -1, 0);
+    }
+
+    /**
+     * Helper recursive function to find LIS.
+     * @param nums The input array.
+     * @param prevIndex The index of the previous element in the subsequence.
+     * @param current The current index being considered.
+     * @return The length of the LIS from current index.
+     */
+    private static int helper(int[] nums, int prevIndex, int current) {
+        // If we've reached the end of the array, return 0
+        if (current == nums.length) {
+            return 0;
+        }
+
+        // Option 1: Exclude the current element and move to the next
+        int exclude = helper(nums, prevIndex, current + 1);
+
+        // Option 2: Include the current element if it's greater than the previous element
+        int include = 0;
+        if (prevIndex == -1 || nums[current] > nums[prevIndex]) {
+            include = 1 + helper(nums, current, current + 1);
+        }
+
+        // Return the maximum of including or excluding the current element
+        return Math.max(exclude, include);
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is exponential, specifically O(2^n), due to the recursive exploration of all possible subsequences.
+
+##### Space Complexity:
+- The space complexity is O(n) for the recursion stack.
+
+##### Algorithm
+- **Start** at the first index with no previous element.
+- **At each step:**
+  - **Exclude** the current element and recurse for the next index.
+  - **Include** the current element if it is greater than the last included element and recurse for the next index.
+- **Update** the maximum length by comparing the results of including and excluding the current element.
+- **Return** the maximum length found.
+***
+
+#### Longest Palindromic Substring
+##### Pattern: Dynamic Programming / Expand Around Center
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `"babad"`
+- **Output:** `"bab"` or `"aba"`
+- **Explanation:** The longest palindromic substring is `"bab"` or `"aba"`, both have a length of 3.
+
+- **Input:** `"cbbd"`
+- **Output:** `"bb"`
+- **Explanation:** The longest palindromic substring is `"bb"`, with a length of 2.
+
+```java
+public class LongestPalindromicSubstring {
+    public static void main(String[] args) {
+        String s = "babad";
+        System.out.println("Longest Palindromic Substring is: " + longestPalindrome(s));
+    }
+
+    /**
+     * Finds the longest palindromic substring in a given string.
+     * @param s The input string.
+     * @return The longest palindromic substring.
+     */
+    public static String longestPalindrome(String s) {
+        if (s == null || s.length() < 1) return "";
+
+        int start = 0, end = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            // Expand around the center for odd-length palindrome
+            int len1 = expandAroundCenter(s, i, i);
+            // Expand around the center for even-length palindrome
+            int len2 = expandAroundCenter(s, i, i + 1);
+
+            // Find the maximum length palindrome from these two centers
+            int len = Math.max(len1, len2);
+
+            // Update start and end pointers if a longer palindrome is found
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    /**
+     * Expands around the center to check for the longest palindrome.
+     * @param s The input string.
+     * @param left Left index to start expanding.
+     * @param right Right index to start expanding.
+     * @return Length of the longest palindrome from this center.
+     */
+    private static int expandAroundCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1; // Length of the palindrome
+    }
+}
+```
+
+##### Time Complexity:
+- **O(n^2)** because we expand around each center for every character in the string.
+
+##### Space Complexity:
+- **O(1)** as only a few variables are used for tracking indices and lengths.
+
+##### Algorithm
+- **Initialize** start and end indices to track the longest palindrome found.
+- For each index `i` in the string:
+  - **Expand around center** `i` for odd-length palindromes.
+  - **Expand around center** `(i, i+1)` for even-length palindromes.
+  - **Update pointers** `start` and `end` if a longer palindrome is found.
+- **Return** the substring from `start` to `end` as the longest palindromic substring.
+***
+
+
+#### Longest Common Subsequence
+##### Pattern: Dynamic Programming
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `text1 = "abcde"`, `text2 = "ace"`
+- **Output:** `3`
+- **Explanation:** The longest common subsequence is `"ace"`, which has a length of 3.
+
+- **Input:** `text1 = "abc"`, `text2 = "def"`
+- **Output:** `0`
+- **Explanation:** There is no common subsequence, so the length is 0.
+
+```java
+public class LongestCommonSubsequence {
+    public static void main(String[] args) {
+        String text1 = "abcde";
+        String text2 = "ace";
+        System.out.println("Length of LCS is " + longestCommonSubsequence(text1, text2));
+    }
+
+    /**
+     * Function to find the length of the longest common subsequence using recursion.
+     * @param text1 The first input string.
+     * @param text2 The second input string.
+     * @return The length of the longest common subsequence.
+     */
+    public static int longestCommonSubsequence(String text1, String text2) {
+        // Start recursion from the beginning of both strings
+        return helper(text1, text2, 0, 0);
+    }
+
+    /**
+     * Helper recursive function to find LCS.
+     * @param text1 The first input string.
+     * @param text2 The second input string.
+     * @param i Current index in text1.
+     * @param j Current index in text2.
+     * @return The length of the LCS from current indices.
+     */
+    private static int helper(String text1, String text2, int i, int j) {
+        // Base case: if we reach the end of either string, LCS length is 0
+        if (i == text1.length() || j == text2.length()) {
+            return 0;
+        }
+
+        // Case 1: Characters match, move to next index in both strings
+        if (text1.charAt(i) == text2.charAt(j)) {
+            return 1 + helper(text1, text2, i + 1, j + 1);
+        } else {
+            // Case 2: Characters don't match, explore both options:
+            // - Move to next character in text1
+            // - Move to next character in text2
+            int skipText1 = helper(text1, text2, i + 1, j);
+            int skipText2 = helper(text1, text2, i, j + 1);
+            return Math.max(skipText1, skipText2);
+        }
+    }
+}
+```
+
+##### Time Complexity:
+- The time complexity is exponential, specifically O(2^(m + n)), where `m` is the length of `text1` and `n` is the length of `text2`.
+
+##### Space Complexity:
+- The space complexity is O(m + n) for the recursion stack.
+
+##### Algorithm
+- **Start** from the first character of both strings.
+- **If characters match**, increment the length and move to the next characters in both strings.
+- **If characters don't match:**
+  - **Option 1:** Skip the current character in `text1` and move to the next character.
+  - **Option 2:** Skip the current character in `text2` and move to the next character.
+- **Return** the maximum length found between the two options.
+***
+
+
+#### Word Break
+##### Pattern: Dynamic Programming / Recursion
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `s = "leetcode"`, `wordDict = ["leet", "code"]`
+- **Output:** `true`
+- **Explanation:** The string `"leetcode"` can be segmented as `"leet"` + `"code"`.
+
+- **Input:** `s = "applepenapple"`, `wordDict = ["apple", "pen"]`
+- **Output:** `true`
+- **Explanation:** The string `"applepenapple"` can be segmented as `"apple"` + `"pen"` + `"apple"`.
+
+- **Input:** `s = "catsandog"`, `wordDict = ["cats", "dog", "sand", "and", "cat"]`
+- **Output:** `false`
+- **Explanation:** The string `"catsandog"` cannot be segmented using words from the dictionary.
+
+```java
+import java.util.List;
+
+public class WordBreak {
+    public static void main(String[] args) {
+        String s = "leetcode";
+        List<String> wordDict = List.of("leet", "code");
+        System.out.println("Can be segmented: " + wordBreak(s, wordDict));
+    }
+
+    /**
+     * Function to determine if a string can be segmented into words in the dictionary.
+     * @param s The input string.
+     * @param wordDict The list of words in the dictionary.
+     * @return True if the string can be segmented, false otherwise.
+     */
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        // Start recursion from the first index of the string
+        return canBreak(s, wordDict, 0);
+    }
+
+    /**
+     * Helper recursive function to check word segmentation.
+     * @param s The input string.
+     * @param wordDict The list of words in the dictionary.
+     * @param start The starting index of the substring being checked.
+     * @return True if the substring starting from 'start' can be segmented, false otherwise.
+     */
+    private static boolean canBreak(String s, List<String> wordDict, int start) {
+        // Base condition: If start reaches the end, the string can be segmented
+        if (start == s.length()) {
+            return true;
+        }
+
+        // Try to partition the string at different positions
+        for (int end = start + 1; end <= s.length(); end++) {
+            // Check if the substring from start to end is in the dictionary
+            if (wordDict.contains(s.substring(start, end))) {
+                // Recursively check the remaining part of the string
+                if (canBreak(s, wordDict, end)) {
+                    return true;
+                }
+            }
+        }
+
+        // If no valid segmentation is found, return false
+        return false;
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is approximately O(2^n) due to the exponential recursive calls made for each possible substring.
+
+##### Space Complexity:
+- The space complexity is O(n) due to the recursion stack depth.
+
+##### Algorithm
+- **Start** from the first character and attempt to segment the string.
+- **At each position:**
+  - **Extract** a substring from `start` to `end`.
+  - **Check** if this substring exists in `wordDict`.
+  - If it does, **recursively** call `canBreak` on the remaining substring starting from `end`.
+- **Return** true if any segmentation is possible, otherwise false.
+***
+
+
+
+
+
+***
+
+#### Jump Game
+##### Pattern: Dynamic Programming / Greedy
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `[2, 3, 1, 1, 4]`
+- **Output:** `true`
+- **Explanation:** Starting at index 0, jump to index 1 (jump length of 2), then jump to index 4. We can reach the end of the array.
+
+- **Input:** `[3, 2, 1, 0, 4]`
+- **Output:** `false`
+- **Explanation:** No matter how we jump, we can't move past index 3 due to a zero jump length, so we can't reach the end of the array.
+
+```java
+public class JumpGame {
+    public static void main(String[] args) {
+        int[] nums1 = {2, 3, 1, 1, 4};
+        int[] nums2 = {3, 2, 1, 0, 4};
+        
+        System.out.println("Can reach end (Example 1): " + canJump(nums1)); // true
+        System.out.println("Can reach end (Example 2): " + canJump(nums2)); // false
+    }
+
+    /**
+     * Function to determine if we can reach the last index using recursion.
+     * @param nums Array representing max jump length from each index.
+     * @return True if we can reach the last index, false otherwise.
+     */
+    public static boolean canJump(int[] nums) {
+        // Start recursion from index 0
+        return canJumpFromPosition(nums, 0);
+    }
+
+    /**
+     * Recursive helper function to check if we can reach the end from the current index.
+     * @param nums Array representing max jump length from each index.
+     * @param position Current index in the array.
+     * @return True if we can reach the last index from the current position, false otherwise.
+     */
+    private static boolean canJumpFromPosition(int[] nums, int position) {
+        // Base case: if we reached or exceeded the last index, return true
+        if (position >= nums.length - 1) {
+            return true;
+        }
+
+        // Calculate the furthest position we can jump to from the current index
+        int furthestJump = Math.min(position + nums[position], nums.length - 1);
+
+        // Try to jump to each position from position+1 up to furthestJump
+        for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
+            if (canJumpFromPosition(nums, nextPosition)) {
+                return true;
+            }
+        }
+
+        // If no jump led to the end, return false
+        return false;
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is O(max(nums)^n) in the worst case because we explore every possible jump from each position.
+
+##### Space Complexity:
+- The space complexity is O(n) due to the recursion stack depth.
+
+##### Algorithm
+- **Start** at the first index.
+- **For each position:**
+  - **Calculate** the farthest reachable index from the current position.
+  - **Recursively** check all positions within this reachable range to see if they can lead to the end.
+- **Update** the position until we reach or exceed the last index.
+- **Return** `true` if any path reaches the last index, else `false`.
+***
+
+#### Jump Game (with Memoization)
+##### Pattern: Dynamic Programming / Greedy
+[Back to Top](#table-of-contents)
+##### Description:
+- **Input:** `[2, 3, 1, 1, 4]`
+- **Output:** `true`
+- **Explanation:** Starting at index 0, we can jump to the end by following the path `[0 -> 1 -> 4]`.
+
+- **Input:** `[3, 2, 1, 0, 4]`
+- **Output:** `false`
+- **Explanation:** We get stuck at index 3, as we cannot move past it to reach the end.
+
+```java
+import java.util.Arrays;
+
+public class JumpGame {
+    public static void main(String[] args) {
+        int[] nums1 = {2, 3, 1, 1, 4};
+        int[] nums2 = {3, 2, 1, 0, 4};
+
+        System.out.println("Can reach end (Example 1): " + canJump(nums1)); // true
+        System.out.println("Can reach end (Example 2): " + canJump(nums2)); // false
+    }
+
+    /**
+     * Function to determine if we can reach the last index using recursion with memoization.
+     * @param nums Array representing max jump length from each index.
+     * @return True if we can reach the last index, false otherwise.
+     */
+    public static boolean canJump(int[] nums) {
+        // Initialize memo array with -1 (unvisited)
+        int[] memo = new int[nums.length];
+        Arrays.fill(memo, -1);
+        
+        // Start recursion from index 0
+        return canJumpFromPosition(nums, 0, memo);
+    }
+
+    /**
+     * Recursive helper function with memoization to check if we can reach the end from the current index.
+     * @param nums Array representing max jump length from each index.
+     * @param position Current index in the array.
+     * @param memo Memoization array to store results of subproblems.
+     * @return True if we can reach the last index from the current position, false otherwise.
+     */
+    private static boolean canJumpFromPosition(int[] nums, int position, int[] memo) {
+        // Base case: if we reached or exceeded the last index, return true
+        if (position >= nums.length - 1) {
+            return true;
+        }
+
+        // If already computed, return the stored result
+        if (memo[position] != -1) {
+            return memo[position] == 1;
+        }
+
+        // Calculate the furthest position we can jump to from the current index
+        int furthestJump = Math.min(position + nums[position], nums.length - 1);
+
+        // Try to jump to each position from position+1 up to furthestJump
+        for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
+            if (canJumpFromPosition(nums, nextPosition, memo)) {
+                memo[position] = 1; // Mark as reachable
+                return true;
+            }
+        }
+
+        // Mark as unreachable if no path to the end is found
+        memo[position] = 0;
+        return false;
+    }
+}
+```
+##### Time Complexity:
+- The time complexity is **O(n)**, as each position is visited only once due to memoization.
+
+##### Space Complexity:
+- The space complexity is **O(n)**, used by the memo array and recursion stack depth.
+
+##### Algorithm
+- **Initialize** a `memo` array to store reachability of each index.
+- **At each position:**
+  - **Check memo:** if already computed, return its value.
+  - **Calculate** the farthest reachable index.
+  - **For each index** within this range, recursively check if it leads to the end.
+  - **Update memo** for positions that can or cannot reach the end.
+- **Return** `true` if any path reaches the last index; else `false`.
+***
+
+
+
+### Advanced Level
+Edit Distance - Link
+Maximum Product Subarray - Link
+Burst Balloons - Link
+Palindrome Partitioning II - Link
+Wildcard Matching - Link
+Regular Expression Matching - Link
+Russian Doll Envelopes - Link
+Comprehensive Challenges
+
+### Comprehensive Challenges
+Longest Common Subsequence - Link
+Interleaving String - Link
+Maximal Square - Link
+Word Search II - Link
+Distinct Subsequences - Link
+Dungeon Game - Link
+Scramble String - Link

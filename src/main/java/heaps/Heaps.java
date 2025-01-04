@@ -124,9 +124,9 @@ public class Heaps {
         ListNode dummyHead = new ListNode();
         ListNode nodePointer = dummyHead;
 
-        PriorityQueue<ListNode> queue = new PriorityQueue<>((n1, n2) -> n1.value - n2.value);
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((n1, n2) -> n1.val - n2.val);
 
-        queue.addAll(lists);
+      //  queue.addAll(lists);
 
         while (!queue.isEmpty()){
 
