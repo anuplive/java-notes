@@ -58,7 +58,8 @@ public class BinaryTree {
         // Recursively find the height of the right subtree
         int rightHeight = height(root.right);
         
-        // The height of the tree is the maximum of the left and right subtree heights plus 1 for the root
+        // The height of the tree is the maximum of the left 
+        // and right subtree heights plus 1 for the root
         return Math.max(leftHeight, rightHeight) + 1;
     }
     
@@ -263,7 +264,8 @@ public class Subsequences {
 ##### Description:
 - Input: `arr = {1, 2, 3, 3}, targetSum = 6`
 - Output: `4`
-- Explanation: The subsets that add up to 6 are `{3, 3}`, `{1, 2, 3}`, `{2, 3}`, and `{1, 2, 3}` (considering the second 3).
+  - Explanation: The subsets that add up to 6
+   are `{3, 3}`, `{1, 2, 3}`, `{2, 3}`, and `{1, 2, 3}` (considering the second 3).
 
 ```java
 import java.util.Arrays;
@@ -317,7 +319,8 @@ Sure! Here’s the updated code with a comment added before the `pHelper` method
 ##### Description:
 - Input: `"abc"`
 - Output: `["abc", "a bc", "ab c", "a b c"]`
-- Explanation: The function generates all possible permutations of the input string by inserting spaces between the characters.
+  - Explanation: The function generates all possible permutations of
+  the input string by inserting spaces between the characters.
 
 ```java
 import java.util.ArrayList;
@@ -371,7 +374,8 @@ public class PermutationWithSpaces {
 ##### Description:
 - Input: `abc`
 - Output: `["abc", "abC", "aBc", "aBC", "Abc", "AbC", "ABc", "ABC"]`
-- Explanation: The input string can have its letters in lower or upper case, generating all possible combinations.
+  - Explanation: The input string can have its letters in lower or upper case,
+   generating all possible combinations.
 
 ```java
 import java.util.ArrayList;
@@ -416,7 +420,8 @@ public class CaseChangePermutations {
 ##### Description:
 - Input: `"a1b2"`
 - Output: `["a1b2", "a1B2", "A1b2", "A1B2"]`
-- Explanation: The output contains all possible permutations of the string where each letter can be either lowercase or uppercase, while digits remain unchanged.
+  - Explanation: The output contains all possible permutations of the string where
+  each letter can be either lowercase or uppercase, while digits remain unchanged.
 
 ```java
 import java.util.ArrayList;
@@ -425,39 +430,27 @@ import java.util.List;
 public class LetterCasePermutation {
     public List<String> letterCasePermutation(String s) {
         List<String> result = new ArrayList<>();
-        backtrack(result, s, 0, new StringBuilder());
+        permHelper(s, 0, "", result);
         return result;
     }
+    void permHelper(String s, int index, String current, ArrayList<String> result){
 
-    private void backtrack(List<String> result, String s, int index, StringBuilder current) {
-        // Base case: if we've processed all characters, add the current combination to the result
-        if (index == s.length()) {
-            result.add(current.toString());
-            return;
-        }
+        if (index == s.length()){
+            result.add(current);
+            return; 
+            }
+
+        if (Character.isDigit(s.charAt(index))){
+
+            permHelper(s, index + 1 ,  current + s.charAt(index), result);
+
+        }   else {
         
-        // Get the current character
-        char ch = s.charAt(index);
-        
-        // If it's a digit, keep it as is and move to the next character
-        if (Character.isDigit(ch)) {
-            current.append(ch); // Append digit
-            backtrack(result, s, index + 1, current); // Move to the next index
-            current.deleteCharAt(current.length() - 1); // Backtrack
-        } else {
-            // If it's a letter, we have two choices: lowercase and uppercase
-            // Append lowercase version and recurse
-            current.append(Character.toLowerCase(ch));
-            backtrack(result, s, index + 1, current);
-            current.deleteCharAt(current.length() - 1); // Backtrack
-            
-            // Append uppercase version and recurse
-            current.append(Character.toUpperCase(ch));
-            backtrack(result, s, index + 1, current);
-            current.deleteCharAt(current.length() - 1); // Backtrack
-        }
+        permHelper(s, index + 1 ,  current + Character.toUpperCase(s.charAt(index)), result);
+        permHelper(s, index + 1 ,  current + Character.toLowerCase(s.charAt(index)), result);
+
+        } 
     }
-
     public static void main(String[] args) {
         LetterCasePermutation lcp = new LetterCasePermutation();
         System.out.println(lcp.letterCasePermutation("a1b2")); // Example usage
@@ -501,18 +494,15 @@ public class BalancedParentheses {
             result.add(current); // Add valid combination to result
             return;
         }
-
-        // If we can add an open parenthesis (i.e., open count is less than max)
+   // If we can add an open parenthesis (i.e., open count is less than max)
         if (open < max) {
             generateCombinations(result, current + "(", open + 1, close, max); // Add '(' and increase open count
         }
-
         // If we can add a close parenthesis (i.e., close count is less than open)
         if (close < open) {
             generateCombinations(result, current + ")", open, close + 1, max); // Add ')' and increase close count
         }
     }
-
     public static void main(String[] args) {
         int n = 3; // Example input
         System.out.println(generateParentheses(n)); // Expected output: ["((()))", "(()())", "(())()", "()(())", "()()()"]
@@ -540,7 +530,8 @@ public class BalancedParentheses {
 ##### Description:
 - Input: N = 3
 - Output: "111", "110", "101"
-- Explanation: All 3-bit binary numbers where at every prefix, the number of 1's is greater than or equal to the number of 0's.
+  - Explanation: All 3-bit binary numbers where at every prefix,
+   'the number of 1's is greater than or equal to the number of 0's.
 
 ```java
 public class BinaryNumberGenerator {

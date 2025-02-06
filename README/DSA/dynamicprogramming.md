@@ -826,15 +826,12 @@ public class SubsetSumMemoization {
         if (n == 0) {
             return 0;
         }
-
         // Create a unique key for the current state (n and sum)
         String key = n + "-" + sum;
-
         // Check if the result for this state is already computed
         if (memo.containsKey(key)) {
             return memo.get(key); // Return the cached result
         }
-
         // Condition: if the last element is greater than the sum, ignore it
         if (arr[n - 1] > sum) {
             // Recursive call excluding the last element
@@ -847,10 +844,8 @@ public class SubsetSumMemoization {
             // Store the result in memoization table
             memo.put(key, exclude + include);
         }
-        
         return memo.get(key); // Return the computed result
     }
-
     // Main function to test the implementation
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 3};
@@ -1832,7 +1827,6 @@ public class DecodeWays {
     if (s == null || s.length() == 0 || s.charAt(0) == '0') {
         return 0;
     }
-    
     return decodeHelper(s, 0); 
 }
 
@@ -1841,12 +1835,10 @@ int decodeHelper(String s, int index) {
     if (index == s.length()) {
         return 1; 
     }
-
-    // If the current character is '0', it's an invalid path
+   // If the current character is '0', it's an invalid path
     if (s.charAt(index) == '0') {
         return 0;
     }
-
     // Option 1: Decode one character
     int selectOne = decodeHelper(s, index + 1);
 
@@ -1858,7 +1850,6 @@ int decodeHelper(String s, int index) {
             selectTwo = decodeHelper(s, index + 2);
         }
     }
-
     // Return the total count from both options
     return selectOne + selectTwo;  
  }

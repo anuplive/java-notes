@@ -1,0 +1,30 @@
+Tell me about your project
+
+Todo :
+Problem Solving
+
+"Describe a complex problem you solved in your previous role and the steps you took to solve it."
+
+
+###############
+"How do you approach debugging a difficult issue in production?"
+###############
+Java Run time issues in Project and how did you solve it ?
+Get the list of jiras from Joey that were related to de-referencing the objects. Attach a GC Logs and HeapMap of Large objects.
+
+
+Java Performance Tuning and Trouble Shooting
+https://www.youtube.com/watch?v=PGZeYTIGUTs&list=PLD9DLu3Uw5PQxBuApX8pshZ096eFQ4xGs
+
+Java Trouble Shooting :
+https://www.youtube.com/watch?v=j6UmaMJHF84
+
+Java Out Of Memory and Types
+https://www.youtube.com/watch?v=Ixs2RBd_7AM&list=PLD9DLu3Uw5PQOd9jGQAaJmSMGgSh__hWT
+
+Heap Map :
+https://blog.heaphero.io/how-to-capture-java-heap-dumps-7-options/
+#########################################################################################################
+
+Interview Questios:
+https://www.youtube.com/watch?v=GO67C7V-IbQ&list=PLVz2XdJiJQxwS8FyWnWyKyfILxHPLsiro&index=8

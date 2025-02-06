@@ -1,3 +1,8 @@
+Good Youtube videos
+https://www.youtube.com/@bytevigor
+
+
+
 ### Current Preparation
 Projects:
 -  [AWS Cloud Labs ](https://www.educative.io/cloudlabs/understanding-networking-services-in-aws-from-zero-to-hero)
