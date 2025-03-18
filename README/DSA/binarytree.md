@@ -868,6 +868,25 @@ class TreeNode {
     }
 }
 
+public class InvertBST {
+
+    // Function to invert the binary tree explicitly
+    public static TreeNode invertTree(TreeNode root) {
+        // Base case: if the node is null, return null
+        if (root == null) return null;
+
+        // Recursively invert the left subtree
+        TreeNode leftSubtree = invertTree(root.left);
+        // Recursively invert the right subtree
+        TreeNode rightSubtree = invertTree(root.right);
+
+        // Swap left and right subtrees
+        root.left = rightSubtree;
+        root.right = leftSubtree;
+
+        return root;
+    }
+
 public class InvertBinaryTree {
     // Function to invert the binary tree
     public TreeNode invertTree(TreeNode root) {
