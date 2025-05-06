@@ -966,17 +966,19 @@ public class InvertBinaryTree {
 ### Tree Properties
 [Back to Top](#table-of-contents)
 #### BTree Check Symmetric
-##### Pattern: Tree Traversal
+##### Pattern: BFS Tree Traversal
 [Back to Top](#table-of-contents)
 ##### Description:
 Example:
 - Input:
   ```
-       1
-      / \
-     2   2
-    / \ / \
-   3  4 4  3
+          1
+         / \
+     2        2
+    / \      / \
+   3   4    4   3
+  / \ / \  / \ / \
+ 5  6 7 8  8 7 6  5
   ```
 - Output: `true`
 ```java
